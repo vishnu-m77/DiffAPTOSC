@@ -21,6 +21,13 @@ import traceback
 import shutil
 import logging
 
+if os.path.exists('project.log'):
+    os.remove('project.log')
+
+logging.basicConfig(filename='project.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
+logging.warning('This will get logged to a file')
+
 if __name__ == '__main__':
     
     # Command line arguments
@@ -42,8 +49,10 @@ if __name__ == '__main__':
     params = param[data]
     MODEL_VERSION_DIR = "diffmic_conditional_results/" + str(params['N_STEPS']) + "steps/nn/" + str(params["RUN_NAME"]) + "/" + str(params["PRIOR_TYPE"]) + str(params["CAT_F_PHI"]) + "/" + str(params["F_PHI_TYPE"])
     params["MODEL_VERSION_DIR"] = MODEL_VERSION_DIR
+    # logging.debug('verbose is {}'.format(verbose))
     if verbose:
-        print(params)
+        logging.info('params are {}'.format(params))
+        # print(params)
     
     # Creates a report file
     report_file = 'report.txt'
