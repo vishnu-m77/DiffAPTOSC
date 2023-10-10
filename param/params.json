@@ -1,14 +1,28 @@
 {
-    "1D":{
-        "num_samples": 500,
-        "lr": 0.00075,
-        "num_epochs": 8000,
-        "display_epochs" : 200
+    "isic":{
+        "EXP_DIR": "./results_isic",
+        "N_STEPS": 1000,
+        "RUN_NAME": "run_1",
+        "PRIOR_TYPE": "f_phi_prior",
+        "CAT_F_PHI": "_cat_f_phi",
+        "F_PHI_TYPE": "f_phi_supervised",
+        "LOSS": "diffmic_conditional",
+        "TASK": "isic",
+        "N_SPLITS": 1,
+        "DEVICE_ID": 0,
+        "N_THREADS": 8
     },
-    "2D":{
-        "n_epochs": 300,
-        "display_epochs": 10,
-        "weight_decay": 0.001,
-        "lr": 0.0002
+    "aptos":{
+        "EXP_DIR": "./results_aptos",
+        "N_STEPS": 1000,
+        "RUN_NAME": "run_1",
+        "PRIOR_TYPE": "f_phi_prior",
+        "CAT_F_PHI": "_cat_f_phi",
+        "F_PHI_TYPE": "f_phi_self_supervised",
+        "LOSS": "diffmic_conditional",
+        "TASK": "aptos",
+        "N_SPLITS": 1,
+        "DEVICE_ID": 0,
+        "N_THREADS": 8
     }
 }
