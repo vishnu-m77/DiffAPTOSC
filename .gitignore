@@ -160,3 +160,7 @@ cython_debug/
 #.idea/
 
 .dependencygraph/
+Pipfile
+Pipfile.lock
+report.txt
+DiffMIC-OG/
