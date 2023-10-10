@@ -3,3 +3,4 @@ torch
 argparse
 psutil
 tqdm
+scikit-learn
