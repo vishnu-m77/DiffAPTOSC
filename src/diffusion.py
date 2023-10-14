@@ -34,9 +34,9 @@ class ForwardDiffusionUtils():
     
 
 
-class ForwardDiffusionUtils():
+class ReverseDiffusionUtils():
     def __init__(self):
-        super(ForwardDiffusionUtils,self).__init__()
+        super(ReverseDiffusionUtils,self).__init__()
 
 
 # test
