@@ -127,6 +127,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+*.cfg
+bin/
 
 # Spyder project settings
 .spyderproject
@@ -160,3 +162,6 @@ cython_debug/
 #.idea/
 
 .dependencygraph/
+
+# Miscellaneous
+share/
