@@ -32,17 +32,26 @@ class DiffusionBaseUtils():
         alpha_prod = torch.prod(alphas)
         return alpha_prod
     
-class ForwardDiffusionUtils():
+class ForwardDiffusionUtils(DiffusionBaseUtils):
     def __init__(self):
         super(ForwardDiffusionUtils,self).__init__()
 
-    def forward_diffusion(self):
+    def forward_diffusion(self, var, noising_condition):
         """
-        This method will be used to add noise to y_0 (whatever that is), global_prior and local prior and then 
+        This method is used to add noise to y_0 (whatever that is), global_prior and local prior and then 
         obtain the respective noisy variables following equation 2 of paper.
-        y_0, global and local priors will be obtained form dcg
+        y_0, global and local priors will be obtained form dcg.
         """
-        raise NotImplementedError
+        eps = torch.randn_like(var) # gaussian noise
+        
+        """
+        We will add noise till timestep = T. 
+        Thus we first generate alpha_prod for T time
+        """
+        alpha_prod = self.get_alpha_prod(timestep=self.T)
+        noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (1-torch.sqrt(alpha_prod))*noising_condition
+
+        return noised_var
     
 
 
