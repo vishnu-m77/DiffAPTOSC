@@ -31,7 +31,7 @@ logging.warning('This will get logged to a file')
 if __name__ == '__main__':
     
     # Command line arguments
-    parser = argparse.ArgumentParser(description='Iterative Retraining')
+    parser = argparse.ArgumentParser(description='DiffMIC')
     
     # Default values of parameters are defined
     parser.add_argument('--param', default = 'param/params.json', help='file containing hyperparameters')
