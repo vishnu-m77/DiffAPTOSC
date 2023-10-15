@@ -41,6 +41,11 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
         This method is used to add noise to y_0 (whatever that is), global_prior and local prior and then 
         obtain the respective noisy variables following equation 2 of paper.
         y_0, global and local priors will be obtained form dcg.
+
+        Note:
+        * noising_condition = (global_prior + local_prior)/2 for y_0
+        * noising_condition = global_prior for y_global
+        * noising_condition = local_prior for y_local
         """
         eps = torch.randn_like(var) # gaussian noise
         
