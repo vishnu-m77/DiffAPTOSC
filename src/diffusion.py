@@ -23,11 +23,14 @@ class DiffusionBaseUtils():
             raise NotImplementedError
         return betas
     
-    def get_alpha_prod(self):
+    def get_alpha_prod(self, timestep = 1000):
         """
-        Use t to get alpha at timestep t
+        Returns alpha_prod which is the product of alpha_t where
+        alpha_t = 1 - beta_t for all time until timestep
         """
-        raise NotImplementedError
+        alphas = 1-self.get_noise_schedule()[:timestep]
+        alpha_prod = torch.prod(alphas)
+        return alpha_prod
     
 class ForwardDiffusionUtils():
     def __init__(self):
@@ -51,4 +54,4 @@ class ReverseDiffusionUtils():
 # test
 if __name__ == '__main__':
     df=DiffusionBaseUtils()
-    # print(df.get_noise_schedule())
+    print(df.get_alpha_prod())
