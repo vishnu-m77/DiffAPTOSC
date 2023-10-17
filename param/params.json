@@ -26,13 +26,13 @@
         "N_THREADS": 8
     },
     "dcg":{
-        "device_type": "gpu",
+        "device_type": "device",
         "gpu_number": 0,
         "cam_size": [7, 7],
         "K": 6,
         "crop_shape": [32, 32],
         "post_processing_dim": 512,
-        "num_classes": 100,
+        "num_classes": 5,
         "use_v1_global": 1,
         "percent_t": 1.0
     }
