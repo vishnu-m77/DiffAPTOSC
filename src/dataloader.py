@@ -2,6 +2,12 @@ import torch
 import pickle
 from torch.utils.data import Dataset
 import torchvision.transforms as transforms
+import transforms as trans
+from PIL import Image
+"""
+Cirrently using transforms defined by authors, but we can later on
+replace functions by using torchvision transforms instead
+"""
 
 
 class APTOSDataset(Dataset):
@@ -34,3 +40,21 @@ class APTOSDataset(Dataset):
                 transforms.ToTensor(),
                 transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
                 ])
+
+        #self.depths_transform = transforms.Compose([transforms.Resize((self.trainsize, self.trainsize)),transforms.ToTensor()])
+
+    def __getitem__(self, index):
+        data_pac = self.data_list[index]
+        img_path = data_pac['img_root']
+        #cl_img, cr_img, ml_img, mr_img = None
+        img = Image.open(img_path).convert('RGB')
+
+        img_torch = self.transform_center(img)
+
+        label = int(data_pac['label'])
+
+        
+        return img_torch, label
+
+    def __len__(self):
+        return self.size
