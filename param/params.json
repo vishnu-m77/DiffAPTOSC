@@ -24,5 +24,15 @@
         "N_SPLITS": 1,
         "DEVICE_ID": 0,
         "N_THREADS": 8
+    },
+    "data": {
+        "train_path": "dataset/aptos/aptos_train.pkl",
+        "test_path": "dataset/aptos/aptos_test.pkl"
+    },
+    "train": {
+        "batch_size": 32
+    },
+    "test": {
+        "batch_size": 32
     }
 }

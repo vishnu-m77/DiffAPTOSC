@@ -1,5 +1,5 @@
 import torch
-import pickle
+import pickle, json
 from torch.utils.data import Dataset
 import torchvision.transforms as transforms
 import transforms as trans
@@ -58,3 +58,22 @@ class APTOSDataset(Dataset):
 
     def __len__(self):
         return self.size
+
+
+class DataLoader():
+    def __init__(self, config, database_name = "APTOS"):
+        super(DataLoader,self).__init__()
+        self.database_name = database_name
+        self.train_path = config.data.train_path
+        self.test_path = config.data.test_path
+
+if __name__ == '__main__':
+    with open("param/params.json") as paramfile:
+        param = json.load(paramfile)
+    
+    params = param
+    print(param)
+    #data = DataLoader()
+
+    
+
