@@ -71,14 +71,14 @@ class APTOSDataset(Dataset):
         This note might come in handy in future.
         More information: https://www.geeksforgeeks.org/converting-an-image-to-a-torch-tensor-in-python/ 
         """
-        ts = transforms.Compose([transforms.PILToTensor()]) # test transfor
-        image_torch = ts(img)
+        # ts = transforms.Compose([transforms.PILToTensor()]) # test transfor
+        # image_torch = ts(img)
 
-        #print(image_torch.size())
-        sve = Image.fromarray(np.asarray(image_torch).T, 'RGB')
-        print("imag is {}".format(img))
-        print("image_torch {}".format(image_torch))
-        sve.save('img_dataset.png')
+        # #print(image_torch.size())
+        # sve = Image.fromarray(np.asarray(image_torch).T, 'RGB')
+        # print("imag is {}".format(img))
+        # print("image_torch {}".format(image_torch))
+        # sve.save('img_dataset.png')
 
         img_torch = self.transform_center(img)
 
