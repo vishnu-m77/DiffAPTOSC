@@ -18,16 +18,18 @@ class DiffusionBaseUtils():
         (i.e. noise scale, as images keep getting noisier).
         """
         if self.noise_schedule == "Linear":
-            betas = torch.linspace(beta_initial, beta_final, self.T)
+            betas = torch.linspace(beta_initial, beta_final, self.T)  
         else:
             raise NotImplementedError
         return betas
     
-    def get_alpha_prod(self, timestep = 1000):
+    def get_alpha_prod(self, timestep = None):
         """
         Returns alpha_prod which is the product of alpha_t where
         alpha_t = 1 - beta_t for all time until timestep
         """
+        if timestep == None:
+            timestep = self.T
         alphas = 1-self.get_noise_schedule()[:timestep]
         alpha_prod = torch.prod(alphas)
         return alpha_prod
@@ -48,13 +50,8 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
         * noising_condition = local_prior for y_local
         """
         eps = torch.randn_like(var) # gaussian noise
-        
-        """
-        We will add noise till timestep = T. 
-        Thus we first generate alpha_prod for T time
-        """
-        alpha_prod = self.get_alpha_prod(timestep=self.T)
-        noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (1-torch.sqrt(alpha_prod))*noising_condition
+        alpha_prod = self.get_alpha_prod(timestep=self.T) # generate alpha_prod for T time
+        noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (1-torch.sqrt(alpha_prod))*noising_condition # add noise till timestep = T
 
         return noised_var
     
@@ -67,5 +64,6 @@ class ReverseDiffusionUtils():
 
 # test
 if __name__ == '__main__':
-    df=DiffusionBaseUtils()
-    print(df.get_alpha_prod())
+    timesteps = 3
+    df=DiffusionBaseUtils(timesteps = timesteps)
+    print(df.get_alpha_prod(timestep=timesteps))
