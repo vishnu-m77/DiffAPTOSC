@@ -3,6 +3,7 @@ Build basic structure of diffusion pipeline
 This script assumes a fully function DCG module and Dataloader module
 """
 import torch
+import numpy as np
 
 class DiffusionBaseUtils():
     def __init__(self, timesteps = 1000, noise_schedule = "Linear"):
@@ -38,11 +39,14 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
     def __init__(self):
         super(ForwardDiffusionUtils,self).__init__()
 
-    def forward_diffusion(self, var, noising_condition):
+    def forward_diffusion(self, var, noising_condition, t):
         """
         This method is used to add noise to y_0 (whatever that is), global_prior and local prior and then 
         obtain the respective noisy variables following equation 2 of paper.
         y_0, global and local priors will be obtained form dcg.
+
+        t is the timestep till which nosie has been added in the forward diffusion process
+        var is the variable on which we are adding noise
 
         Note:
         * noising_condition = (global_prior + local_prior)/2 for y_0
@@ -50,7 +54,7 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
         * noising_condition = local_prior for y_local
         """
         eps = torch.randn_like(var) # gaussian noise
-        alpha_prod = self.get_alpha_prod(timestep=self.T) # generate alpha_prod for T time
+        alpha_prod = self.get_alpha_prod(timestep=t) # generate alpha_prod for t time (where t is time for which noise has been added)
         noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (1-torch.sqrt(alpha_prod))*noising_condition # add noise till timestep = T
 
         return noised_var
@@ -66,4 +70,7 @@ class ReverseDiffusionUtils():
 if __name__ == '__main__':
     timesteps = 3
     df=DiffusionBaseUtils(timesteps = timesteps)
-    print(df.get_alpha_prod(timestep=timesteps))
+    ## testing utils for forward diffusion method in the 3 lines below
+    # fd = ForwardDiffusionUtils()
+    # noised_var = fd.forward_diffusion(torch.tensor([1,2], dtype=torch.float32), 0, 1000)
+    # print(noised_var)
