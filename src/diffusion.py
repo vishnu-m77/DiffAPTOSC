@@ -61,7 +61,7 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
     
 
 
-class ReverseDiffusionUtils():
+class ReverseDiffusionUtils(DiffusionBaseUtils):
     def __init__(self):
         super(ReverseDiffusionUtils,self).__init__()
         """
@@ -88,6 +88,8 @@ class ReverseDiffusionUtils():
 if __name__ == '__main__':
     timesteps = 3
     df=DiffusionBaseUtils(timesteps = timesteps)
+
+    # ================================= Tests ===========================================
     ## testing utils for forward diffusion method in the 3 lines below
     # fd = ForwardDiffusionUtils()
     # noised_var = fd.forward_diffusion(torch.tensor([1,2], dtype=torch.float32), 0, 1000)
