@@ -64,6 +64,24 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
 class ReverseDiffusionUtils():
     def __init__(self):
         super(ReverseDiffusionUtils,self).__init__()
+        """
+        NOTES: - Sehmimul
+
+        1. The diffusion pipeline in DiffMIC is based off https://arxiv.org/abs/2206.07275 
+        Github: https://github.com/XzwHan/CARD/blob/ebe2f2ae95dc7a7a95e6a71c0c8e1cabf8451087/classification/diffusion_utils.py#L106
+        Especially the CARD paper's Algorithm 2 line 4 is very useful as thta talks about inference and
+        the same inference scheme has been applied in the DiffMIC paper
+        Thus CARD has to be an intergal part of our work.
+
+        2. I understand p_sample, but I don't understand the goal of p_sample_t_1to0. The goal of y_0_reparam is outlined in point 1
+        """
+
+    def reverse_diffusion(self):
+        """
+        This is similar to p_sample of code
+        and 
+        """
+        raise NotImplementedError
 
 
 # test
