@@ -70,4 +70,3 @@ if __name__ == '__main__':
         param = json.load(paramfile)
     params = param["dcg"]
     dcg = DCG(params)
-    

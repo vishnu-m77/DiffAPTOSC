@@ -123,7 +123,7 @@ def get_max_window(input_image, window_shape, pooling_logic="avg"):
     elif pooling_logic in ["std", "avg_entropy"]:
         # create sliding windows
         output_size = (H - window_shape[0] + 1, W - window_shape[1] + 1)
-        sliding_windows = F.unfold(input_image, kernel_size=window_shape).view(N,C, window_shape[0]*window_shape[1], -1)
+        sliding_windows = func.unfold(input_image, kernel_size=window_shape).view(N,C, window_shape[0]*window_shape[1], -1)
         # apply aggregation function on each sliding windows
         if pooling_logic == "std":
             agg_res = sliding_windows.std(dim=2, keepdim=False)
@@ -131,7 +131,7 @@ def get_max_window(input_image, window_shape, pooling_logic="avg"):
             agg_res = -sliding_windows*torch.log(sliding_windows)-(1-sliding_windows)*torch.log(1-sliding_windows)
             agg_res = agg_res.mean(dim=2, keepdim=False)
         # merge back
-        pool_map = F.fold(agg_res, kernel_size=(1, 1), output_size=output_size)
+        pool_map = func.fold(agg_res, kernel_size=(1, 1), output_size=output_size)
     _, _, _, W_map = pool_map.size()
     # transform to linear and get the index of the max val locations
     _, max_linear_idx = torch.max(pool_map.view(N, C, -1), -1)
