@@ -71,15 +71,18 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
         Github: https://github.com/XzwHan/CARD/blob/ebe2f2ae95dc7a7a95e6a71c0c8e1cabf8451087/classification/diffusion_utils.py#L106
         Especially the CARD paper's Algorithm 2 line 4 is very useful as thta talks about inference and
         the same inference scheme has been applied in the DiffMIC paper
-        Thus CARD has to be an intergal part of our work.
+        Thus CARD has to be an intergal part of our work. Output of p_sample is literally the denoising
+        process of the CARD paper.
 
         2. I understand p_sample, but I don't understand the goal of p_sample_t_1to0. The goal of y_0_reparam is outlined in point 1
+
+        3.  p_sample is just reverse process of CARD paper and it is just equation 9 and Algorithm 2 and it
         """
 
     def reverse_diffusion(self):
         """
         This is similar to p_sample of code
-        and 
+        and I know exactly how to implement this
         """
         raise NotImplementedError
 
