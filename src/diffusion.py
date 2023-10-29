@@ -77,6 +77,10 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
         2. I understand p_sample, but I don't understand the goal of p_sample_t_1to0. The goal of y_0_reparam is outlined in point 1
 
         3.  p_sample is just reverse process of CARD paper and it is just equation 9 and Algorithm 2 and it
+
+        4. extract function is not necessary and the x or y input is only required to get the 'shape' and it is not really useful otherwise
+
+        5. In p_sample_loop curl_y is just a sample drawn from the N(prior, I) distribution.
         """
 
     def reverse_diffusion(self):
