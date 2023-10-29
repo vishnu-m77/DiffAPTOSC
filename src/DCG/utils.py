@@ -3,6 +3,61 @@ import torch
 from torch.autograd import Variable
 import torch.nn.functional as func
 
+def make_sure_in_range(val, min_val, max_val):
+    """
+    Function that make sure that min < val < max; otherwise return the limit value
+    """
+    if val < min_val:
+        return min_val
+    if val > max_val:
+        return max_val
+    return val
+
+def crop_pytorch(original_img_pytorch, crop_shape, crop_position, out,
+                 method="center", background_val="min"):
+    """
+    Function that take a crop on the original image.
+    Use PyTorch to do this.
+    :param original_img_pytorch: (N,C,H,W) PyTorch Tensor
+    :param crop_shape: (h, w) integer tuple
+    :param method: supported in ["center", "upper_left"]
+    :return: (N, K, h, w) PyTorch Tensor
+    """
+    # retrieve inputs
+    H, W = original_img_pytorch.shape
+    crop_x, crop_y = crop_position
+    x_delta, y_delta = crop_shape
+
+    # locate the four corners
+    if method == "center":
+        min_x = int(np.round(crop_x - x_delta / 2))
+        max_x = int(np.round(crop_x + x_delta / 2))
+        min_y = int(np.round(crop_y - y_delta / 2))
+        max_y = int(np.round(crop_y + y_delta / 2))
+    elif method == "upper_left":
+        min_x = int(np.round(crop_x))
+        max_x = int(np.round(crop_x + x_delta))
+        min_y = int(np.round(crop_y))
+        max_y = int(np.round(crop_y + y_delta))
+
+    # make sure that the crops are in range
+    min_x = make_sure_in_range(min_x, 0, H)
+    max_x = make_sure_in_range(max_x, 0, H)
+    min_y = make_sure_in_range(min_y, 0, W)
+    max_y = make_sure_in_range(max_y, 0, W)
+
+    # somehow background is normalized to this number
+    if background_val == "min":
+        out[:, :] = original_img_pytorch.min()
+    else:
+        out[:, :] = background_val
+    real_x_delta = max_x - min_x
+    real_y_delta = max_y - min_y
+    origin_x = crop_shape[0] - real_x_delta
+    origin_y = crop_shape[1] - real_y_delta
+    out[origin_x:, origin_y:] = original_img_pytorch[min_x:max_x, min_y:max_y]
+    return out
+
 
 def _retrieve_crop(x_original_pytorch, crop_positions, crop_method, parameters):
         """

@@ -21,6 +21,8 @@ import traceback
 import shutil
 import logging
 
+import src.DCG.main as dcg_module
+
 if os.path.exists('project.log'):
     os.remove('project.log')
 
@@ -56,6 +58,9 @@ if __name__ == '__main__':
     
     # Creates a report file
     report_file = 'report.txt'
+    
+    dcg = dcg_module.DCG(param["dcg"])
+    # y_fusion, y_global, y_local = dcg.forward(x)
     
     if os.path.exists(report_file):
         os.remove(report_file)

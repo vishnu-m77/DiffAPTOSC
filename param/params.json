@@ -31,6 +31,7 @@
         "cam_size": [7, 7],
         "K": 6,
         "crop_shape": [32, 32],
+        "crop_method": "upper_left",
         "post_processing_dim": 512,
         "num_classes": 5,
         "use_v1_global": 1,

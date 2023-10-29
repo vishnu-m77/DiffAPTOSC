@@ -6,17 +6,18 @@ import sys
 
 import torch.nn as nn
 import numpy as np
-import DCG.dcg_utils as utils
-import DCG.dcg_networks as net
+import src.DCG.utils as utils
+import src.DCG.networks as net
 
+# This implementation uses helper functions to define the intermediate 'layers' of DCG instead of classes.
 
 class DCG(nn.Module):
     def __init__(self, parameters):
         super(DCG, self).__init__()
 
+        logging.info("Initialize DCG")
         # save parameters
         self.parameters = parameters
-        # self.cam_size = self.parameters["cam_size"]
 
     def forward(self, x_original):
         """
@@ -39,7 +40,7 @@ class DCG(nn.Module):
         self.patch_locations = utils._convert_crop_position(small_x_locations, self.parameters["cam_size"], x_original)
 
         # patch retriever
-        crops_variable = utils._retrieve_crop(x_original, self.patch_locations, self.retrieve_roi_crops.crop_method, self.parameters)
+        crops_variable = utils._retrieve_crop(x_original, self.patch_locations, self.parameters["crop_method"], self.parameters)
         self.patches = crops_variable.data.cpu().numpy()
 
         # detection network
@@ -49,22 +50,24 @@ class DCG(nn.Module):
 
         # MIL module
         # y_local is not directly used during inference
-        z, self.patch_attns, self.y_local = net.attention(h_crops, self.parameters)
+        # z, self.patch_attns, self.y_local = net.attention(h_crops, self.parameters)
+        self.y_local = net.attention(h_crops, self.parameters)
 
         self.y_fusion = 0.5* (self.y_global+self.y_local)
         return self.y_fusion, self.y_global, self.y_local
 
-if os.path.exists('dcg.log'):
-    os.remove('dcg.log')
-
-logging.basicConfig(filename='dcg.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
-logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-logging.warning('This will get logged to a file')
 
 if __name__ == '__main__':
+    if os.path.exists('dcg.log'):
+        os.remove('dcg.log')
+
+    logging.basicConfig(filename='dcg.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+    logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
+    # logging.warning('This will get logged to a file')
     
     # Hyperparameters from json file
-    with open("param/params.json") as paramfile:
+    with open("../../param/params.json") as paramfile:
         param = json.load(paramfile)
     params = param["dcg"]
+    dcg = DCG(params)
     
