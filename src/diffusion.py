@@ -6,22 +6,25 @@ import torch
 import numpy as np
 
 class DiffusionBaseUtils():
-    def __init__(self, timesteps = 1000, noise_schedule = "Linear"):
+    def __init__(self, timesteps = 1000, noise_schedule = "Linear", beta_initial = 0.0001, beta_final = 0.02):
         super(DiffusionBaseUtils,self).__init__()
         self.T = timesteps # Number of diffusion steps
         self.noise_schedule = noise_schedule
+        self.beta_initial = beta_initial
+        self.beta_final = beta_final
         # add multivariate gaussian attribute
 
-    def get_noise_schedule(self, beta_initial = 0.0001, beta_final = 0.02):
+    @property
+    def noise_list(self):
         """
         Returns a noise schedule for the forward diffusion process. Noise schedule is an increasing sequence
         as in diffusion we generally start by snall perturbations and then keep on increasing the perturbations 
         (i.e. noise scale, as images keep getting noisier).
         """
         if self.noise_schedule == "Linear":
-            betas = torch.linspace(beta_initial, beta_final, self.T)  
+            betas = torch.linspace(self.beta_initial, self.beta_final, self.T)  
         else:
-            raise NotImplementedError
+            raise NotImplementedError("{0} noise schedule not implemented".format(self.noise_schedule))
         return betas
     
     def get_alpha_prod(self, timestep = None):
@@ -31,7 +34,7 @@ class DiffusionBaseUtils():
         """
         if timestep == None:
             timestep = self.T
-        alphas = 1-self.get_noise_schedule()[:timestep]
+        alphas = 1-self.noise_list[:timestep]
         alpha_prod = torch.prod(alphas)
         return alpha_prod
     
@@ -39,7 +42,7 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
     def __init__(self):
         super(ForwardDiffusionUtils,self).__init__()
 
-    def forward_diffusion(self, var, noising_condition, t):
+    def forward_diffusion(self, var, noising_condition, t): # rename noising condition as that is not expressive
         """
         This method is used to add noise to y_0 (whatever that is), global_prior and local prior and then 
         obtain the respective noisy variables following equation 2 of paper.
