@@ -9,9 +9,50 @@ import numpy as np
 import DCG.dcg_utils as utils
 import DCG.dcg_networks as net
 
+
 class DCG(nn.Module):
     def __init__(self, parameters):
         super(DCG, self).__init__()
+
+        # save parameters
+        self.parameters = parameters
+        # self.cam_size = self.parameters["cam_size"]
+
+    def forward(self, x_original):
+        """
+        :param x_original: N,H,W,C numpy matrix
+        """
+        # global network: x_small -> class activation map
+        # h_g, self.saliency_map = self.global_network.forward(x_original)
+        h_g, self.saliency_map = net.global_res.forward(x_original, self.parameters)
+
+        # calculate y_global
+        # note that y_global is not directly used in inference
+        # self.y_global = self.aggregation_function.forward(self.saliency_map)
+        self.y_global = net.aggregator(self.parameters["percent_t"], self.saliency_map)
+
+        # a region proposal network
+        # small_x_locations = utils.retrieve_roi_crops.forward(x_original, self.cam_size, self.saliency_map)
+        small_x_locations = net.retrieve_roi(x_original, self.parameters["cam_size"], self.saliency_map, self.parameters)
+
+        # convert crop locations that is on self.parameters["cam_size"] to x_original
+        self.patch_locations = utils._convert_crop_position(small_x_locations, self.parameters["cam_size"], x_original)
+
+        # patch retriever
+        crops_variable = utils._retrieve_crop(x_original, self.patch_locations, self.retrieve_roi_crops.crop_method, self.parameters)
+        self.patches = crops_variable.data.cpu().numpy()
+
+        # detection network
+        batch_size, num_crops, I, J = crops_variable.size()
+        crops_variable = crops_variable.view(batch_size * num_crops, I, J).unsqueeze(1)
+        h_crops = net.local_res(crops_variable).view(batch_size, num_crops, -1)
+
+        # MIL module
+        # y_local is not directly used during inference
+        z, self.patch_attns, self.y_local = net.attention(h_crops, self.parameters)
+
+        self.y_fusion = 0.5* (self.y_global+self.y_local)
+        return self.y_fusion, self.y_global, self.y_local
 
 if os.path.exists('dcg.log'):
     os.remove('dcg.log')
