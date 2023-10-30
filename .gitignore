@@ -127,6 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+myenv/
 
 # Spyder project settings
 .spyderproject
@@ -160,3 +161,7 @@ cython_debug/
 #.idea/
 
 .dependencygraph/
+
+# Autopep8 extension from vscode
+.vscode/
+.DS_Store
