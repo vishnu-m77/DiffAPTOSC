@@ -21,5 +21,8 @@
     },
     "test": {
         "batch_size": 32
+    },
+    "total_images": {
+        "num": 1920
     }
 }

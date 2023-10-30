@@ -4,7 +4,7 @@ import json
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
-
+import random
 import transforms as trans
 
 """
@@ -22,9 +22,15 @@ class APTOSDataset(Dataset):
             tr_dl = json.load(f)
         self.dataset = tr_dl
 
-        self.size = len(self.dataset)
         # print(self.size)
         if train:
+            '''
+            Lakshay - quick update:
+            now selecting randomly generated n number of images. n is mentioned in total_images in params.json
+            mulitplier 0.7 mentioned to make sure we select 0.7 * n images from all training images
+            '''
+            self.dataset = random_image_selection(self.dataset, 0.7)
+            self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
                 trans.CropCenterSquare(),
                 transforms.Resize(self.trainsize),
@@ -38,6 +44,13 @@ class APTOSDataset(Dataset):
                                      0.229, 0.224, 0.225])
             ])
         else:
+            '''
+            Lakshay - quick update:
+            now selecting randomly generated n number of images. n is mentioned in total_images in params.json
+            mulitplier 0.3 mentioned to make sure we select 0.3 * n images from all testing images
+            '''
+            self.dataset = random_image_selection(self.dataset, 0.3)
+            self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
                 trans.CropCenterSquare(),
                 transforms.Resize(self.trainsize),
@@ -126,6 +139,24 @@ class DataProcessor():
         return train_loader, test_loader
 
 
+def random_image_selection(original, multiplier):
+    '''
+    Lakshay - 
+    original -> contains the list of all the image locations and the labels from either test or train json
+    multiplier -> 0.7 for training set and 0.3 for test set
+    functionality-> it converts the original list to n * multiplier list. basically it randomly chooses
+                    n * multiplier number of image locations and corresponding labels from original
+                    and then returns the new_random or new randomly generated set. thus training and testing
+                    will happend on total n images and not 3663 images. the number of total images n, is
+                    mentioned in params.json, so make changes there.
+    '''
+    with open("param/params.json") as paramfile:
+        random_n = json.load(paramfile)["total_images"]["num"]
+    new_random = random.sample(original, int(multiplier*random_n))
+    # print(new_random)
+    return new_random
+
+
 if __name__ == '__main__':
     ''' 
     Temporarily dumping json file here to test dataloader
@@ -146,14 +177,17 @@ if __name__ == '__main__':
     * edit (Lakshay) - changed pickle to json format, to view image locations with ease
     """
 
+    # # this image variable conatins all the image locations and the labels associated with them
     # with open("dataset/aptos/aptos_train.json") as paramfile:
     #     image = json.load(paramfile)
-    # # this image conatins all the image locations and the labels associated with them
-    # print(len(image))
-    # img_path = image[1]['img_root']
-    # image = Image.open(img_path).convert('RGB')
+
+    # image_random_n = random_image_selection(image, multiplier=0.4)
+
+    # print(len(image_random_n))
+    # img_path = image_random_n[1]['img_root']
+    # img = Image.open(img_path).convert('RGB')
     # print(img_path)
-    # image.save("img1.png")
+    # img.save("img1.png")
 
     # # train loader and train_labels produced by the dataset object can be used to train the dcg
     train_features, train_labels = next(iter(train_loader))
@@ -182,3 +216,6 @@ if __name__ == '__main__':
     # img = Image.fromarray(np.asarray(
     #     train_features[1]).T, 'RGB')  # The transpose is probably needed due to RGB and Tensor conversions
     # img.save('out.png')
+
+    # print(len(train_loader)*32/0.7)
+    # print(len(test_loader)*32/0.3)
