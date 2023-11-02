@@ -85,19 +85,46 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
 
         5. In p_sample_loop curl_y is just a sample drawn from the N(prior, I) distribution.
         """
+    def reverse_diffusion_parameters(self, t):
+        beta_t = self.noise_list[t] # getting beta_t at timestep t
+        alpha_prod_t = self.get_alpha_prod(timestep=t)
 
-    def reverse_diffusion(self):
+        if t<1:
+            raise ValueError("time step 0 error. Please fix it")
+        alpha_prod_t_m1 = self.get_alpha_prod(timestep=t-1)  ### will throw error at time step t = 0 MAKE SURE TO DEAL WITH IT
+
+        gamma_0 = beta_t*(torch.sqrt(alpha_prod_t_m1)/(1 - alpha_prod_t))
+
+        gamma_1 = ((1-alpha_prod_t_m1)*torch.sqrt(1-beta_t))/(1-alpha_prod_t)
+
+        gamma_2 = 1 + ((torch.sqrt(alpha_prod_t)-1)*(torch.sqrt(1-beta_t)+torch.sqrt(alpha_prod_t_m1)))/(1-alpha_prod_t)
+
+        beta_var = ((1-alpha_prod_t_m1)*beta_t)/(1-alpha_prod_t)
+
+        return gamma_0, gamma_1, gamma_2, beta_var
+
+
+    def reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net):
         """
         This is similar to p_sample of code
-        and I know exactly how to implement this
+        x: The input image which will be used in the Score Network
+        y_t: noisy variable at a specific timestep t
+        t: timestep at which we are doing doing reverse diffusion and t will go from T to 1
+        cond_prior: prior for local or global prior or local+global prior
+        score_net: Neural Network which is used to approximate the gradient of the log likelihood of the probability distribution
         """
+        # First calculate the time dependent parameters gamma_0, gamme_1, gamma_2
+        gamma_0, gamma_1, gamma_2, beta_var = self.reverse_diffusion_parameters(t = t)
+
         raise NotImplementedError
 
 
 # test
 if __name__ == '__main__':
-    timesteps = 3
-    df=DiffusionBaseUtils(timesteps = timesteps)
+    # timesteps = 3
+    # df=DiffusionBaseUtils(timesteps = timesteps)
+    rd = ReverseDiffusionUtils()
+    print(rd.reverse_diffusion_parameters(t=0))
 
     # ================================= Tests ===========================================
     ## testing utils for forward diffusion method in the 3 lines below
