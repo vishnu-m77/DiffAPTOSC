@@ -86,6 +86,10 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
         5. In p_sample_loop curl_y is just a sample drawn from the N(prior, I) distribution.
         """
     def reverse_diffusion_parameters(self, t):
+        """
+        The parameters returned with this helper function are used in the reverse diffusion process of the 
+        CARD paper
+        """
         beta_t = self.noise_list[t] # getting beta_t at timestep t
         alpha_prod_t = self.get_alpha_prod(timestep=t)
 
@@ -113,7 +117,10 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
         cond_prior: prior for local or global prior or local+global prior
         score_net: Neural Network which is used to approximate the gradient of the log likelihood of the probability distribution
         """
-        # First calculate the time dependent parameters gamma_0, gamme_1, gamma_2
+        # First calculate the time dependent parameters gamma_0, gamme_1, gamma_2 and beta_var
+        # In reverse diffusion, at each timestep t, we are essentially sampling from a Gaussian Distribution
+        # whose mean is defined using gamma_0, gamma_1 and gamma_2 and the variance is defined by beta_var
+        # Note that gamma_0, gamma_1, gamma_2, beta_var depend on the timestep of reverse diffusion
         gamma_0, gamma_1, gamma_2, beta_var = self.reverse_diffusion_parameters(t = t)
 
         raise NotImplementedError
