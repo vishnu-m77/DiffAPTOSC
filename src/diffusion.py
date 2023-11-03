@@ -94,7 +94,7 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
         alpha_prod_t = self.get_alpha_prod(timestep=t)
 
         if t<1:
-            raise ValueError("time step 0 error. Please fix it")
+            raise ValueError("Invalid timestep. Timestep must be at least 1 to obtain reverse diffusion parameters")
         alpha_prod_t_m1 = self.get_alpha_prod(timestep=t-1)  ### will throw error at time step t = 0 MAKE SURE TO DEAL WITH IT
 
         gamma_0 = beta_t*(torch.sqrt(alpha_prod_t_m1)/(1 - alpha_prod_t))
@@ -144,7 +144,7 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
             ### *** POTENTIAL_BUG ****
             t = self.T - t - 1
             if t > 0:
-                y_tm1, y0_hat = self.reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net)
+                y_tm1, y0_hat = self.reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net) # method will crash if t = 0
                 y_t = y_tm1
             else:
                 # so t = 1
