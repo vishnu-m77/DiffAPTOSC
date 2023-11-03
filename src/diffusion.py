@@ -98,32 +98,59 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
         alpha_prod_t_m1 = self.get_alpha_prod(timestep=t-1)  ### will throw error at time step t = 0 MAKE SURE TO DEAL WITH IT
 
         gamma_0 = beta_t*(torch.sqrt(alpha_prod_t_m1)/(1 - alpha_prod_t))
-
         gamma_1 = ((1-alpha_prod_t_m1)*torch.sqrt(1-beta_t))/(1-alpha_prod_t)
-
         gamma_2 = 1 + ((torch.sqrt(alpha_prod_t)-1)*(torch.sqrt(1-beta_t)+torch.sqrt(alpha_prod_t_m1)))/(1-alpha_prod_t)
-
         beta_var = ((1-alpha_prod_t_m1)*beta_t)/(1-alpha_prod_t)
 
-        return gamma_0, gamma_1, gamma_2, beta_var
+        return gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t
 
 
-    def reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net):
+    def reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net): # cannot test without cond_prior and score_net
         """
         This is similar to p_sample of code
         x: The input image which will be used in the Score Network
         y_t: noisy variable at a specific timestep t
         t: timestep at which we are doing doing reverse diffusion and t will go from T to 1
-        cond_prior: prior for local or global prior or local+global prior
+        cond_prior: prior for local or global prior or local+global prior and according to CARD it should depend on x
         score_net: Neural Network which is used to approximate the gradient of the log likelihood of the probability distribution
         """
         # First calculate the time dependent parameters gamma_0, gamme_1, gamma_2 and beta_var
         # In reverse diffusion, at each timestep t, we are essentially sampling from a Gaussian Distribution
         # whose mean is defined using gamma_0, gamma_1 and gamma_2 and the variance is defined by beta_var
         # Note that gamma_0, gamma_1, gamma_2, beta_var depend on the timestep of reverse diffusion
-        gamma_0, gamma_1, gamma_2, beta_var = self.reverse_diffusion_parameters(t = t)
+        gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t = self.reverse_diffusion_parameters(t = t)
+        eps = torch.randn_like(y_t)
 
-        raise NotImplementedError
+
+        # first we reparameterize y0 to obtain y0_hat
+        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t)*cond_prior - torch.sqrt(1-alpha_prod_t)*score_net(x,y_t,cond_prior,t)))
+
+        y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2*cond_prior+torch.sqrt(beta_var)*eps
+
+        return y_tm1, y0_hat
+    
+    def full_reverse_diffusion(self, x, cond_prior, score_net): # cannot test without cond_prior and score_net
+        """
+        This does the full reverse diffusion process. We start by initializing a random sample from a Gaussian Distribution
+        whose mean is defined by the cond_prior and with variance I. Then reverse_diffusion_step is called self.T - 1 times. In the very last step i.e. at time = 1,
+        """
+        y_t = torch.rand_like(cond_prior)+cond_prior
+        for t in range(self.T):
+            # when t = 999, self.T - t - 1 = 0 for self.T = 1000
+            # then, from the else condition, we see that we just use the previous y0_hat quantity
+            # instead of doing one more reverse diffusion step.
+            # The reason I have the - 1 is to follow the convention in the script that we count form 0
+            # In card code, they counted from 1 and so here the - 1 ensures that we start counting from 0 and not 1.
+            ### *** POTENTIAL_BUG ****
+            t = self.T - t - 1
+            if t > 0:
+                y_tm1, y0_hat = self.reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net)
+                y_t = y_tm1
+            else:
+                # so t = 1
+                y_tm1 = y0_hat
+        y0_synthetic = y_tm1
+        return y0_synthetic
 
 
 # test
@@ -131,7 +158,7 @@ if __name__ == '__main__':
     # timesteps = 3
     # df=DiffusionBaseUtils(timesteps = timesteps)
     rd = ReverseDiffusionUtils()
-    print(rd.reverse_diffusion_parameters(t=0))
+    print(rd.reverse_diffusion_parameters(t=5))
 
     # ================================= Tests ===========================================
     ## testing utils for forward diffusion method in the 3 lines below
