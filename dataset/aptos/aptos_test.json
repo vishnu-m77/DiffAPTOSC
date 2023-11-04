@@ -1,0 +1,4394 @@
+[
+    {
+        "img_root": "./dataset/aptos/train/c102db7634d8.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/493d99f030e2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2d9d97a6e713.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/33e8e26a75d4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4dc2211a1c31.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/4e1e252317b5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3fd45879afe6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6f0463c1ff18.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/bebb3f167654.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/3178559fbf57.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b77b8a1f09f1.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/89fc080f7e83.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/03c85870824c.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/f06e7a9df795.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/435d900fa7b2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/186c1835eec5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d15ca3469b87.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/25002fe43f92.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8e6df9eedcd8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4cddfc22b0ad.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5fcff7280019.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a64273801bde.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4ccee4db09b6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4f46d7ee61ed.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/9fa02dfb5553.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/de55ed25e0e8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6180920bc224.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a688f20f8895.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/af345c68e836.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e4ae1ee6aada.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a49b0b4484ea.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c3789c1dab96.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/69fff98cb32a.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/f30f203ef51e.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c704bd669f36.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0d9a9896f801.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7c2e852171c0.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a2811f512c1c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/62318d514160.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/77f69c7ff324.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/2ef4a04aed1b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/22a6da005395.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/683023cda6a5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1b495ac025b7.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/da9262d9f5d9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5e97cb2b0888.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ff0740cb484a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3ca637fddd56.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/44976c3b11a6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a188c60b93fb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5b994ff78547.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b3f31c371e59.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/266fbefa58fb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a4012932e18d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7b8c78b41c0d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/460893cd86e3.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/37de05ef12a5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c739ff9580d3.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/e65a2ff90494.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3ac3fbfca7d4.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/875a2fc5fe23.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/b07bc463b718.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/2f7fbdcc9a4b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e251bdf05b85.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d83d0695e215.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e0313be77035.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b9b99dad668d.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/4b618537d52f.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/f002ce614c59.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2f5c9cdfb333.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/dce73d90c00c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0efc93ec838b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/dc6fa1b38b83.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3bf3085ac167.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ad570b850a4f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e32dc722eca5.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/cac40227d3b2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c6a8f8f998a2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1a03a7970337.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/6c6efb6b1358.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/4d47300e3ddb.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/e4a44f9158dc.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a0b7ad98df57.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1e036f2e7095.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/60e269e3e188.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a8e08e7fe016.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/42985aa2e32f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/441117562359.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0fc6829da85b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/92d9e9f08709.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/15bed5adde74.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/00a8624548a9.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1d37f1c8b6d8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ed2c52c14493.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e4d3d437b0a8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c5ad60521f8c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b9bc81fcb075.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d91273efb92a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4e8585a96739.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/191a711852bd.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/d7078e8b0349.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8201cab8322d.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/61c667663f2f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f55e1d2a19e4.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/af6166d57f13.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ab78a66dee6a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b553e7909535.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a66c3165876f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f0860c21533b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ef48780f5d5f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4c3c1ed09771.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/150f92b45349.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a125377fb985.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8b76c3c5cb3e.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/c21eb81de9fc.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/568455854a11.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/582115961a3d.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/189cbbc9e5e3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/959dc602febc.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8ef2eb8c51c4.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/7d48f8cdfb69.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/79cbae28d8b2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c0202976c670.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f66c4ee86629.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f09cfc6a4dbd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/342edf9b889d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2d552318eb07.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/cd1c98ec48b1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7ed4128b2a4e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6f4e0538d1e4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/61c2fbd16e38.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3dbfbc11e105.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0babc12807b2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0a74c92e287c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/650fbed3fdca.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/9b70f84400af.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b13d72ceea26.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1c578b72d7b3.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/59fee5bc3479.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/19e350c7c83c.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/8ab8d9b3ce3f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d3dfd0a2dee6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8785b71238d8.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/2f81ee5f2926.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/66bfec8d6bcd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/188a9323be03.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4bd5d0b30198.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b72a86d61959.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/675de69373f8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/29f44aea93a4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/08f8838d69bb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7e980424868e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/11b220a397b8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fe37f4492920.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/63b71347e95d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/79ade634c633.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/85cbb84ac8e0.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/f72ef9ceeaa8.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/ef8109305128.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/ffd97f8cd5aa.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a419fcb2dfb5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c446985355f1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/83d6e40c869f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/bda8c973b09d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3ffa14d60b24.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/80ca40196225.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/547b37da9223.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c94f37085d0f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/260a455692b5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e1e490773462.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ccd34029493d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/9ad92f1c1542.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/cc1eebed9276.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6852f4531591.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6f0e5848d9ce.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0f96c358a250.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/4da2961e62fe.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/a07d9a5045cb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d2c2f02bb313.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/da0a1043abf7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3a122851e526.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4a558a1cd243.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ed6bd9293a89.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7ccf9d25dc48.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bb7e0a2544cd.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/070f67572d03.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/d1a60c3b9fe5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/527bea76116c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a2d349f567a6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/64c6c6ee0d98.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d3de0d313d61.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/7f2cce721e19.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d473f6fafba0.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a80dab8eddf4.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/52886bed8a07.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/abf0f56c6f12.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ae8472f8d310.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/8329e80c10ac.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e907d23cce3d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/555d0bef3c5b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9870ce41cac4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/09f6ab477654.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ee78ce914066.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/ed2c06fcc573.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/415f2d2bd2a1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/977e1ca77653.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/7bf981d9c7fe.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/71e43b4f8ba6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9df31421cdd2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1177d583c807.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ca25745942b0.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/e4151feb8443.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/47d1603a555b.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/f71333204618.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5c6194562ed2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/883ddb650967.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/53273d664cd8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b86fb2d5be1a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/164cd5a3a6cd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1782142e17d9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ac81fc200162.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5f70ad48a525.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/435414ccccf7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/90b8bf342032.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/e0d229db881a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a0e635689259.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/992b9a07b25f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0e82bcacc475.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/d774692d9919.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/03ff7d159f10.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5ac7a414560e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/025a169a0bb0.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/51d780864365.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/70d657f8f503.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/0304bedad8fe.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/178412895d5e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4818672273af.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/17d997fe1090.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8c7c26c52a6c.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/525d0dd8dc45.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/89b725411cee.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b549af91bd30.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/504a69096fcb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3428230bf1bd.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b640e3bdff75.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/d85a842d20bd.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4c78d9d18da9.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/df3adfd6ba36.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/cb39761f0712.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4ef16a53d899.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3c1efa38d0da.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/184a185e7447.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/93802d1e3c41.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7e77b61e1639.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/624fb7317106.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/bc7bf19b84e3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8bad12d70368.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/cca626a0e19a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/bda7ff3b1562.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f0c13be90519.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/30cab14951ac.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/99240ee00485.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a01c590c444f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f2f569a64949.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4b6cb0bcfd44.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/05b1bb2bdb81.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/318eb706a134.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/511fd66b2df8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7877be80901c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8f14bca04b47.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3f47f83217b5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/01d9477b1171.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bd9904495ccd.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/f9ecf1795804.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/152db3de8120.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ad12cde115ab.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9a9b21215c55.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b6bfe9db60e5.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/d6b109c82067.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b842b43cb7fb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/58059e73d2d4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f7735b6d47f7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5321ab64f9ea.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ca7570c5925c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7bda86d95c5b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/9cedf5c7016b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d02b79fc3200.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bcdc8db5423b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b0acd3593310.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ff631653374e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3732de8b416f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/51030843fde2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/07a2b8cabf6b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4189d4e631ec.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d866c26d76f0.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/76cb010f7aa0.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e82232a3c28b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/236f56771ec6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/387138ddf43d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0eff8eacb2f7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/53327edb9e4d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e33766353db2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d868acdccb5b.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/2cceb07ff706.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/fe0e2dee1834.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5bf3357a2823.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f18abfa690ab.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3d663a6a50a3.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d6803e467592.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/60edda7b4871.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cf8ae5501bd6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a45d77edf8d9.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/26fc2358a38d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/58b866484a05.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/82d364726a58.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9d74428188bb.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6a57a3db3eff.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/45c39ab9e797.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ab32db41c409.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1006345f70b7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5ed6dc419e4d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/281d7b7c7676.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/ca0f1a17c8e5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/eb32a815f78c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4e54ccfd49b2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4a589edaea60.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2b88cb6e31cd.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f7508f14dd7b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bb11db08584a.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/8d7bb0649a02.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/08ee569d4721.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7f6690fa390a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/87a9f4d20f07.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cae33655ca00.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d7ab5c040294.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/98f48850ebce.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/00cb6555d108.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/2a3a1ed1c285.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8a8a251770cd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8acdf12f412a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a8a6588c8eb7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/529906ff9dfa.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0fffa73e2402.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f2094a20b275.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7525ebb3434d.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/8ac0c44bbf24.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/d18aea8238a0.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/437cbec4a3f8.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/31616ff6b53b.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/dcf109df1a2b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3ac92ac3d65a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a2ad3da4c7d6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7ce671f952be.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5511f114e7ee.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/86410aa13b3e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/879744b9dc65.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ee77763a6afb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2fefb720869a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/180afe1d5ef7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d4f32b9c07df.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/96ea316ed0ab.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d74ccc796517.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3435fd8675a2.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/d1fb4efb117c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/62ecdc90dd42.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d51b3fe0fa1b.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/6e73acb2cf60.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/61bbc11fe503.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/b468ebf5cb11.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/23148a40ecb0.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4b6895d0cf8d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b98f77098b9d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/830e297965a1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cab3dfa7962d.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/bf7b4eae7ad0.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ea1d045f9fea.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/9039cbfcbb2f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0924cec998fa.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/901a3552fe26.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/df4913ca3712.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/3fa4f4d77177.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/12b57dac703e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/26d9576e8043.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/78937523f7a8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bfdee9be1f1d.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/1dbdc32c17db.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d29b37d110f3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/da8900ac7f29.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/9d1feed37610.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/28a4d00927b7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/788ddb0b70b7.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/fecf4c5ae84b.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/e0863b353093.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f361060eda3e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/10eefba568dd.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/962c0fc85e13.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/abbb8791785e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/799cb4c816ae.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/beb00fa6e7c9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0ef4c61dc056.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9f1efb799b7b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/86b3a7929bec.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/cd4e7f9fa1a9.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/51cfeccaf40d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d0079cc188e9.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/ae2c3f6312ef.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0ac436400db4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/18621b9ca978.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ace2281f00c4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8e7981855125.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2a5a8b744f08.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f7fec8935126.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/4eabad7948cf.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1e4650743fa2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/72c31aa48e2c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c6f5b5b5be41.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a30a143a53a3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5633ced07d8e.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/1da4a17c18c9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a4d41c495666.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/97bf61736b86.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/875d2ffcbf47.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8b8fe3fc8950.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b49b2fac2514.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/eda29a9d78f3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/166068a24416.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/a81b06f50612.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/0b00f8a77510.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/98e44127872f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1e8a1fdee5b9.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/f5e6226bd2e0.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/42a850acd2ac.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5ad3dabeb2cd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a9a28c37c8c4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b019a49787c1.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/48c49f662f7d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/98f7136d2e7a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/cfed7c1172ec.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/43bc7c066dfb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/53c874dbc594.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2927665214e1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/26999ebc21de.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3601dac9bed7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e60e4edb3ca9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/83038ca49b6d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d4bc001f7224.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/40e9b5630438.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/85fce24084da.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/482088e6be44.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d41b33fcb94f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8f10e41a2f02.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/09662e462531.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/093cf723fede.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e2a233493b90.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/d2d523e9f669.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e868c3da340b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/fd87b6b2e664.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/80f6b30ece8c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f6f3ea0d2693.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/82910bba4753.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/98441214557f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1da25637859b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7a06ea127e02.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/52dbec057cc8.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0b3efe669365.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ccd6dcb2f568.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/39134907127a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ef7a4ed8d5d1.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8ff863f8874f.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/5c817060c0ed.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b762c29cf2f3.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/76cfe8967f7d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ad93d88c87ea.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4704dbb59536.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/86722fcd802c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a5bb85afc6e8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3b4a5fcbe5e0.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/0c76fd494af6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/da9fe02dead3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8ae049175db6.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/dcc6c0ad5cad.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1509d097b69a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7b9d519cbd66.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/165634a6167e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7635921c5efb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/55968f0e63c4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a443c4fd489c.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/0a902c80d5da.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8a9bef2fbd4e.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/41960d5f58c2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/56e56aa08362.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/39923b29988a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1f9ccda4ddf2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f90f8931a9bc.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b99794a0beed.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b89938407ee6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/613028ede6a0.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/1b4625877527.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d5ad3362424c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/49c5e7f6b8d2.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/7ef5ff774a48.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/92889b863ae6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/934104859e68.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bc92a61a1f9c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e12f9f19d1be.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/357f02a779d7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a88f68b0b114.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c56e65f74187.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/fcc6aa6755e6.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/36a1e3c780a0.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e62490b7d0e9.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/63c7b0265775.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7a12f49e29df.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b6304c545f95.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/45693d027798.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e19936582c61.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/310c27067ac0.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d93b61dc8f64.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0cecc2864b7f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b64e1eef3d63.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4a7dc013e802.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/2d04cead4d3a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f71bea807c96.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ed2ef440d22c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a1e236fbc863.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/40140a925c43.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6ccfdb031184.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e9678824215d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e6552b7432b3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/222f3ee3a1e8.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/f85fd4fac887.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/51d574513bcb.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b574d229ec4c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a8c54e2a4b79.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/d1fa0f744620.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/61e301bd3c25.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/ea4ce9516144.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c7e827fc7f41.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3e61703b5ab2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d69698f838db.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/18cde9649e90.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b82d5f1f1145.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c76664770c07.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/ec4649213ccf.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/45369821d6a3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a62e995f167c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0151781fe50b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/57a710de68a4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a8c9fcdbc0be.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4205e9deb058.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/de50dfa745f8.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4c570172778b.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/a26f50218b84.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b11dcdcbc8c8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1fb455685328.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0851d6a69589.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e5d56f4f359b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1f31701dd61b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b0d6417bad3e.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b9519abce0c1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/905cc86bf100.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/7aabd768abff.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1ee1eb7943db.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1e742358e0b9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/92b0d27fc0ec.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ee059945b08a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ad944bd56bb6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cffc50047828.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/15cc2aef772a.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/d85588ff2ebd.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/8bed09514c3b.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/1632c4311fc9.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f57cf3b6f48e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/04579e31e4be.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f00ce9b9d6f4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cd01672507c9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8e20b8fac7c3.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f431f2e119d7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7fe7309d0b4f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/465c618f7b23.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6666c4f18396.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/2f4e81787d9b.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/0232dfea7547.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bb783d8e496f.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/ebd96d853918.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8871e6a26596.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f85c78201a50.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6155cf375354.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/38373431d996.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e4c799738a19.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9bd008aab548.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/012a242ac6ff.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ead23cc922ed.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/c1896142a20a.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/378963f9df22.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/4242c0d87f57.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/2967e578939f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8a234d68b27e.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/4aa3d771c5e4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/dfea19863428.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c01eae4b4939.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/07a3be30563b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e3cd96cb094c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/11b5c77fbf79.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5a27b9b2a9c1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c31651ea04c6.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/6194e0fff071.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/c0a117de7d0a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6377e23928f6.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/5baed382f062.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e12b67835e03.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e594c19e2e1d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/76e589911303.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/aef9016557ca.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/2a4520f1f9a3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2c8101f14723.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3286073a976e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ca05f7e7801b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3232b34cbe99.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0da09e3ce8f1.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/93421787f520.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1d29cb2f4296.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c1799a6f5c65.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/475c7ded0f7a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f48241b0c995.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/dc3c0d8ee20b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/026dcd9af143.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b43440c6ebe4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ef476be214d4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/50ddd7d976df.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/25d069089c5e.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/6c6505a0c637.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a70d0f12a641.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2665f72e2dd3.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/af8aa32beee4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ca1036496659.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/c57c164bca05.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3c72f580d4ba.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/8cb6b0efaaac.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/835b9f6e12ba.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/254052cf3e48.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/9f8112c710be.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4fd5ec0dca09.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b65ff67743b2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/12e6e66c80a7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ad6b07d5c338.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/18f1f979d30d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8d4ff745a409.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/dd110d2b8c21.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c0a0828e01b4.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/9e7a63b2fc6a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c947bb6cf9f6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b5e6ae31493c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4d3de40ced3a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7270367410a1.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/8c2f0f04e1ed.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/103f97a2ab15.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fd4c946c52bf.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7fc3a8bb40de.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e06cccc08c59.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/25a0a1e41afd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8000a6b97a84.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7bc00e58d419.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/155e2df6bfcf.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e540d2e35d15.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/401fdfd0db07.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/15f8d769935c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4ec7796df40e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/55034b1dbff2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/bacfb1029f6b.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/9f935fb38440.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/09eeafa9656a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/abf09c44d5f4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/50d8249f7bc9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9e2ba2b979f1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bfefa7344e7d.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/76fe19ff64fb.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e2856afe62c5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/39f8935185e6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8ed586c43023.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b3d135bd3bb5.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/c013e869acce.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1e7ccd4a1c87.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3f3de2a6b0f5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4e82c3c8d31f.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/e5de79795c1d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9837048b85dc.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7e6e90a93aa5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c3aa424eff9a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/95e732e043a1.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/12ef75375322.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ddb222ff7c1d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b310bd564329.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/da9574d35b82.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5257cb536da2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0a9ec1e99ce4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b72f59b85f7c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2b5bb6d33959.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d871895742b1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1ca62b3e4fd3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f252046c0fe6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4c6c5a1bf5ab.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a9c7b83caf81.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8ee50c26fc13.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a8b3c0961d42.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e265c870f9b3.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6762b2b48ea5.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/f952ad2e4356.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/810d3779abd9.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/1c4f3aa4df06.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/c096131ad065.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/78a577c3e0bf.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d8cdb7d7283a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/57f933d3d7c7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c639d837f5e4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a32886cb31ab.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/b1b3e7d0a5f3.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/82deb07a6618.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f0e1201b5c1f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7f43becd3e83.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d0ffa0425ef1.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/02cd34a85b24.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d66ccb75ada1.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/b09101adb478.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/27bab1432f61.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7d626a7ffe76.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/7e160c8b611e.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/c1ebe785503a.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/c9485c38fdd5.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/523d0c2cb4d6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/44878f34e31f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/60f15dd68d30.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/4528fbbd43a3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/70ed3ec68b94.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7e9458de5707.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a3b2e93d058b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5069feccd866.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/96a9706b8534.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/a7673ac44509.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cb0cc98d7e35.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5b76117c4bcb.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/c67117c6ab3b.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/8af50c9d0a86.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f580566e27f5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2c827005b8f8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9122b31414d3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6324d77cf926.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/55f7f018c61c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a06b353e7bed.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4393c5bc576a.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/a1822dd8d05d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5c85d22bd0de.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/789f0ec1eab8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bdf47b9f10c4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/942f544c4e15.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fbdc796290d4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a3802934bad7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/165cd2070ebd.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/6e018411ba4a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0cb6b898389f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/83517eaeccb9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/912fbe06407e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/67844c46bc61.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a08a0133754a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/30941b65348b.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/658ad9f09f5d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/43fb6eda9b97.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4c17e85686f0.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d7bc62d60e8c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/68ddb15a74de.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c6e1e9fbf39b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/349f3c0ac83e.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/08a3875063c3.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/5efa24b03d5e.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/3ce2f8a77a32.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8ead8f37423c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bb2f89488ecd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/03676c71ed1b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3f752fcccec0.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/bf7047dc683c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6cfb7b44ef6f.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/2cbfc6182ba2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/760b6f4c6d82.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4826d10030b3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1594ca6c30d3.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/afc744fad65e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a3d2a0c4cd17.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/1a1e974a7dbf.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8bdb891661a8.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0eb52045349f.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/29a13e666266.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3f44d749cd0b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ae2e888905ba.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5090917a2676.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/23175b7ef453.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6fbaaf8eb67a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4d17559ac1e2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7a6e384a0846.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/b4b04d81acbb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cadde4030858.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ca6842bfcbc9.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/7bc4dd99eee5.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/a627eb8c08c5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/103abbd8b63e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/df0886f1e76b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1a369baf9ee6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/521b5377a727.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a0267206d51e.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/821789e9053f.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/478fc46eaa49.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c3b15bf9b4bc.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/32d7d360d891.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6810410187a0.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c64c0966b4cf.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e76a9cbb2a8c.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/fd48cf452e9d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3f0d3629d69e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/999115d9386b.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a12ca80bb8c7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2c77bf969079.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/51af8a689511.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5c7ab966a3ee.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/e39b627cf648.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/b10fca20c885.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9eaac43744f5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ace287a5c991.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ba0107fb1bfd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5ba156a35ff2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6735931000ec.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/84a72e15b23c.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/8421107255ae.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/52230bbef30e.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/4c53cc97ea13.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f7116e7b2f4e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a86128b601a7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/04ac765f91a1.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/8dc22e65c06f.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/ab88081e5654.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/384e6c915722.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4c635a01593d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6966abf40b8c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5ca73d28f17f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/beb2ad14fd2d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/aa5ce75edcf5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/27f82ada84ac.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d1ca85af57c9.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/495106ae3b68.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e03e70bc8bba.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/13c191b59ed0.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a95d9d61ddd4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2b07790a2422.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/944a233fbf8e.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/4dd71fc7f22b.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/c52bb7343387.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b9c7c5182075.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1c9c583c10bf.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fca931da5c5e.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/ed88faaa325a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/896ad584a841.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/22d843b2bbd1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/38f1901f214a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fda39982a810.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/91a88d3b0358.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3cdef7c591cc.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7d37a2939f12.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/69df7ade0575.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/fc1b1841eadf.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/191348830ddf.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/a19ecd0a706e.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/5eb8fb1aad41.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9a1029536d78.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2bbcfdc477db.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/52ddde91a349.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/57ce57a8cfb0.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e9ff9352ccb3.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/9c72ed6befa0.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/240b25a7debe.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c8905b8d5cf1.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1409ab48175a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d7ac4a0c9760.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/aaaadb174012.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/b835b6e31a59.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/69f43381317b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/15e24b73d4a7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9041eb43456e.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/757e39293591.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ea4dcb055139.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7e0598cc88a0.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/a987aa7aac37.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/be161517d3ac.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/ba2624883599.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e17507a4a1f5.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5a03fe3ed15c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/69591ebb198d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/902dc5a91a3f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/19ef4d292196.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/42b93b574f23.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5f13e8a07344.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/1c47815f4a6b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6baafa56895c.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/0318598cfd16.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/3c28fd846b43.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3323fd59782e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5f4a8c074bd5.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ea9c41e1ced0.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fce73678f650.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8fc09fecd22f.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/76be29bb30b2.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/7b20210d9120.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/eb050765b323.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e5197d77ec68.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/050bb1eafa76.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/38c7153457e2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e34fa07bd64d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/fd0a70082e7c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/720b5f62ce80.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e2ec22b3d07e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cf0575534cec.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/8d3d67661620.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/fa0c87bd75ce.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/aa94cc4bfd84.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5b644a403e1f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/599b89048034.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/daff5427c9b2.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6b664ed2a938.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c9ea9d5eab65.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/ce887b196c23.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f35d80bb1a22.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e3ab63dc9a60.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/af7a36454670.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/308f7fce6f0d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/101b9ebfc720.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/24f271c87e73.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9fab29e69a6b.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/1864d3411143.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/db49cdf1ea64.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5d024177e214.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/331b87d1b9d1.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d9c9b9786da3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a0a0cd8af5a6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/d91635f380b4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/61d9c88a3a4b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6bf26b777e3a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7d8f67cadc29.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/76c0c7e1b6cb.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/cd93a472e5cd.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/f8372e80f731.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/014508ccb9cb.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/64fedbf97473.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/0684311afdfc.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/983c98354e9c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c755a0c4edcc.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fb696a8e055a.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/fc603cbedb41.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/5b72ff04333d.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/a0cd7bffdaa0.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/7d11dbc1e738.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d807c53c1399.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7d0a871c45db.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e85d410d6836.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/937bc1b924b1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/35beb47fe159.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fe0fc67c7980.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/34acae864963.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ca891d37a43c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b0eeae01b8ab.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/969f92a390db.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2b4c7b5f1f1e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5ead17e894ae.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/878a3a097436.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/47536db39f00.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/df4aec4a0eaf.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/4318b6adeb97.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f0098e9d4aee.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/58f07741ee3b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d27ac9e54901.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/fc898dfeb24f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8f318a978844.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/e47770a2e5d1.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d0b132d2c7ec.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/ea15a290eb96.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/b7278b4f2448.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/a47878630dc2.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7f2123bc89a3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/10bf25731c08.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9a3c03a5ad0f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/08bef347f40d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/80e7cc0a0649.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/31cb39681f6a.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/35362d43e753.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1f5496352859.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0a4e1a29ffff.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/674057ab250c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0125fbd2e791.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/5cc6dea19614.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f999c6921e6d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0d0a21fd354f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1b8701231c8f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2a2274bcb00a.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cd48cfab4e44.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8f1e7433a95d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7af4d8704032.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/054b1b305160.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6d5a8362dd1e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f9d52509c571.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/286e9981dd9b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/22098b1fe461.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/aa60813e1a8d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f451eee2b66b.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a763661f98a5.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/ff4832d55461.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f03d3c4ce7fb.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/da2bdf4236ac.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/0a1076183736.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f0546a45ef10.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/36e4b704b905.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e66855a5c583.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/bfaa0080ab61.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/24de56d433cd.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7c52fe73e748.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e12d41e7b221.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/71e4130bf5c8.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1d3e9b939732.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/cd5714db652d.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/83b61051737f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8660e1864665.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/348598d01e18.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ec01f0862669.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1cb6961d141c.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/207a580de0ea.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/8a01daa423f7.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/4f7755e74a9e.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/d88806d9ece9.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/96b5474ae604.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9bafbbd152d2.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/35777eb7859d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/a664d2055886.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/91e2c2890c9f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/fed5bb685832.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c2d2b4f536da.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/bd34a0639575.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f3a4751af42e.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/39b5b05d6cd9.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/9ed6c2b25767.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/84c663f39632.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/89ee1fa16f90.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c58e5c0c5b33.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/194814669fee.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/b35cad8fe2d7.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4a44cc840ebe.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/b5b913358b32.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/6630f8675a97.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/5b301a6d1ac7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/03fd50da928d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6531070bf03c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/370f575adb23.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ef26625121b3.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/bf6cbccacf39.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/2a3378bcfbcc.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/3ccf96c1dd6d.png",
+        "label": 4
+    },
+    {
+        "img_root": "./dataset/aptos/train/c5a9ebef1517.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/4ef7144e24ff.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/9eaf735cf01f.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/454792eb6e05.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e3e490babc0c.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/f080a22008be.png",
+        "label": 3
+    },
+    {
+        "img_root": "./dataset/aptos/train/9d75de31f1b8.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1df1530b9b8d.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/9da74370835a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/1269ab57c2e6.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/aa8a1e814811.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/3b10191dfd25.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/acc9f29538c4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0212dd31f623.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/76bc31e0d3be.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/aec51513cf45.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/8a81f62320d6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/1e1fb019710d.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/48fda42bd5d4.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0d744aed4d64.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/4cfd22ae43d4.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/7455e2b5fc57.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/9de9421f17e3.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/269f0792f11f.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/c0e15e8e2b46.png",
+        "label": 1
+    },
+    {
+        "img_root": "./dataset/aptos/train/3ddb86eb530e.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/7131bf4c9e6f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/f69400b316a7.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/62ab144d5cee.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/61ac9b0dc6b9.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/e4e343eaae2a.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/6987804eb464.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/874f8c1929f6.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/e7b5dd5bab1f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/ceb601fe8dba.png",
+        "label": 2
+    },
+    {
+        "img_root": "./dataset/aptos/train/0b8bdec9d869.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/c9e697117f3f.png",
+        "label": 0
+    },
+    {
+        "img_root": "./dataset/aptos/train/d844a7252f4e.png",
+        "label": 0
+    }
+]
