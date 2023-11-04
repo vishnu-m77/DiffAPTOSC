@@ -14,8 +14,9 @@ replace functions by using torchvision transforms instead
 
 
 class APTOSDataset(Dataset):
-    def __init__(self, data_path, train=True):
+    def __init__(self, data_path, total_image_num, train=True):
         self.trainsize = (224, 224)
+        self.total_image_num = total_image_num
         self.train = train
         self.data_path = data_path
         with open(data_path, "rb") as f:
@@ -29,7 +30,8 @@ class APTOSDataset(Dataset):
             now selecting randomly generated n number of images. n is mentioned in total_images in params.json
             mulitplier 0.7 mentioned to make sure we select 0.7 * n images from all training images
             '''
-            self.dataset = random_image_selection(self.dataset, 0.7)
+            self.dataset = random_image_selection(
+                self.dataset, 0.7, total_image_num)
             self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
                 trans.CropCenterSquare(),
@@ -49,7 +51,8 @@ class APTOSDataset(Dataset):
             now selecting randomly generated n number of images. n is mentioned in total_images in params.json
             mulitplier 0.3 mentioned to make sure we select 0.3 * n images from all testing images
             '''
-            self.dataset = random_image_selection(self.dataset, 0.3)
+            self.dataset = random_image_selection(
+                self.dataset, 0.3, total_image_num)
             self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
                 trans.CropCenterSquare(),
@@ -120,10 +123,16 @@ class DataProcessor():
         self.test_path = config["data"]["test_path"]
         self.train_batch_size = config["train"]["batch_size"]
         self.test_batch_size = config["test"]["batch_size"]
+        self.total_image_num = config["total_images"]["num"]
 
     def get_dataloaders(self):
-        train_data = APTOSDataset(data_path=self.train_path, train=True)
-        test_data = APTOSDataset(data_path=self.test_path, train=False)
+        train_data = APTOSDataset(
+            data_path=self.train_path, total_image_num=self.total_image_num, train=True)
+        test_data = APTOSDataset(
+            data_path=self.test_path, total_image_num=self.total_image_num, train=False)
+
+        # print to see if the number of dataset selection works
+        # print(len(train_data), len(test_data))
 
         train_loader = DataLoader(
             train_data,
@@ -139,7 +148,7 @@ class DataProcessor():
         return train_loader, test_loader
 
 
-def random_image_selection(original, multiplier):
+def random_image_selection(original, total_image_num, multiplier):
     '''
     Lakshay - 
     original -> contains the list of all the image locations and the labels from either test or train json
@@ -150,9 +159,9 @@ def random_image_selection(original, multiplier):
                     will happend on total n images and not 3663 images. the number of total images n, is
                     mentioned in params.json, so make changes there.
     '''
-    with open("param/params.json") as paramfile:
-        random_n = json.load(paramfile)["total_images"]["num"]
-    new_random = random.sample(original, int(multiplier*random_n))
+    # with open("param/params.json") as paramfile:
+    #     random_n = json.load(paramfile)["total_images"]["num"]
+    new_random = random.sample(original, int(multiplier*total_image_num))
     # print(new_random)
     return new_random
 
@@ -177,11 +186,14 @@ if __name__ == '__main__':
     * edit (Lakshay) - changed pickle to json format, to view image locations with ease
     """
 
-    # # this image variable conatins all the image locations and the labels associated with them
+    # this image variable conatins all the image locations and the labels associated with them
     # with open("dataset/aptos/aptos_train.json") as paramfile:
     #     image = json.load(paramfile)
 
-    # image_random_n = random_image_selection(image, multiplier=0.4)
+    # with open('param/params.json') as paramfile:
+    #     num = json.load(paramfile)["total_images"]["num"]
+
+    # image_random_n = random_image_selection(image, num, multiplier=0.4)
 
     # print(len(image_random_n))
     # img_path = image_random_n[1]['img_root']
@@ -216,6 +228,3 @@ if __name__ == '__main__':
     # img = Image.fromarray(np.asarray(
     #     train_features[1]).T, 'RGB')  # The transpose is probably needed due to RGB and Tensor conversions
     # img.save('out.png')
-
-    # print(len(train_loader)*32/0.7)
-    # print(len(test_loader)*32/0.3)

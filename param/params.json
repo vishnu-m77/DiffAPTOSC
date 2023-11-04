@@ -23,6 +23,6 @@
         "batch_size": 32
     },
     "total_images": {
-        "num": 1920
+        "num": 1000
     }
 }
