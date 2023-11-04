@@ -38,6 +38,25 @@ class DiffusionBaseUtils():
         alpha_prod = torch.prod(alphas)
         return alpha_prod
     
+    def reverse_diffusion_parameters(self, t):
+        """
+        The parameters returned with this helper function are used in the reverse diffusion process of the 
+        CARD paper
+        """
+        beta_t = self.noise_list[t] # getting beta_t at timestep t
+        alpha_prod_t = self.get_alpha_prod(timestep=t)
+
+        if t<1:
+            raise ValueError("Invalid timestep. Timestep must be at least 1 to obtain reverse diffusion parameters")
+        alpha_prod_t_m1 = self.get_alpha_prod(timestep=t-1)  ### will throw error at time step t = 0 MAKE SURE TO DEAL WITH IT
+
+        gamma_0 = beta_t*(torch.sqrt(alpha_prod_t_m1)/(1 - alpha_prod_t))
+        gamma_1 = ((1-alpha_prod_t_m1)*torch.sqrt(1-beta_t))/(1-alpha_prod_t)
+        gamma_2 = 1 + ((torch.sqrt(alpha_prod_t)-1)*(torch.sqrt(1-beta_t)+torch.sqrt(alpha_prod_t_m1)))/(1-alpha_prod_t)
+        beta_var = ((1-alpha_prod_t_m1)*beta_t)/(1-alpha_prod_t)
+
+        return gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t
+    
 class ForwardDiffusionUtils(DiffusionBaseUtils):
     def __init__(self):
         super(ForwardDiffusionUtils,self).__init__()
@@ -85,25 +104,6 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
 
         5. In p_sample_loop curl_y is just a sample drawn from the N(prior, I) distribution.
         """
-    def reverse_diffusion_parameters(self, t):
-        """
-        The parameters returned with this helper function are used in the reverse diffusion process of the 
-        CARD paper
-        """
-        beta_t = self.noise_list[t] # getting beta_t at timestep t
-        alpha_prod_t = self.get_alpha_prod(timestep=t)
-
-        if t<1:
-            raise ValueError("Invalid timestep. Timestep must be at least 1 to obtain reverse diffusion parameters")
-        alpha_prod_t_m1 = self.get_alpha_prod(timestep=t-1)  ### will throw error at time step t = 0 MAKE SURE TO DEAL WITH IT
-
-        gamma_0 = beta_t*(torch.sqrt(alpha_prod_t_m1)/(1 - alpha_prod_t))
-        gamma_1 = ((1-alpha_prod_t_m1)*torch.sqrt(1-beta_t))/(1-alpha_prod_t)
-        gamma_2 = 1 + ((torch.sqrt(alpha_prod_t)-1)*(torch.sqrt(1-beta_t)+torch.sqrt(alpha_prod_t_m1)))/(1-alpha_prod_t)
-        beta_var = ((1-alpha_prod_t_m1)*beta_t)/(1-alpha_prod_t)
-
-        return gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t
-
 
     def reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net): # cannot test without cond_prior and score_net
         """
