@@ -166,7 +166,8 @@ Pipfile.lock
 report.txt
 DiffMIC-OG/
 node_modules/
-dataset/
+dataset/aptos/train/
+dataset/aptos/test/
 package*
 
 # Autopep8 extension from vscode
