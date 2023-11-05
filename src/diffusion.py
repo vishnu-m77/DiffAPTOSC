@@ -6,20 +6,18 @@ import torch
 import numpy as np
 
 class DiffusionBaseUtils():
-    def __init__(self, timesteps = 1000, noise_schedule = "Linear", beta_initial = 0.0001, beta_final = 0.02):
+    def __init__(self, config):
         super(DiffusionBaseUtils,self).__init__()
-        self.T = timesteps # Number of diffusion steps
-        self.noise_schedule = noise_schedule
-        self.beta_initial = beta_initial
-        self.beta_final = beta_final
-        # add multivariate gaussian attribute
+        self.T = config['timesteps'] # Number of diffusion steps
+        self.noise_schedule = config["noise_schedule"] # noise schedule
+        self.beta_initial = config["beta_initial"] # initial level of noise
+        self.beta_final = config["beta_final"] # final level of noise
 
     @property
     def noise_list(self):
         """
-        Returns a noise schedule for the forward diffusion process. Noise schedule is an increasing sequence
-        as in diffusion we generally start by snall perturbations and then keep on increasing the perturbations 
-        (i.e. noise scale, as images keep getting noisier).
+        Returns a list containing noise to be added in the forward diffusion process. The list is an increasing sequence
+        because in diffusion we generally start by small perturbations on data and then keep on increasing the perturbations 
         """
         if self.noise_schedule == "Linear":
             betas = torch.linspace(self.beta_initial, self.beta_final, self.T)  
@@ -40,10 +38,10 @@ class DiffusionBaseUtils():
     
     def reverse_diffusion_parameters(self, t):
         """
-        The parameters returned with this helper function are used in the reverse diffusion process of the 
+        Returns parameters which are used in the reverse diffusion process of the 
         CARD paper
         """
-        beta_t = self.noise_list[t] # getting beta_t at timestep t
+        beta_t = self.noise_list[t] # beta_t at timestep t
         alpha_prod_t = self.get_alpha_prod(timestep=t)
 
         if t<1:
@@ -57,37 +55,44 @@ class DiffusionBaseUtils():
 
         return gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t
     
-class ForwardDiffusionUtils(DiffusionBaseUtils):
-    def __init__(self):
-        super(ForwardDiffusionUtils,self).__init__()
+class ForwardDiffusion(DiffusionBaseUtils):
+    def __init__(self, config):
+        super(ForwardDiffusion,self).__init__(
+            config=config
+            )
 
-    def forward_diffusion(self, var, noising_condition, t): # rename noising condition as that is not expressive
+    def forward_diffusion(self, var, prior, t=None):
         """
-        This method is used to add noise to y_0 (whatever that is), global_prior and local prior and then 
-        obtain the respective noisy variables following equation 2 of paper.
-        y_0, global and local priors will be obtained form dcg.
+        This method is used to add noise to y_0, global_prior and local prior and then 
+        obtain the respective noisy variables following equation 2 of DiffMIC paper.
+        y_0, global and local priors will be obtained from dcg.
 
-        t is the timestep till which nosie has been added in the forward diffusion process
-        var is the variable on which we are adding noise
+        t is the timestep till which noise has been added in the forward diffusion process
+
+        var is the variable on which we are adding noise and it needs to be a float tensor
 
         Note:
-        * noising_condition = (global_prior + local_prior)/2 for y_0
-        * noising_condition = global_prior for y_global
-        * noising_condition = local_prior for y_local
+        * prior = (global_prior + local_prior)/2 for y_0
+        * prior = global_prior for y_global
+        * prior = local_prior for y_local
         """
+        if t == None:
+            t = self.T # If no t is defined, add noise till timestep given in config file
         eps = torch.randn_like(var) # gaussian noise
         alpha_prod = self.get_alpha_prod(timestep=t) # generate alpha_prod for t time (where t is time for which noise has been added)
-        noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (1-torch.sqrt(alpha_prod))*noising_condition # add noise till timestep = T
+        noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (1-torch.sqrt(alpha_prod))*prior # add noise till timestep = T
 
         return noised_var
     
 
 
-class ReverseDiffusionUtils(DiffusionBaseUtils):
-    def __init__(self):
-        super(ReverseDiffusionUtils,self).__init__()
+class ReverseDiffusion(DiffusionBaseUtils):
+    def __init__(self, config):
+        super(ReverseDiffusion,self).__init__(
+            config=config
+        )
         """
-        NOTES: - Sehmimul
+        NOTES: - Sehmimul - Notes not removed as reverse diffusion notes may be useful in debugging reverse diffusion
 
         1. The diffusion pipeline in DiffMIC is based off https://arxiv.org/abs/2206.07275 
         Github: https://github.com/XzwHan/CARD/blob/ebe2f2ae95dc7a7a95e6a71c0c8e1cabf8451087/classification/diffusion_utils.py#L106
@@ -155,13 +160,5 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
 
 # test
 if __name__ == '__main__':
-    # timesteps = 3
-    # df=DiffusionBaseUtils(timesteps = timesteps)
-    rd = ReverseDiffusionUtils()
-    print(rd.reverse_diffusion_parameters(t=5))
-
-    # ================================= Tests ===========================================
-    ## testing utils for forward diffusion method in the 3 lines below
-    # fd = ForwardDiffusionUtils()
-    # noised_var = fd.forward_diffusion(torch.tensor([1,2], dtype=torch.float32), 0, 1000)
-    # print(noised_var)
+    # Add tests here
+    print("Successful")
