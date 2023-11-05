@@ -5,12 +5,14 @@ from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 import random
-import transforms as trans
+import src.dataloader.transforms as tr
+import logging
 
 """
-Cirrently using transforms defined by authors, but we can later on
+Currently using transforms defined by authors, but we can later on
 replace functions by using torchvision transforms instead
 """
+logging.getLogger('PIL').setLevel(logging.WARNING)
 
 
 class APTOSDataset(Dataset):
@@ -19,12 +21,14 @@ class APTOSDataset(Dataset):
         self.total_image_num = total_image_num
         self.train = train
         self.data_path = data_path
+
         with open(data_path, "rb") as f:
             tr_dl = json.load(f)
         self.dataset = tr_dl
 
         # print(self.size)
         if train:
+            logging.info("Initialize DataLoader for train dataset")
             '''
             Lakshay - quick update:
             now selecting randomly generated n number of images. n is mentioned in total_images in params.json
@@ -34,18 +38,19 @@ class APTOSDataset(Dataset):
                 self.dataset, 0.7, total_image_num)
             self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
-                trans.CropCenterSquare(),
+                tr.CropCenterSquare(),
                 transforms.Resize(self.trainsize),
-                # trans.CenterCrop(self.trainsize),
-                trans.RandomHorizontalFlip(),
-                trans.RandomVerticalFlip(),
-                trans.RandomRotation(30),
-                # trans.adjust_light(),
+                # tr.CenterCrop(self.trainsize),
+                tr.RandomHorizontalFlip(),
+                tr.RandomVerticalFlip(),
+                tr.RandomRotation(30),
+                # tr.adjust_light(),
                 transforms.ToTensor(),
                 transforms.Normalize([0.485, 0.456, 0.406], [
                                      0.229, 0.224, 0.225])
             ])
         else:
+            logging.info("Initialize DataLoader for test dataset")
             '''
             Lakshay - quick update:
             now selecting randomly generated n number of images. n is mentioned in total_images in params.json
@@ -55,7 +60,7 @@ class APTOSDataset(Dataset):
                 self.dataset, 0.3, total_image_num)
             self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
-                trans.CropCenterSquare(),
+                tr.CropCenterSquare(),
                 transforms.Resize(self.trainsize),
                 # trans.CenterCrop(self.trainsize),
                 transforms.ToTensor(),

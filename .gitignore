@@ -161,6 +161,14 @@ cython_debug/
 #.idea/
 
 .dependencygraph/
+Pipfile
+Pipfile.lock
+report.txt
+DiffMIC-OG/
+node_modules/
+dataset/aptos/train/
+dataset/aptos/test/
+package*
 
 # Autopep8 extension from vscode
 .vscode/
