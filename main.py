@@ -59,7 +59,7 @@ if __name__ == '__main__':
         logging.info("Diffusion model parameters: {}".format(diffusion_config))
     FD = ForwardDiffusion(config=diffusion_config) # initialize class
     # forward diffusion EXAMPLE call below where the parameters are explained in difusion.py script
-    noised_var = FD.forward_diffusion(var = torch.tensor(0.0), prior = torch.tensor(0), t = torch.tensor(100))
+    noised_var = FD.forward_diffusion(var = torch.tensor(0.0), prior = torch.tensor(0))
     logging.info("Noised Variable is {}".format(noised_var))
     
     # Creates a report file
