@@ -57,9 +57,9 @@ class DiffusionBaseUtils():
 
         return gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t
     
-class ForwardDiffusionUtils(DiffusionBaseUtils):
+class ForwardDiffusion(DiffusionBaseUtils):
     def __init__(self, config):
-        super(ForwardDiffusionUtils,self).__init__(
+        super(ForwardDiffusion,self).__init__(
             config=config
             )
 
@@ -85,9 +85,9 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
     
 
 
-class ReverseDiffusionUtils(DiffusionBaseUtils):
+class ReverseDiffusion(DiffusionBaseUtils):
     def __init__(self, config):
-        super(ReverseDiffusionUtils,self).__init__(
+        super(ReverseDiffusion,self).__init__(
             config=config
         )
         """
@@ -161,7 +161,7 @@ class ReverseDiffusionUtils(DiffusionBaseUtils):
 if __name__ == '__main__':
     # timesteps = 3
     # df=DiffusionBaseUtils(timesteps = timesteps)
-    rd = ReverseDiffusionUtils()
+    rd = ReverseDiffusion()
     print(rd.reverse_diffusion_parameters(t=5))
 
     # ================================= Tests ===========================================

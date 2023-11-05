@@ -20,7 +20,7 @@ import argparse
 import traceback
 import shutil
 import logging
-from src.diffusion import ReverseDiffusionUtils, ForwardDiffusionUtils
+from src.diffusion import ReverseDiffusion, ForwardDiffusion
 
 if os.path.exists('project.log'):
     os.remove('project.log')
@@ -57,9 +57,7 @@ if __name__ == '__main__':
     diffusion_config = param['diffusion']
     if verbose:
         logging.info("Diffusion model parameters: {}".format(diffusion_config))
-    rd = ReverseDiffusionUtils(config=diffusion_config)
-    logging.info(rd.reverse_diffusion_parameters(t=5))
-    fd = ForwardDiffusionUtils(config=diffusion_config)
+    fd = ForwardDiffusion(config=diffusion_config)
     logging.info(fd.forward_diffusion(torch.tensor(0.0), torch.tensor(0), torch.tensor(100)))
     
     # Creates a report file
