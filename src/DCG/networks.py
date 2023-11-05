@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as func
 import numpy as np
-
 import src.DCG.utils as utils
 import torchvision
 import torchvision.models
@@ -42,19 +41,21 @@ class DownsampleNetwork(nn.Module):
     def __init__(self):
         super(DownsampleNetwork, self).__init__()
         self.f = []
-        backbone = resnet50(pretrained=True)
-        #backbone = resnet18(pretrained=True)
+        # backbone = resnet50(pretrained=True)
+        backbone = resnet50(weights='DEFAULT')
+        # weights=ResNet18_Weights.DEFAULT
+        # backbone = resnet18(pretrained=True)
         
         for name, module in backbone.named_children():
             if name != 'fc' and name != 'avgpool':
                 self.f.append(module)
-        #print(self.f)
+        # print(self.f)
         # encoder
         self.f = nn.Sequential(*self.f)
 
     def forward(self, x):
         last_feature_map = self.f(x)
-        #print(last_feature_map.shape)
+        # print(last_feature_map.shape)
         return last_feature_map
 
 

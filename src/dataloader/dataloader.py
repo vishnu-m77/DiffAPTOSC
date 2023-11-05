@@ -5,10 +5,10 @@ from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 import random
-import transforms as trans
+import src.dataloader.transforms as tr
 
 """
-Cirrently using transforms defined by authors, but we can later on
+Currently using transforms defined by authors, but we can later on
 replace functions by using torchvision transforms instead
 """
 
@@ -34,13 +34,13 @@ class APTOSDataset(Dataset):
                 self.dataset, 0.7, total_image_num)
             self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
-                trans.CropCenterSquare(),
+                tr.CropCenterSquare(),
                 transforms.Resize(self.trainsize),
-                # trans.CenterCrop(self.trainsize),
-                trans.RandomHorizontalFlip(),
-                trans.RandomVerticalFlip(),
-                trans.RandomRotation(30),
-                # trans.adjust_light(),
+                # tr.CenterCrop(self.trainsize),
+                tr.RandomHorizontalFlip(),
+                tr.RandomVerticalFlip(),
+                tr.RandomRotation(30),
+                # tr.adjust_light(),
                 transforms.ToTensor(),
                 transforms.Normalize([0.485, 0.456, 0.406], [
                                      0.229, 0.224, 0.225])
@@ -55,7 +55,7 @@ class APTOSDataset(Dataset):
                 self.dataset, 0.3, total_image_num)
             self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
-                trans.CropCenterSquare(),
+                tr.CropCenterSquare(),
                 transforms.Resize(self.trainsize),
                 # trans.CenterCrop(self.trainsize),
                 transforms.ToTensor(),

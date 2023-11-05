@@ -166,6 +166,8 @@ Pipfile.lock
 report.txt
 DiffMIC-OG/
 node_modules/
+dataset/
+package*
 
 # Autopep8 extension from vscode
 .vscode/

@@ -21,6 +21,7 @@ import traceback
 import shutil
 import logging
 
+import src.dataloader.dataloader as dataloader
 import src.DCG.main as dcg_module
 
 if os.path.exists('project.log'):
@@ -59,8 +60,24 @@ if __name__ == '__main__':
     # Creates a report file
     report_file = 'report.txt'
     
-    dcg = dcg_module.DCG(param["dcg"])
-    # y_fusion, y_global, y_local = dcg.forward(x)
+    data = dataloader.DataProcessor(param)
+    train_loader, test_loader = data.get_dataloaders()
+    
+    dcg_params = param["dcg"]
+    dcg = dcg_module.DCG(dcg_params)
+    y_fusions = []
+    y_globals = []
+    y_locals = []
+    for ind, (image, target) in enumerate(train_loader):
+        # x = torch.flatten(x, 1)
+        # print(image)
+        y_fusion, y_global, y_local = dcg.forward(image)
+        y_fusions.append(y_fusion)
+        y_locals.append(y_local)
+        y_globals.append(y_global)
+        # logging.info(y_global)
+    
+    logging.info("DCG completed")
     
     if os.path.exists(report_file):
         os.remove(report_file)
