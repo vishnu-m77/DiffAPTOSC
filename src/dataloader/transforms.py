@@ -20,7 +20,6 @@ class CropCenterSquare(object):
 
         return crop(img)
 
-
 class CenterCrop(object):
     def __init__(self, size):
         if isinstance(size, numbers.Number):
@@ -41,7 +40,6 @@ class CenterCrop(object):
 
         return img
 
-
 class RandomRotation(object):
     def __init__(self, degree):
         self.degree = degree
@@ -56,7 +54,6 @@ class RandomHorizontalFlip(object):
             return img.transpose(Image.FLIP_LEFT_RIGHT)
         return img
 
-
 class RandomVerticalFlip(object):
     """Vertically flip the given PIL Image randomly with a given probability.
     Args:
@@ -66,3 +63,4 @@ class RandomVerticalFlip(object):
         if random.random() < 0.5:
             return img.transpose(Image.FLIP_TOP_BOTTOM)
         return img
+

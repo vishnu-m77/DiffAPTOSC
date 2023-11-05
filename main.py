@@ -23,6 +23,7 @@ import logging
 
 import src.dataloader.dataloader as dataloader
 import src.DCG.main as dcg_module
+import src.diffusion as diffusion
 
 if os.path.exists('project.log'):
     os.remove('project.log')
@@ -78,6 +79,11 @@ if __name__ == '__main__':
         # logging.info(y_global)
     
     logging.info("DCG completed")
+    
+    # diff = diffusion.ForwardDiffusionUtils()
+    # for i in y_fusions:
+    #     noised_var = diff.forward(var, y_fusion, t)
+        
     
     
     
