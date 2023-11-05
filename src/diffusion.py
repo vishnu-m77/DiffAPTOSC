@@ -6,12 +6,12 @@ import torch
 import numpy as np
 
 class DiffusionBaseUtils():
-    def __init__(self, timesteps = 1000, noise_schedule = "Linear", beta_initial = 0.0001, beta_final = 0.02):
+    def __init__(self, config):#timesteps = 1000, noise_schedule = "Linear", beta_initial = 0.0001, beta_final = 0.02):
         super(DiffusionBaseUtils,self).__init__()
-        self.T = timesteps # Number of diffusion steps
-        self.noise_schedule = noise_schedule
-        self.beta_initial = beta_initial
-        self.beta_final = beta_final
+        self.T = config['timesteps'] # Number of diffusion steps
+        self.noise_schedule = config["noise_schedule"]
+        self.beta_initial = config["beta_initial"]
+        self.beta_final = config["beta_final"]
         # add multivariate gaussian attribute
 
     @property
@@ -58,8 +58,10 @@ class DiffusionBaseUtils():
         return gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t
     
 class ForwardDiffusionUtils(DiffusionBaseUtils):
-    def __init__(self):
-        super(ForwardDiffusionUtils,self).__init__()
+    def __init__(self, config):
+        super(ForwardDiffusionUtils,self).__init__(
+            config=config
+            )
 
     def forward_diffusion(self, var, noising_condition, t): # rename noising condition as that is not expressive
         """
@@ -84,8 +86,10 @@ class ForwardDiffusionUtils(DiffusionBaseUtils):
 
 
 class ReverseDiffusionUtils(DiffusionBaseUtils):
-    def __init__(self):
-        super(ReverseDiffusionUtils,self).__init__()
+    def __init__(self, config):
+        super(ReverseDiffusionUtils,self).__init__(
+            config=config
+        )
         """
         NOTES: - Sehmimul
 

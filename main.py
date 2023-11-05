@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as func
 import torch.nn.utils as utils
 import torch.multiprocessing as mp
+import matplotlib.pyplot as plt
 
 import math as m
 import random
@@ -20,6 +21,7 @@ import argparse
 import traceback
 import shutil
 import logging
+from src.diffusion import ReverseDiffusionUtils, ForwardDiffusionUtils
 
 if os.path.exists('project.log'):
     os.remove('project.log')
@@ -53,6 +55,23 @@ if __name__ == '__main__':
     if verbose:
         logging.info('params are {}'.format(params))
         # print(params)
+    diffusion_config = param['diffusion']
+    if verbose:
+        logging.info("Diffusion model parameters: {}".format(diffusion_config))
+    rd = ReverseDiffusionUtils(config=diffusion_config)
+    logging.info(rd.reverse_diffusion_parameters(t=5))
+    fd = ForwardDiffusionUtils(config=diffusion_config)
+    data = []
+    lim = 1000
+    logging.getLogger('matplotlib.font_manager').setLevel(logging.ERROR)
+    for i in range(lim):
+        data.append(fd.forward_diffusion(torch.tensor(50.0), torch.tensor(2.0), torch.tensor(1000)))
+    plt.hist(data, bins = 100)
+    plt.xlabel("Diffused Variable")
+    plt.ylabel("Frequency")
+    plt.savefig("plt.png")
+    plt.close()
+    logging.info(fd.forward_diffusion(torch.tensor(0.0), torch.tensor(0), torch.tensor(100)))
     
     # Creates a report file
     report_file = 'report.txt'
