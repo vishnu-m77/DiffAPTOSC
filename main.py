@@ -79,6 +79,8 @@ if __name__ == '__main__':
     
     logging.info("DCG completed")
     
+    
+    
     if os.path.exists(report_file):
         os.remove(report_file)
     f = open(report_file, 'w')
