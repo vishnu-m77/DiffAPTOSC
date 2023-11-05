@@ -7,6 +7,7 @@ import torchvision
 import torchvision.models
 from torchvision.models.resnet import conv3x3, resnet18, resnet50
 
+# None of the classes are being used in the implementation of DCG.
 
 class AbstractMILUnit:
     """
@@ -326,6 +327,5 @@ def attention(h_crops, parameters):
     # map to the final layer
     y_crops = classifier(z_weighted_avg)
     return y_crops
-    return z_weighted_avg, attn, y_crops
     
 
