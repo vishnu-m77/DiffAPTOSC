@@ -61,7 +61,7 @@ class ForwardDiffusion(DiffusionBaseUtils):
             config=config
             )
 
-    def forward_diffusion(self, var, prior, t=None):
+    def forward(self, var, prior, t=None):
         """
         This method is used to add noise to y_0, global_prior and local prior and then 
         obtain the respective noisy variables following equation 2 of DiffMIC paper.
