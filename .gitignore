@@ -165,3 +165,8 @@ cython_debug/
 
 # Miscellaneous
 share/
+
+.DS_Store
+.vscode/
+dataset/aptos/train
+report.txt
