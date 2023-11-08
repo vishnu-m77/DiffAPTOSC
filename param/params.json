@@ -14,7 +14,8 @@
     },
     "data": {
         "train_path": "dataset/aptos/aptos_train.json",
-        "test_path": "dataset/aptos/aptos_test.json"
+        "test_path": "dataset/aptos/aptos_test.json",
+        "num_classes": 5
     },
     "train": {
         "batch_size": 32
@@ -29,6 +30,13 @@
         "timesteps": 1000,
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
-        "beta_final": 0.02
+        "beta_final": 0.02,
+        "include_guidance": true
+    },
+    "unet_model":{
+        "feature_dim": 6144,
+        "hidden_dim": 6144,
+        "arch": "resnet18",
+        "data_dim":150528
     }
 }
