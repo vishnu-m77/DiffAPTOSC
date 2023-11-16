@@ -6,11 +6,13 @@ from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 import random
 import src.dataloader.transforms as tr
+import logging
 
 """
 Currently using transforms defined by authors, but we can later on
 replace functions by using torchvision transforms instead
 """
+logging.getLogger('PIL').setLevel(logging.WARNING)
 
 
 class APTOSDataset(Dataset):
@@ -19,12 +21,14 @@ class APTOSDataset(Dataset):
         self.total_image_num = total_image_num
         self.train = train
         self.data_path = data_path
+
         with open(data_path, "rb") as f:
             tr_dl = json.load(f)
         self.dataset = tr_dl
 
         # print(self.size)
         if train:
+            logging.info("Initialize DataLoader for train dataset")
             '''
             Lakshay - quick update:
             now selecting randomly generated n number of images. n is mentioned in total_images in params.json
@@ -46,6 +50,7 @@ class APTOSDataset(Dataset):
                                      0.229, 0.224, 0.225])
             ])
         else:
+            logging.info("Initialize DataLoader for test dataset")
             '''
             Lakshay - quick update:
             now selecting randomly generated n number of images. n is mentioned in total_images in params.json
