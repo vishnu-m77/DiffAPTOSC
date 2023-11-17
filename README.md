@@ -25,3 +25,6 @@ dataset/aptos/
      aptos_test.pkl
 
 .pkl file contains the list of data whose element is a dictionary with the format as ``{'img_root':image_path,'label':label}``
+
+## DCG
+
