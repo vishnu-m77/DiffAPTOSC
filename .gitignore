@@ -25,6 +25,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+lib64
+share
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -127,6 +129,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+myenv/
 *.cfg
 bin/
 
@@ -163,6 +166,7 @@ cython_debug/
 
 .dependencygraph/
 
+
 # Miscellaneous
 share/
 
@@ -170,3 +174,18 @@ share/
 .vscode/
 dataset/aptos/train
 report.txt
+
+Pipfile
+Pipfile.lock
+report.txt
+DiffMIC-OG/
+node_modules/
+dataset/aptos/train/
+dataset/aptos/test/
+package*
+
+# Autopep8 extension from vscode
+.vscode/
+.DS_Store
+
+.pth
