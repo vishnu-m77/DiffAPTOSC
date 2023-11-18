@@ -180,3 +180,5 @@ package*
 # Autopep8 extension from vscode
 .vscode/
 .DS_Store
+
+.pth
