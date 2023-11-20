@@ -61,7 +61,7 @@ class ForwardDiffusion(DiffusionBaseUtils):
             config=config
             )
 
-    def forward(self, var, prior, t=None):
+    def forward(self, var, prior, eps = None, t=None):
         """
         This method is used to add noise to y_0, global_prior and local prior and then 
         obtain the respective noisy variables following equation 2 of DiffMIC paper.
@@ -78,7 +78,8 @@ class ForwardDiffusion(DiffusionBaseUtils):
         """
         if t == None:
             t = self.T # If no t is defined, add noise till timestep given in config file
-        eps = torch.randn_like(var) # gaussian noise
+        if eps == None:
+            eps = torch.randn_like(var) # gaussian noise
         alpha_prod = self.get_alpha_prod(timestep=t) # generate alpha_prod for t time (where t is time for which noise has been added)
         noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (1-torch.sqrt(alpha_prod))*prior # add noise till timestep = T
 
