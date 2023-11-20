@@ -46,7 +46,7 @@
         "beta_final": 0.02,
         "include_guidance": true
     },
-    "unet_model":{
+    "model":{
         "feature_dim": 6144,
         "hidden_dim": 6144,
         "arch": "resnet18",

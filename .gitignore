@@ -188,4 +188,4 @@ package*
 .vscode/
 .DS_Store
 
-.pth
+*.pth
