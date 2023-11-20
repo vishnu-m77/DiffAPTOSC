@@ -74,7 +74,9 @@ if __name__ == '__main__':
 
     dcg_params = param["dcg"]
     dcg = dcg_module.DCG(dcg_params)
-    dcg_module.train_DCG(dcg, param, train_loader, test_loader)
+    dcg_train = False
+    if dcg_train == True:
+        dcg_module.train_DCG(dcg, param, train_loader, test_loader)
     y_fusions = []
     y_globals = []
     y_locals = []
@@ -100,7 +102,11 @@ if __name__ == '__main__':
     #################### Reverse diffusion code begins #############################
     model = ConditionalModel(config=param, guidance=False)
 
-    for epoch in range(0, 5):
+    dcg.load_state_dict(torch.load('aux_ckpt.pth')[0])
+    dcg.eval()
+    reverse_diffusion = ReverseDiffusion(config=diffusion_config)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
+    for epoch in range(0, 50):
 
         data_start = time.time()
         data_time = 0
@@ -113,53 +119,33 @@ if __name__ == '__main__':
 
             n = x_batch.size(0)
 
-            # record unflattened x as input to guidance aux classifier
-            # the below 3 lines should be un-commented if we have model.arch in ["simple", "linear"]
-            x_unflat_batch = x_batch
-            # x_unflat_batch = x_batch.to(self.device)
-            # if param.data.dataset == "toy" or param.model.arch in ["simple", "linear"]:
-            #     x_batch = torch.flatten(x_batch, 1)
-
-            data_time += time.time() - data_start
-
-            model.train()
-
-            dcg.eval()
-
-            # step += 1
-            # antithetic sampling
             num_timesteps = param["diffusion"]["timesteps"]
             t = torch.randint(low=0, high=num_timesteps,
                               size=(n // 2 + 1,))
             t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
+            #print(t)
 
-            # noise estimation loss
-            # x_batch = x_batch.to(self.device)
-            # y_0_batch = y_logits_batch.to(self.device)
-            y_0_hat_batch, y_0_global, y_0_local = dcg(x_unflat_batch)
-            y_0_hat_batch = y_0_hat_batch.softmax(dim=1)
-            y_0_global, y_0_local = y_0_global.softmax(
-                dim=1), y_0_local.softmax(dim=1)
-
-            # print(y_0_hat_batch.size(), y_0_global.size(), y_0_local.size())
-
-            y_T_mean = y_0_hat_batch
-            # if config.diffusion.noise_prior:  # apply 0 instead of f_phi(x) as prior mean
-            #     y_T_mean = torch.zeros(y_0_hat_batch.shape).to(y_0_hat_batch.device)
-            y_0_batch = y_one_hot_batch.to(self.device)
-            e = torch.randn_like(y_0_batch).to(y_0_batch.device)
-            y_t_batch = q_sample(y_0_batch, y_T_mean,
-                                 self.alphas_bar_sqrt, self.one_minus_alphas_bar_sqrt, t, noise=e)
-            y_t_batch_global = q_sample(y_0_batch, y_0_global,
-                                        self.alphas_bar_sqrt, self.one_minus_alphas_bar_sqrt, t, noise=e)
-            y_t_batch_local = q_sample(y_0_batch, y_0_local,
-                                       self.alphas_bar_sqrt, self.one_minus_alphas_bar_sqrt, t, noise=e)
-            # output = model(x_batch, y_t_batch, t, y_T_mean)
-            output = model(x_batch, y_t_batch, t, y_0_hat_batch)
-            output_global = model(x_batch, y_t_batch_global, t, y_0_global)
-            output_local = model(x_batch, y_t_batch_local, t, y_0_local)
-
-    ####################  Reverse diffusion code end   #############################
+            dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[1], dcg(x_batch)[2]
+            """
+            sehmi -  why softmax in the 2 line below?
+            Note sure, but it seems to work...
+            """
+            dcg_fusion = dcg_fusion.softmax(dim=1)
+            dcg_global,dcg_local = dcg_global.softmax(dim=1),dcg_local.softmax(dim=1)
+            #print(dcg_global)
+            y0 = y_one_hot_batch
+            eps = torch.randn_like(y0)
+            yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
+            yt_global = FD.forward(y0, dcg_global, eps=eps)
+            yt_local = FD.forward(y0, dcg_local, eps=eps)
+            output = model(x_batch, yt_fusion, t, dcg_fusion)
+            output_global = model(x_batch, yt_global, t, dcg_global)
+            output_local = model(x_batch, yt_local, t, dcg_local)
+            #print(output_global)
+            loss = (eps - output).square().mean()# + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
+            optimizer.zero_grad()
+            loss.backward()
+            print(loss.item())
 
     if os.path.exists(report_file):
         os.remove(report_file)
