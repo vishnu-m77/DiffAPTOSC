@@ -67,19 +67,24 @@ if __name__ == '__main__':
     train_loader, test_loader = data.get_dataloaders()
     
     dcg_params = param["dcg"]
-    dcg = dcg_module.DCG(dcg_params)
-    dcg_module.train_DCG(dcg, param, train_loader, test_loader)
+    # Trains DCG and saves the model
+    # dcg = dcg_module.DCG(dcg_params)
+    # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
+    
     y_fusions = []
     y_globals = []
     y_locals = []
-    # for ind, (image, target) in enumerate(train_loader):
-    #     # x = torch.flatten(x, 1)
-    #     # print(image)
-    #     y_fusion, y_global, y_local = dcg.forward(image)
-    #     y_fusions.append(y_fusion)
-    #     y_locals.append(y_local)
-    #     y_globals.append(y_global)
-        # logging.info(y_global)
+    
+    # Loads the saved DCG model and sets to eval mode
+    dcg, optimizer = dcg_module.load_DCG(dcg_params)
+    for ind, (image, target) in enumerate(train_loader):
+        # x = torch.flatten(x, 1)
+        # print(image)
+        y_fusion, y_global, y_local = dcg.forward(image)
+        y_fusions.append(y_fusion)
+        y_locals.append(y_local)
+        y_globals.append(y_global)
+        logging.info(y_global)
     
     logging.info("DCG completed")
     

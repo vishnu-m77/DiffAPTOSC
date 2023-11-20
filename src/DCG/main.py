@@ -131,7 +131,7 @@ def train_DCG(dcg, params, train_loader, test_loader):
     dcg.train()
     # self.cond_pred_model.train()
     pretrain_start_time = time.time()
-    for epoch in range(5):
+    for epoch in range(10):
         for feature_label_set in train_loader:
             x_batch, y_labels_batch = feature_label_set
             y_one_hot_batch, y_logits_batch = cast_label_to_one_hot_and_prototype(y_labels_batch, params)
@@ -141,7 +141,7 @@ def train_DCG(dcg, params, train_loader, test_loader):
         #         f"epoch: {epoch}, guidance auxiliary classifier pre-training loss: {aux_loss}"
         #     )
         logging.info(
-            f"epoch: {epoch}, guidance auxiliary classifier pre-training loss: {aux_loss}"
+            f"epoch: {epoch + 1}, guidance auxiliary classifier pre-training loss: {aux_loss}"
         )
     pretrain_end_time = time.time()
     logging.info("\nPre-training of guidance auxiliary classifier took {:.4f} minutes.\n".format(
@@ -151,7 +151,7 @@ def train_DCG(dcg, params, train_loader, test_loader):
         dcg.state_dict(),
         optimizer.state_dict(),
     ]
-    torch.save(aux_states, "aux_ckpt.pth")
+    torch.save(aux_states, "saved_dcg.pth")
     # report accuracy on both training and test set for the pre-trained auxiliary classifier
     # y_acc_aux_model = self.evaluate_guidance_model(train_loader)
     # logging.info("\nAfter pre-training, guidance classifier accuracy on the training set is {:.8f}.".format(
@@ -160,7 +160,22 @@ def train_DCG(dcg, params, train_loader, test_loader):
     # logging.info("\nAfter pre-training, guidance classifier accuracy on the test set is {:.8f}.\n".format(
     #     y_acc_aux_model))
 
+def load_DCG(params):
+    model = DCG(params)
+    optimizer = torch.optim.SGD(model.parameters(), lr=0.1, weight_decay=1e-4, momentum=0.9)
+    folder = os.getcwd()
+    print(folder)
+    # Load the saved model state dictionary from the .pth file
+    # checkpoint_path = os.path.join(folder, "saved_dcg.pth")
+    checkpoint_path = "saved_dcg.pth"
+    checkpoint = torch.load(checkpoint_path)
+    # Load the state dictionary into the model
+    model.load_state_dict(checkpoint[0])
+    optimizer.load_state_dict(checkpoint[1])
 
+    # Ensure the model is in evaluation mode
+    model.eval()
+    return model, optimizer
 
 if __name__ == '__main__':
     if os.path.exists('dcg.log'):
