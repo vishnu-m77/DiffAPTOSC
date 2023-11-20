@@ -22,7 +22,8 @@
         "post_processing_dim": 512,
         "num_classes": 5,
         "use_v1_global": 1,
-        "percent_t": 1.0
+        "percent_t": 1.0,
+        "num_epochs": 10
     },
     "data": {
         "train_path": "dataset/aptos/aptos_train.json",

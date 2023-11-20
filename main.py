@@ -68,8 +68,8 @@ if __name__ == '__main__':
     
     dcg_params = param["dcg"]
     # Trains DCG and saves the model
-    # dcg = dcg_module.DCG(dcg_params)
-    # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
+    dcg = dcg_module.DCG(dcg_params)
+    dcg_module.train_DCG(dcg, param, train_loader, test_loader)
     
     y_fusions = []
     y_globals = []

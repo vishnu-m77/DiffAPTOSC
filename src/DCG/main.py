@@ -131,7 +131,7 @@ def train_DCG(dcg, params, train_loader, test_loader):
     dcg.train()
     # self.cond_pred_model.train()
     pretrain_start_time = time.time()
-    for epoch in range(10):
+    for epoch in range(params["dcg"]["num_epochs"]):
         for feature_label_set in train_loader:
             x_batch, y_labels_batch = feature_label_set
             y_one_hot_batch, y_logits_batch = cast_label_to_one_hot_and_prototype(y_labels_batch, params)
