@@ -5,13 +5,14 @@ This script assumes a fully function DCG module and Dataloader module
 import torch
 import numpy as np
 
+
 class DiffusionBaseUtils():
     def __init__(self, config):
-        super(DiffusionBaseUtils,self).__init__()
-        self.T = config['timesteps'] # Number of diffusion steps
-        self.noise_schedule = config["noise_schedule"] # noise schedule
-        self.beta_initial = config["beta_initial"] # initial level of noise
-        self.beta_final = config["beta_final"] # final level of noise
+        super(DiffusionBaseUtils, self).__init__()
+        self.T = config['timesteps']  # Number of diffusion steps
+        self.noise_schedule = config["noise_schedule"]  # noise schedule
+        self.beta_initial = config["beta_initial"]  # initial level of noise
+        self.beta_final = config["beta_final"]  # final level of noise
 
     @property
     def noise_list(self):
@@ -20,12 +21,13 @@ class DiffusionBaseUtils():
         because in diffusion we generally start by small perturbations on data and then keep on increasing the perturbations 
         """
         if self.noise_schedule == "Linear":
-            betas = torch.linspace(self.beta_initial, self.beta_final, self.T)  
+            betas = torch.linspace(self.beta_initial, self.beta_final, self.T)
         else:
-            raise NotImplementedError("{0} noise schedule not implemented".format(self.noise_schedule))
+            raise NotImplementedError(
+                "{0} noise schedule not implemented".format(self.noise_schedule))
         return betas
-    
-    def get_alpha_prod(self, timestep = None):
+
+    def get_alpha_prod(self, timestep=None):
         """
         Returns alpha_prod which is the product of alpha_t where
         alpha_t = 1 - beta_t for all time until timestep
@@ -35,33 +37,37 @@ class DiffusionBaseUtils():
         alphas = 1-self.noise_list[:timestep]
         alpha_prod = torch.prod(alphas)
         return alpha_prod
-    
+
     def reverse_diffusion_parameters(self, t):
         """
         Returns parameters which are used in the reverse diffusion process of the 
         CARD paper
         """
-        beta_t = self.noise_list[t] # beta_t at timestep t
+        beta_t = self.noise_list[t]  # beta_t at timestep t
         alpha_prod_t = self.get_alpha_prod(timestep=t)
 
-        if t<1:
-            raise ValueError("Invalid timestep. Timestep must be at least 1 to obtain reverse diffusion parameters")
-        alpha_prod_t_m1 = self.get_alpha_prod(timestep=t-1)  ### will throw error at time step t = 0 MAKE SURE TO DEAL WITH IT
+        if t < 1:
+            raise ValueError(
+                "Invalid timestep. Timestep must be at least 1 to obtain reverse diffusion parameters")
+        # will throw error at time step t = 0 MAKE SURE TO DEAL WITH IT
+        alpha_prod_t_m1 = self.get_alpha_prod(timestep=t-1)
 
         gamma_0 = beta_t*(torch.sqrt(alpha_prod_t_m1)/(1 - alpha_prod_t))
         gamma_1 = ((1-alpha_prod_t_m1)*torch.sqrt(1-beta_t))/(1-alpha_prod_t)
-        gamma_2 = 1 + ((torch.sqrt(alpha_prod_t)-1)*(torch.sqrt(1-beta_t)+torch.sqrt(alpha_prod_t_m1)))/(1-alpha_prod_t)
+        gamma_2 = 1 + ((torch.sqrt(alpha_prod_t)-1)*(torch.sqrt(1 -
+                       beta_t)+torch.sqrt(alpha_prod_t_m1)))/(1-alpha_prod_t)
         beta_var = ((1-alpha_prod_t_m1)*beta_t)/(1-alpha_prod_t)
 
         return gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t
-    
+
+
 class ForwardDiffusion(DiffusionBaseUtils):
     def __init__(self, config):
-        super(ForwardDiffusion,self).__init__(
+        super(ForwardDiffusion, self).__init__(
             config=config
-            )
+        )
 
-    def forward(self, var, prior, eps = None, t=None):
+    def forward(self, var, prior, eps=None, t=None):
         """
         This method is used to add noise to y_0, global_prior and local prior and then 
         obtain the respective noisy variables following equation 2 of DiffMIC paper.
@@ -77,19 +83,20 @@ class ForwardDiffusion(DiffusionBaseUtils):
         * prior = local_prior for y_local
         """
         if t == None:
-            t = self.T # If no t is defined, add noise till timestep given in config file
+            t = self.T  # If no t is defined, add noise till timestep given in config file
         if eps == None:
-            eps = torch.randn_like(var) # gaussian noise
-        alpha_prod = self.get_alpha_prod(timestep=t) # generate alpha_prod for t time (where t is time for which noise has been added)
-        noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (1-torch.sqrt(alpha_prod))*prior # add noise till timestep = T
+            eps = torch.randn_like(var)  # gaussian noise
+        # generate alpha_prod for t time (where t is time for which noise has been added)
+        alpha_prod = self.get_alpha_prod(timestep=t)
+        noised_var = torch.sqrt(alpha_prod)*var + torch.sqrt(1-alpha_prod)*eps + (
+            1-torch.sqrt(alpha_prod))*prior  # add noise till timestep = T
 
         return noised_var
-    
 
 
 class ReverseDiffusion(DiffusionBaseUtils):
     def __init__(self, config):
-        super(ReverseDiffusion,self).__init__(
+        super(ReverseDiffusion, self).__init__(
             config=config
         )
         """
@@ -111,7 +118,8 @@ class ReverseDiffusion(DiffusionBaseUtils):
         5. In p_sample_loop curl_y is just a sample drawn from the N(prior, I) distribution.
         """
 
-    def reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net): # cannot test without cond_prior and score_net
+    # cannot test without cond_prior and score_net
+    def reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net):
         """
         This is similar to p_sample of code
         x: The input image which will be used in the Score Network
@@ -124,18 +132,21 @@ class ReverseDiffusion(DiffusionBaseUtils):
         # In reverse diffusion, at each timestep t, we are essentially sampling from a Gaussian Distribution
         # whose mean is defined using gamma_0, gamma_1 and gamma_2 and the variance is defined by beta_var
         # Note that gamma_0, gamma_1, gamma_2, beta_var depend on the timestep of reverse diffusion
-        gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t = self.reverse_diffusion_parameters(t = t)
+        gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t = self.reverse_diffusion_parameters(
+            t=t)
         eps = torch.randn_like(y_t)
 
-
         # first we reparameterize y0 to obtain y0_hat
-        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t)*cond_prior - torch.sqrt(1-alpha_prod_t)*score_net(x,y_t,cond_prior,t)))
+        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t) *
+                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net(x, y_t, cond_prior, t)))
 
-        y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2*cond_prior+torch.sqrt(beta_var)*eps
+        y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 * \
+            cond_prior+torch.sqrt(beta_var)*eps
 
         return y_tm1, y0_hat
-    
-    def full_reverse_diffusion(self, x, cond_prior, score_net): # cannot test without cond_prior and score_net
+
+    # cannot test without cond_prior and score_net
+    def full_reverse_diffusion(self, x, cond_prior, score_net):
         """
         This does the full reverse diffusion process. We start by initializing a random sample from a Gaussian Distribution
         whose mean is defined by the cond_prior and with variance I. Then reverse_diffusion_step is called self.T - 1 times. In the very last step i.e. at time = 1,
@@ -147,16 +158,37 @@ class ReverseDiffusion(DiffusionBaseUtils):
             # instead of doing one more reverse diffusion step.
             # The reason I have the - 1 is to follow the convention in the script that we count form 0
             # In card code, they counted from 1 and so here the - 1 ensures that we start counting from 0 and not 1.
-            ### *** POTENTIAL_BUG ****
+            # *** POTENTIAL_BUG ****
             t = self.T - t - 1
             if t > 0:
-                y_tm1, y0_hat = self.reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net) # method will crash if t = 0
+                y_tm1, y0_hat = self.reverse_diffusion_step(
+                    self, x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
                 y_t = y_tm1
             else:
                 # so t = 1
                 y_tm1 = y0_hat
         y0_synthetic = y_tm1
         return y0_synthetic
+
+
+def compute_kernel(x, y):
+    x_size = x.size(0)
+    y_size = y.size(0)
+    dim = x.size(1)
+    x = x.unsqueeze(1)  # (x_size, 1, dim)
+    y = y.unsqueeze(0)  # (1, y_size, dim)
+    tiled_x = x.expand(x_size, y_size, dim)
+    tiled_y = y.expand(x_size, y_size, dim)
+    kernel_input = (tiled_x - tiled_y).pow(2).mean(2)/float(dim)
+    return torch.exp(-kernel_input)  # (x_size, y_size)
+
+
+def compute_mmd(x, y):
+    x_kernel = compute_kernel(x, x)
+    y_kernel = compute_kernel(y, y)
+    xy_kernel = compute_kernel(x, y)
+    mmd = x_kernel.mean() + y_kernel.mean() - 2*xy_kernel.mean()
+    return mmd
 
 
 # test

@@ -20,13 +20,17 @@ import argparse
 import traceback
 import shutil
 import logging
-from src.diffusion import ReverseDiffusion, ForwardDiffusion
+from src.diffusion import ReverseDiffusion, ForwardDiffusion, compute_mmd
 
 import src.dataloader.dataloader as dataloader
 import src.DCG.main as dcg_module
 import src.diffusion as diffusion
 
+import matplotlib.pyplot as plt
+
 from src.network.unet_model import *
+
+logging.getLogger('matplotlib').setLevel(logging.WARNING)
 
 if os.path.exists('project.log'):
     os.remove('project.log')
@@ -76,24 +80,24 @@ if __name__ == '__main__':
     # Trains DCG and saves the model
     dcg = dcg_module.DCG(dcg_params)
 
-    dcg_module.train_DCG(dcg, param, train_loader, test_loader)
-    
+    # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
+
     y_fusions = []
     y_globals = []
     y_locals = []
-    
+
     # Loads the saved DCG model and sets to eval mode
     dcg, optimizer = dcg_module.load_DCG(dcg_params)
     for ind, (image, target) in enumerate(train_loader):
-        ## Sehmi - For loop NOT NEEDED
+        # Sehmi - For loop NOT NEEDED
         # x = torch.flatten(x, 1)
         # print(image)
         y_fusion, y_global, y_local = dcg.forward(image)
         y_fusions.append(y_fusion)
         y_locals.append(y_local)
         y_globals.append(y_global)
-        logging.info(y_global)
-    
+        # logging.info(y_global)
+
     logging.info("DCG completed")
 
     diffusion_config = param['diffusion']
@@ -107,14 +111,17 @@ if __name__ == '__main__':
     #################### Reverse diffusion code begins #############################
     model = ConditionalModel(config=param, guidance=False)
 
-    dcg.load_state_dict(torch.load('aux_ckpt.pth')[0])
+    # dcg.load_state_dict(torch.load('aux_ckpt.pth')[0])
+    dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
     dcg.eval()
     reverse_diffusion = ReverseDiffusion(config=diffusion_config)
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
-    for epoch in range(0, 50):
-
-        data_start = time.time()
-        data_time = 0
+    optimizer = torch.optim.Adam(
+        model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
+    loss_arr = []
+    data_start = time.time()
+    data_time = 0
+    train_epoch_num = 50
+    for epoch in range(0, train_epoch_num):
 
         for i, feature_label_set in enumerate(train_loader):
 
@@ -128,16 +135,19 @@ if __name__ == '__main__':
             t = torch.randint(low=0, high=num_timesteps,
                               size=(n // 2 + 1,))
             t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
-            #print(t)
+            # print(t)
 
-            dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[1], dcg(x_batch)[2]
+            # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
+            #     1], dcg(x_batch)[2]
+            dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
             """
             sehmi -  why softmax in the 2 line below?
             Note sure, but it seems to work...
             """
             dcg_fusion = dcg_fusion.softmax(dim=1)
-            dcg_global,dcg_local = dcg_global.softmax(dim=1),dcg_local.softmax(dim=1)
-            #print(dcg_global)
+            dcg_global, dcg_local = dcg_global.softmax(
+                dim=1), dcg_local.softmax(dim=1)
+            # print(dcg_global)
             y0 = y_one_hot_batch
             eps = torch.randn_like(y0)
             yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
@@ -146,12 +156,31 @@ if __name__ == '__main__':
             output = model(x_batch, yt_fusion, t, dcg_fusion)
             output_global = model(x_batch, yt_global, t, dcg_global)
             output_local = model(x_batch, yt_local, t, dcg_local)
-            #print(output_global)
-            loss = (eps - output).square().mean()# + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
+            # print(output_global)
+            # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
+            # loss = (eps - output).square().mean()
+            loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps,
+                                                                     output_global) + compute_mmd(eps, output_local))
             optimizer.zero_grad()
             loss.backward()
-            print(loss.item())
+            optimizer.step()
+            # print(loss.item())
+            loss_arr.append(loss.item())
+            logging.info(
+                f"epoch: {epoch+1}, Diffusion training loss: {loss}")
 
+    data_time = time.time() - data_start
+    logging.info("\nTraining of Diffusion took {:.4f} minutes.\n".format(
+        (data_time) / 60))
+    # save DCG model after training
+    diff_states = [
+        model.state_dict(),
+        optimizer.state_dict(),
+    ]
+    torch.save(diff_states, "saved_diff.pth")
+
+    plt.plot(np.arange(0, train_epoch_num), loss_arr)
+    plt.savefig('loss_plot3.png', format='PNG')
     if os.path.exists(report_file):
         os.remove(report_file)
     f = open(report_file, 'w')
