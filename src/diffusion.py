@@ -4,6 +4,11 @@ This script assumes a fully function DCG module and Dataloader module
 """
 import torch
 import numpy as np
+from src.network.unet_model import *
+import time
+import src.DCG.main as dcg_module
+import logging
+import matplotlib.pyplot as plt
 
 
 class DiffusionBaseUtils():
@@ -189,6 +194,80 @@ def compute_mmd(x, y):
     xy_kernel = compute_kernel(x, y)
     mmd = x_kernel.mean() + y_kernel.mean() - 2*xy_kernel.mean()
     return mmd
+
+
+def train(dcg, model, FD, param, train_loader):
+    # model = ConditionalModel(config=param, guidance=False)
+
+    # dcg.load_state_dict(torch.load('aux_ckpt.pth')[0])
+    dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
+    dcg.eval()
+    reverse_diffusion = ReverseDiffusion(config=param['diffusion'])
+    optimizer = torch.optim.Adam(
+        model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
+    loss_arr = []
+    data_start = time.time()
+    data_time = 0
+    train_epoch_num = 50
+    for epoch in range(0, train_epoch_num):
+
+        for i, feature_label_set in enumerate(train_loader):
+
+            x_batch, y_labels_batch = feature_label_set
+            y_one_hot_batch, y_logits_batch = dcg_module.cast_label_to_one_hot_and_prototype(
+                y_labels_batch, param)
+
+            n = x_batch.size(0)
+
+            num_timesteps = param["diffusion"]["timesteps"]
+            t = torch.randint(low=0, high=num_timesteps,
+                              size=(n // 2 + 1,))
+            t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
+            # print(t)
+
+            # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
+            #     1], dcg(x_batch)[2]
+            dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+            """
+            sehmi -  why softmax in the 2 line below?
+            Note sure, but it seems to work...
+            """
+            dcg_fusion = dcg_fusion.softmax(dim=1)
+            dcg_global, dcg_local = dcg_global.softmax(
+                dim=1), dcg_local.softmax(dim=1)
+            # print(dcg_global)
+            y0 = y_one_hot_batch
+            eps = torch.randn_like(y0)
+            yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
+            yt_global = FD.forward(y0, dcg_global, eps=eps)
+            yt_local = FD.forward(y0, dcg_local, eps=eps)
+            output = model(x_batch, yt_fusion, t, dcg_fusion)
+            output_global = model(x_batch, yt_global, t, dcg_global)
+            output_local = model(x_batch, yt_local, t, dcg_local)
+            # print(output_global)
+            # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
+            # loss = (eps - output).square().mean()
+            loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps,
+                                                                     output_global) + compute_mmd(eps, output_local))
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            # print(loss.item())
+            loss_arr.append(loss.item())
+            logging.info(
+                f"epoch: {epoch+1}, Diffusion training loss: {loss}")
+
+    data_time = time.time() - data_start
+    logging.info("\nTraining of Diffusion took {:.4f} minutes.\n".format(
+        (data_time) / 60))
+    # save DCG model after training
+    diff_states = [
+        model.state_dict(),
+        optimizer.state_dict(),
+    ]
+    torch.save(diff_states, "saved_diff.pth")
+    plt.plot(np.arange(0, train_epoch_num), loss_arr)
+    plt.savefig('loss_plot3.png', format='PNG')
 
 
 # test

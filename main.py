@@ -110,7 +110,14 @@ if __name__ == '__main__':
 
     #################### Reverse diffusion code begins #############################
     model = ConditionalModel(config=param, guidance=False)
+    diffusion.train(dcg, model, FD, param, train_loader)
+    #################### Reverse diffusion code ends #############################
 
+    if os.path.exists(report_file):
+        os.remove(report_file)
+    f = open(report_file, 'w')
+    f.close()
+'''
     # dcg.load_state_dict(torch.load('aux_ckpt.pth')[0])
     dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
     dcg.eval()
@@ -180,8 +187,4 @@ if __name__ == '__main__':
     torch.save(diff_states, "saved_diff.pth")
 
     plt.plot(np.arange(0, train_epoch_num), loss_arr)
-    plt.savefig('loss_plot3.png', format='PNG')
-    if os.path.exists(report_file):
-        os.remove(report_file)
-    f = open(report_file, 'w')
-    f.close()
+    plt.savefig('loss_plot3.png', format='PNG')'''
