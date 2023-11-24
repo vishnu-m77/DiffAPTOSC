@@ -1,5 +1,5 @@
 {
-    "aptos":{
+    "aptos": {
         "EXP_DIR": "./results_aptos",
         "N_STEPS": 1000,
         "RUN_NAME": "run_1",
@@ -12,7 +12,7 @@
         "DEVICE_ID": 0,
         "N_THREADS": 8
     },
-    "dcg":{
+    "dcg": {
         "device_type": "device",
         "gpu_number": 0,
         "cam_size": [7, 7],
@@ -22,20 +22,36 @@
         "post_processing_dim": 512,
         "num_classes": 5,
         "use_v1_global": 1,
-        "percent_t": 1.0
+        "percent_t": 1.0,
+        "num_epochs": 10
     },
-    "data":{
+    "data": {
         "train_path": "dataset/aptos/aptos_train.json",
-        "test_path": "dataset/aptos/aptos_test.json"
+        "test_path": "dataset/aptos/aptos_test.json",
+        "label_min_max": [0.001, 0.999],
+        "num_classes": 5
     },
     "train": {
-        "batch_size": 32
+        "batch_size": 7
     },
     "test": {
-        "batch_size": 32
+        "batch_size": 3
     },
     "total_images": {
-        "num": 32
+        "num": 10
+    },
+    "diffusion": {
+        "timesteps": 1000,
+        "noise_schedule": "Linear",
+        "beta_initial": 0.0001, 
+        "beta_final": 0.02,
+        "include_guidance": true
+    },
+    "model":{
+        "feature_dim": 6144,
+        "hidden_dim": 6144,
+        "arch": "resnet18",
+        "data_dim":150528
     }
 
 }
