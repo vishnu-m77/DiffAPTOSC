@@ -140,10 +140,11 @@ class ReverseDiffusion(DiffusionBaseUtils):
         gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t = self.reverse_diffusion_parameters(
             t=t)
         eps = torch.randn_like(y_t)
+        t = torch.tensor([t])
 
         # first we reparameterize y0 to obtain y0_hat
         y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t) *
-                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net(x, y_t, cond_prior, t)))
+                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net.forward(x, y_t, t, yhat =  cond_prior)))
 
         y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 * \
             cond_prior+torch.sqrt(beta_var)*eps
@@ -167,7 +168,7 @@ class ReverseDiffusion(DiffusionBaseUtils):
             t = self.T - t - 1
             if t > 0:
                 y_tm1, y0_hat = self.reverse_diffusion_step(
-                    self, x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
+                    x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
                 y_t = y_tm1
             else:
                 # so t = 1
@@ -270,6 +271,21 @@ def train(dcg, model, FD, param, train_loader):
     plt.plot(np.arange(0, len(loss_arr)), loss_arr)
     plt.savefig('loss_plot3.png', format='PNG')
 
+def eval(dcg, model, FD, param, test_loader):
+    dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
+    dcg.eval()
+    reverse_diffusion = ReverseDiffusion(config=param['diffusion'])
+
+    for i, feature_label_set in enumerate(test_loader):
+        x_batch, y_labels_batch = feature_label_set
+        dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+        dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label 
+        y_T_mean = dcg_fusion
+        #print(i)
+        #print(model.forward(x_batch, y_T_mean, torch.tensor(0.), yhat = y_T_mean))
+        y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
+        print("Input: {}".format(y_T_mean))
+        print("Output: {}".format(y_out.softmax(dim=1)))
 
 # test
 if __name__ == '__main__':
