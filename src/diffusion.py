@@ -208,7 +208,7 @@ def train(dcg, model, FD, param, train_loader):
     loss_arr = []
     data_start = time.time()
     data_time = 0
-    train_epoch_num = 50
+    train_epoch_num = param["diffusion"]["num_epochs"]
     for epoch in range(0, train_epoch_num):
 
         for i, feature_label_set in enumerate(train_loader):
@@ -220,10 +220,11 @@ def train(dcg, model, FD, param, train_loader):
             n = x_batch.size(0)
 
             num_timesteps = param["diffusion"]["timesteps"]
-            t = torch.randint(low=0, high=num_timesteps,
-                              size=(n // 2 + 1,))
-            t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
+            # t = torch.randint(low=0, high=num_timesteps,
+            #                   size=(n // 2 + 1,))
+            # t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
             # print(t)
+            t = torch.randint(low=0, high=num_timesteps, size = (1,))
 
             # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
             #     1], dcg(x_batch)[2]
@@ -255,7 +256,7 @@ def train(dcg, model, FD, param, train_loader):
             # print(loss.item())
             loss_arr.append(loss.item())
             logging.info(
-                f"epoch: {epoch+1}, Diffusion training loss: {loss}")
+                f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}")
 
     data_time = time.time() - data_start
     logging.info("\nTraining of Diffusion took {:.4f} minutes.\n".format(

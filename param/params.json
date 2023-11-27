@@ -32,26 +32,27 @@
         "num_classes": 5
     },
     "train": {
-        "batch_size": 7
+        "batch_size": 10
     },
     "test": {
-        "batch_size": 3
+        "batch_size": 10
     },
     "total_images": {
-        "num": 10
+        "num": 1000
     },
     "diffusion": {
         "timesteps": 1000,
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
-        "include_guidance": true
+        "include_guidance": true,
+        "num_epochs": 10
     },
     "model":{
-        "feature_dim": 6144,
-        "hidden_dim": 6144,
+        "feature_dim": 614,
+        "hidden_dim": 614,
         "arch": "resnet18",
-        "data_dim":150528
+        "data_dim":1500
     }
 
 }
