@@ -79,18 +79,17 @@ if __name__ == '__main__':
     data = dataloader.DataProcessor(data_params)
     train_loader, test_loader = data.get_dataloaders()
 
-    
-    # Trains DCG and saves the model
-    dcg = dcg_module.DCG(dcg_params)
-
-    # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
-
     y_fusions = []
     y_globals = []
     y_locals = []
-
+    # Initialize DCG
+    dcg = dcg_module.DCG(dcg_params)
+    if not dcg_params["load"]:
+        # Trains DCG and saves the model
+        dcg_module.train_DCG(dcg, param, train_loader, test_loader)
     # Loads the saved DCG model and sets to eval mode
     dcg, optimizer = dcg_module.load_DCG(dcg_params)
+
     # for ind, (image, target) in enumerate(train_loader):
     #     # Sehmi - For loop NOT NEEDED
     #     # x = torch.flatten(x, 1)
@@ -103,13 +102,13 @@ if __name__ == '__main__':
 
     logging.info("DCG completed")
 
-    diffusion_config = param['diffusion']
+    diffusion_params = param['diffusion']
     if verbose:
-        logging.info("Diffusion model parameters: {}".format(diffusion_config))
-    FD = ForwardDiffusion(config=diffusion_config)  # initialize class
+        logging.info("Diffusion model parameters: {}".format(diffusion_params))
+    FD = ForwardDiffusion(config=diffusion_params)  # initialize class
     # forward diffusion EXAMPLE call below where the parameters are explained in difusion.py script
-    noised_var = FD.forward(var=torch.tensor(0.0), prior=torch.tensor(0))
-    logging.info("Noised Variable is {}".format(noised_var))
+    # noised_var = FD.forward(var=torch.tensor(0.0), prior=torch.tensor(0))
+    # logging.info("Noised Variable is {}".format(noised_var))
 
     #################### Reverse diffusion code begins #############################
     model = ConditionalModel(config=param, guidance=False)

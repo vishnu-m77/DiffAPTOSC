@@ -196,12 +196,10 @@ def compute_mmd(x, y):
     return mmd
 
 
-def train(dcg, model, FD, param, train_loader):
+def train(dcg, model, param, train_loader):
     # model = ConditionalModel(config=param, guidance=False)
+    FD = ForwardDiffusion(config=param['diffusion'])  # initialize class
 
-    # dcg.load_state_dict(torch.load('aux_ckpt.pth')[0])
-    dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
-    dcg.eval()
     reverse_diffusion = ReverseDiffusion(config=param['diffusion'])
     optimizer = torch.optim.Adam(
         model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
@@ -239,6 +237,8 @@ def train(dcg, model, FD, param, train_loader):
             # print(dcg_global)
             y0 = y_one_hot_batch
             eps = torch.randn_like(y0)
+            
+            # Creates noise with the priors
             yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
             yt_global = FD.forward(y0, dcg_global, eps=eps)
             yt_local = FD.forward(y0, dcg_local, eps=eps)

@@ -13,6 +13,7 @@
         "N_THREADS": 8
     },
     "dcg": {
+        "load": 1,
         "device_type": "device",
         "gpu_number": 0,
         "cam_size": [7, 7],
