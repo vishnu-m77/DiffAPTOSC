@@ -88,15 +88,15 @@ if __name__ == '__main__':
 
     # Loads the saved DCG model and sets to eval mode
     dcg, optimizer = dcg_module.load_DCG(dcg_params)
-    for ind, (image, target) in enumerate(train_loader):
-        # Sehmi - For loop NOT NEEDED
-        # x = torch.flatten(x, 1)
-        # print(image)
-        y_fusion, y_global, y_local = dcg.forward(image)
-        y_fusions.append(y_fusion)
-        y_locals.append(y_local)
-        y_globals.append(y_global)
-        # logging.info(y_global)
+    # for ind, (image, target) in enumerate(train_loader):
+    #     # Sehmi - For loop NOT NEEDED
+    #     # x = torch.flatten(x, 1)
+    #     # print(image)
+    #     # y_fusion, y_global, y_local = dcg.forward(image)
+    #     # y_fusions.append(y_fusion)
+    #     # y_locals.append(y_local)
+    #     # y_globals.append(y_global)
+    #     # logging.info(y_global)
 
     logging.info("DCG completed")
 
