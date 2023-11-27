@@ -267,7 +267,7 @@ def train(dcg, model, FD, param, train_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plt.plot(np.arange(0, train_epoch_num), loss_arr)
+    plt.plot(np.arange(0, len(loss_arr)), loss_arr)
     plt.savefig('loss_plot3.png', format='PNG')
 
 

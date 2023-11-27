@@ -17,7 +17,8 @@ logging.getLogger('PIL').setLevel(logging.WARNING)
 
 class APTOSDataset(Dataset):
     def __init__(self, data_path, total_image_num, train=True):
-        self.trainsize = (224, 224)
+        # self.trainsize = (224, 224)
+        self.trainsize = (100, 100)
         self.total_image_num = total_image_num
         self.train = train
         self.data_path = data_path
@@ -124,11 +125,11 @@ class DataProcessor():
     def __init__(self, config, database_name="APTOS"):
         super(DataProcessor, self).__init__()
         self.database_name = database_name
-        self.train_path = config["data"]["train_path"]
-        self.test_path = config["data"]["test_path"]
-        self.train_batch_size = config["train"]["batch_size"]
-        self.test_batch_size = config["test"]["batch_size"]
-        self.total_image_num = config["total_images"]["num"]
+        self.train_path = config["train_path"]
+        self.test_path = config["test_path"]
+        self.train_batch_size = config["train_batch_size"]
+        self.test_batch_size = config["test_batch_size"]
+        self.total_image_num = config["num_images"]
 
     def get_dataloaders(self):
         train_data = APTOSDataset(

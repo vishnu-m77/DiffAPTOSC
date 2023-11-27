@@ -55,28 +55,31 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     verbose = args.verbose
-    data = args.dataset
+    dataset = args.dataset
 
     # Hyperparameters from json file
     with open(args.param) as paramfile:
         param = json.load(paramfile)
 
-    params = param[data]
-    MODEL_VERSION_DIR = "diffmic_conditional_results/" + str(params['N_STEPS']) + "steps/nn/" + str(
-        params["RUN_NAME"]) + "/" + str(params["PRIOR_TYPE"]) + str(params["CAT_F_PHI"]) + "/" + str(params["F_PHI_TYPE"])
-    params["MODEL_VERSION_DIR"] = MODEL_VERSION_DIR
+    dataset_params = param[dataset]
+    data_params = param["data"]
+    dcg_params = param["dcg"]
+
+    MODEL_VERSION_DIR = "diffmic_conditional_results/" + str(dataset_params['N_STEPS']) + "steps/nn/" + str(
+        dataset_params["RUN_NAME"]) + "/" + str(dataset_params["PRIOR_TYPE"]) + str(dataset_params["CAT_F_PHI"]) + "/" + str(dataset_params["F_PHI_TYPE"])
+    dataset_params["MODEL_VERSION_DIR"] = MODEL_VERSION_DIR
     # logging.debug('verbose is {}'.format(verbose))
     if verbose:
-        logging.info('params are {}'.format(params))
-        # print(params)
+        logging.info('params are {}'.format(param))
+        # print(data_params)
 
     # Creates a report file
     report_file = 'report.txt'
 
-    data = dataloader.DataProcessor(param)
+    data = dataloader.DataProcessor(data_params)
     train_loader, test_loader = data.get_dataloaders()
 
-    dcg_params = param["dcg"]
+    
     # Trains DCG and saves the model
     dcg = dcg_module.DCG(dcg_params)
 

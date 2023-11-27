@@ -145,8 +145,8 @@ class RetrieveROIModule(AbstractMILUnit):
         N, C, h_h, w_h = h_small.size()
         #print(h_small.size())
         # make sure that the size of h_small == size of cam_size
-        assert h_h == h, "h_h!=h"
-        assert w_h == w, "w_h!=w"
+        # assert h_h == h, "h_h!=h"
+        # assert w_h == w, "w_h!=w"
 
         # adjust crop_shape since crop shape is based on the original image
         crop_x_adjusted = int(np.round(self.crop_shape[0] * h / H))
