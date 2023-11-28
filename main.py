@@ -105,14 +105,14 @@ if __name__ == '__main__':
     diffusion_params = param['diffusion']
     if verbose:
         logging.info("Diffusion model parameters: {}".format(diffusion_params))
-    FD = ForwardDiffusion(config=diffusion_params)  # initialize class
+    
     # forward diffusion EXAMPLE call below where the parameters are explained in difusion.py script
     # noised_var = FD.forward(var=torch.tensor(0.0), prior=torch.tensor(0))
     # logging.info("Noised Variable is {}".format(noised_var))
 
     #################### Reverse diffusion code begins #############################
     model = ConditionalModel(config=param, guidance=False)
-    diffusion.train(dcg, model, FD, param, train_loader)
+    diffusion.train(dcg, model, param, train_loader)
     #################### Reverse diffusion code ends #############################
 
     if os.path.exists(report_file):

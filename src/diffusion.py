@@ -142,8 +142,8 @@ class ReverseDiffusion(DiffusionBaseUtils):
         eps = torch.randn_like(y_t)
 
         # first we reparameterize y0 to obtain y0_hat
-        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t) *
-                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net(x, y_t, cond_prior, t)))
+        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t)) *
+                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net(x, y_t, cond_prior, t))
 
         y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 * \
             cond_prior+torch.sqrt(beta_var)*eps

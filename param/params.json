@@ -24,7 +24,7 @@
         "num_classes": 5,
         "use_v1_global": 1,
         "percent_t": 1.0,
-        "num_epochs": 10
+        "num_epochs": 15
     },
     "data": {
         "train_path": "dataset/aptos/aptos_train.json",
@@ -41,13 +41,13 @@
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": true,
-        "num_epochs": 4 
+        "num_epochs": 15 
     },
     "model":{
-        "feature_dim": 614,
-        "hidden_dim": 614,
+        "feature_dim": 6144,
+        "hidden_dim": 6144,
         "arch": "resnet18",
-        "data_dim":1500
+        "data_dim":150528
     }
 
 }
