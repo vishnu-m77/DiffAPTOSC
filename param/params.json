@@ -13,7 +13,6 @@
         "N_THREADS": 8
     },
     "dcg": {
-        "load": 1,
         "device_type": "device",
         "gpu_number": 0,
         "cam_size": [7, 7],
@@ -22,6 +21,7 @@
         "crop_method": "upper_left",
         "post_processing_dim": 512,
         "num_classes": 5,
+        "label_min_max": [0.001, 0.999],
         "use_v1_global": 1,
         "percent_t": 1.0,
         "num_epochs": 15
@@ -32,16 +32,16 @@
         "label_min_max": [0.001, 0.999],
         "num_classes": 5,
         "train_batch_size": 25,
-        "test_batch_size": 25,
+        "test_batch_size": 2,
         "num_images": 1000
     },
     "diffusion": {
-        "timesteps": 1000,
+        "timesteps": 100,
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": true,
-        "num_epochs": 15 
+        "num_epochs": 15
     },
     "model":{
         "feature_dim": 6144,

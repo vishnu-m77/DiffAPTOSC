@@ -4,11 +4,12 @@ This script assumes a fully function DCG module and Dataloader module
 """
 import torch
 import numpy as np
-from src.network.unet_model import *
 import time
 import src.DCG.main as dcg_module
+import src.unet_model as unet_model
 import logging
 import matplotlib.pyplot as plt
+from joblib import Parallel, delayed
 
 
 class DiffusionBaseUtils():
@@ -140,10 +141,11 @@ class ReverseDiffusion(DiffusionBaseUtils):
         gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t = self.reverse_diffusion_parameters(
             t=t)
         eps = torch.randn_like(y_t)
+        t = torch.tensor([t])
 
         # first we reparameterize y0 to obtain y0_hat
         y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t)) *
-                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net(x, y_t, cond_prior, t))
+                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net.forward(x, y_t, t, yhat =  cond_prior))
 
         y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 * \
             cond_prior+torch.sqrt(beta_var)*eps
@@ -167,7 +169,7 @@ class ReverseDiffusion(DiffusionBaseUtils):
             t = self.T - t - 1
             if t > 0:
                 y_tm1, y0_hat = self.reverse_diffusion_step(
-                    self, x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
+                    x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
                 y_t = y_tm1
             else:
                 # so t = 1
@@ -196,28 +198,28 @@ def compute_mmd(x, y):
     return mmd
 
 
-def train(dcg, model, param, train_loader):
-    # model = ConditionalModel(config=param, guidance=False)
-    FD = ForwardDiffusion(config=param['diffusion'])  # initialize class
+def train(dcg, model, params, train_loader):
+    # model = unet_model.ConditionalModel(config=param, guidance=False)
+    FD = ForwardDiffusion(config=params)  # initialize class
 
-    reverse_diffusion = ReverseDiffusion(config=param['diffusion'])
+    reverse_diffusion = ReverseDiffusion(config=params)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
     loss_arr = []
     data_start = time.time()
     data_time = 0
-    train_epoch_num = param["diffusion"]["num_epochs"]
+    train_epoch_num = params["num_epochs"]
     for epoch in range(0, train_epoch_num):
 
         for i, feature_label_set in enumerate(train_loader):
 
             x_batch, y_labels_batch = feature_label_set
-            y_one_hot_batch, y_logits_batch = dcg_module.cast_label_to_one_hot_and_prototype(
-                y_labels_batch, param)
+            y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(
+                y_labels_batch)
 
             n = x_batch.size(0)
 
-            num_timesteps = param["diffusion"]["timesteps"]
+            num_timesteps = params["timesteps"]
             # t = torch.randint(low=0, high=num_timesteps,
             #                   size=(n // 2 + 1,))
             # t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
@@ -249,7 +251,7 @@ def train(dcg, model, param, train_loader):
             # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
             # loss = (eps - output).square().mean()
             loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps,
-                                                                     output_global) + compute_mmd(eps, output_local))
+                output_global) + compute_mmd(eps, output_local))
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -267,9 +269,37 @@ def train(dcg, model, param, train_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
+    #TODO: Create a separate plot function
     plt.plot(np.arange(0, len(loss_arr)), loss_arr)
-    plt.savefig('loss_plot3.png', format='PNG')
+    plt.savefig('loss.png', format='PNG')
 
+def get_out(dcg, model, feature_label_set, reverse_diffusion):
+    x_batch, y_labels_batch = feature_label_set
+    dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+    dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label
+    y_T_mean = dcg_fusion
+    y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
+    print("Input: {}".format(y_T_mean))
+    print("Output: {}".format(y_out.softmax(dim=1)))
+    return y_out.softmax(dim=1)
+
+def eval(dcg, model, params, test_loader):
+    # dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
+    # dcg.eval()
+    reverse_diffusion = ReverseDiffusion(config=params)
+    # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
+
+    outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
+    # for i, feature_label_set in enumerate(test_loader):
+    #     x_batch, y_labels_batch = feature_label_set
+    #     dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+    #     dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label 
+    #     y_T_mean = dcg_fusion
+    #     #print(i)
+    #     #print(model.forward(x_batch, y_T_mean, torch.tensor(0.), yhat = y_T_mean))
+    #     y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
+    #     print("Input: {}".format(y_T_mean))
+    #     print("Output: {}".format(y_out.softmax(dim=1)))
 
 # test
 if __name__ == '__main__':

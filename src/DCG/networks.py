@@ -13,8 +13,8 @@ class AbstractMILUnit:
     """
     An abstract class that represents an MIL unit module
     """
-    def __init__(self, parameters, parent_module):
-        self.parameters = parameters
+    def __init__(self, params, parent_module):
+        self.params = params
         self.parent_module = parent_module
 
 
@@ -23,11 +23,11 @@ class Saliency_Map(nn.Module):
     """
     Unit in Global Network that takes in x_out and produce saliency maps
     """
-    def __init__(self, parameters):
+    def __init__(self, params):
         super(Saliency_Map, self).__init__()
         # map all filters to output classes
-        self.gn_conv_last = nn.Conv2d(parameters["post_processing_dim"]*4,
-                                      parameters["num_classes"],
+        self.gn_conv_last = nn.Conv2d(params["post_processing_dim"]*4,
+                                      params["num_classes"],
                                       (1, 1), bias=False)
 
     def forward(self, x_out):
@@ -64,13 +64,13 @@ class GlobalNetwork(AbstractMILUnit):
     """
     Implementation of Global Network using ResNet-22
     """
-    def __init__(self, parameters, parent_module):
-        super(GlobalNetwork, self).__init__(parameters, parent_module)
+    def __init__(self, params, parent_module):
+        super(GlobalNetwork, self).__init__(params, parent_module)
         # downsampling-branch
-        # if "use_v1_global" in parameters and parameters["use_v1_global"]:
+        # if "use_v1_global" in params and params["use_v1_global"]:
         self.downsampling_branch = DownsampleNetwork()
         # post-processing
-        self.saliency_map = Saliency_Map(parameters)
+        self.saliency_map = Saliency_Map(params)
 
     def add_layers(self):
         self.parent_module.ds_net = self.downsampling_branch
@@ -83,10 +83,10 @@ class GlobalNetwork(AbstractMILUnit):
         cam = self.saliency_map.forward(last_feature_map)
         return last_feature_map, cam
 
-def global_res(x, parameters):
+def global_res(x, params):
     downsampling_branch = DownsampleNetwork()
     # post-processing
-    saliency_map = Saliency_Map(parameters)
+    saliency_map = Saliency_Map(params)
     # retrieve results from downsampling network at all 4 levels
     last_feature_map = downsampling_branch.forward(x)
     # feed into postprocessing network
@@ -99,9 +99,9 @@ class TopTPercentAggregationFunction(AbstractMILUnit):
     An aggregator that uses the SM to compute the y_global.
     Use the sum of topK value
     """
-    def __init__(self, parameters, parent_module):
-        super(TopTPercentAggregationFunction, self).__init__(parameters, parent_module)
-        self.percent_t = parameters["percent_t"]
+    def __init__(self, params, parent_module):
+        super(TopTPercentAggregationFunction, self).__init__(params, parent_module)
+        self.percent_t = params["percent_t"]
         self.parent_module = parent_module
 
     def forward(self, cam):
@@ -124,12 +124,12 @@ class RetrieveROIModule(AbstractMILUnit):
     A Regional Proposal Network instance that computes the locations of the crops
     Greedy select crops with largest sums
     """
-    def __init__(self, parameters, parent_module):
-        super(RetrieveROIModule, self).__init__(parameters, parent_module)
+    def __init__(self, params, parent_module):
+        super(RetrieveROIModule, self).__init__(params, parent_module)
         self.crop_method = "upper_left"
-        self.num_crops_per_class = parameters["K"]
-        self.crop_shape = parameters["crop_shape"]
-        self.gpu_number = None if parameters["device_type"]!="gpu" else parameters["gpu_number"]
+        self.num_crops_per_class = params["K"]
+        self.crop_shape = params["crop_shape"]
+        self.gpu_number = None if params["device_type"]!="gpu" else params["gpu_number"]
 
     def forward(self, x_original, cam_size, h_small):
         """
@@ -139,7 +139,7 @@ class RetrieveROIModule(AbstractMILUnit):
         :param h_small: N, C, h_h, w_h pytorch tensor
         :return: N, num_classes*k, 2 numpy matrix; returned coordinates are corresponding to x_small
         """
-        # retrieve parameters
+        # retrieve params
         _, _, H, W = x_original.size()
         (h, w) = cam_size
         N, C, h_h, w_h = h_small.size()
@@ -172,7 +172,7 @@ class RetrieveROIModule(AbstractMILUnit):
         return torch.cat(all_max_position, dim=1).data.cpu().numpy()
 
 
-def retrieve_roi(x_original, cam_size, h_small, parameters):
+def retrieve_roi(x_original, cam_size, h_small, params):
     """
     Function that use the low-res image to determine the position of the high-res crops
     :param x_original: N, C, H, W pytorch tensor
@@ -180,8 +180,8 @@ def retrieve_roi(x_original, cam_size, h_small, parameters):
     :param h_small: N, C, h_h, w_h pytorch tensor
     :return: N, num_classes*k, 2 numpy matrix; returned coordinates are corresponding to x_small
     """
-    gpu_number = None if parameters["device_type"]!="gpu" else parameters["gpu_number"]
-    # retrieve parameters
+    gpu_number = None if params["device_type"]!="gpu" else params["gpu_number"]
+    # retrieve params
     _, _, H, W = x_original.size()
     (h, w) = cam_size
     N, C, h_h, w_h = h_small.size()
@@ -190,8 +190,8 @@ def retrieve_roi(x_original, cam_size, h_small, parameters):
     assert h_h == h, "h_h!=h"
     assert w_h == w, "w_h!=w"
     # adjust crop_shape since crop shape is based on the original image
-    crop_x_adjusted = int(np.round(parameters["crop_shape"][0] * h / H))
-    crop_y_adjusted = int(np.round(parameters["crop_shape"][1] * w / W))
+    crop_x_adjusted = int(np.round(params["crop_shape"][0] * h / H))
+    crop_y_adjusted = int(np.round(params["crop_shape"][1] * w / W))
     crop_shape_adjusted = (crop_x_adjusted, crop_y_adjusted)
 
     # greedily find the box with max sum of weights
@@ -204,7 +204,7 @@ def retrieve_roi(x_original, cam_size, h_small, parameters):
     normalize_images = normalize_images / range_vals
     h_small = normalize_images.sum(dim=1, keepdim=True)
 
-    for _ in range(parameters["K"]):
+    for _ in range(params["K"]):
         max_pos = utils.get_max_window(h_small, crop_shape_adjusted, "avg")
         all_max_position.append(max_pos)
         mask = utils.generate_mask_uplft(h_small, crop_shape_adjusted, max_pos, gpu_number)
@@ -266,7 +266,7 @@ class AttentionModule(AbstractMILUnit):
         self.parent_module.mil_attn_U = nn.Linear(512*4, 128, bias=False)
         self.parent_module.mil_attn_w = nn.Linear(128, 1, bias=False)
         # classifier
-        self.parent_module.classifier = nn.Linear(512*4, self.parameters["num_classes"], bias=False)
+        self.parent_module.classifier = nn.Linear(512*4, self.params["num_classes"], bias=False)
 
     def forward(self, h_crops):
         """
@@ -293,7 +293,7 @@ class AttentionModule(AbstractMILUnit):
         return z_weighted_avg, attn, y_crops
     
     
-def attention(h_crops, parameters):
+def attention(h_crops, params):
     """
     Function that add layers to the parent module that implements nn.Module
     :return:
@@ -303,7 +303,7 @@ def attention(h_crops, parameters):
     mil_attn_U = nn.Linear(512*4, 128, bias=False)
     mil_attn_w = nn.Linear(128, 1, bias=False)
     # classifier
-    classifier = nn.Linear(512*4, parameters["num_classes"], bias=False)
+    classifier = nn.Linear(512*4, params["num_classes"], bias=False)
 
     """
     Function that takes in the hidden representations of crops and use attention to generate a single hidden vector
