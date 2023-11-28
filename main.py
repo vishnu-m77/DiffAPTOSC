@@ -113,7 +113,6 @@ if __name__ == '__main__':
     # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
     if not os.path.exists(diff_chkpt_path):
         diffusion.train(dcg, model, diffusion_params, train_loader)
-        
     
     logging.info("Loading trained diffusion checkpoint from {}".format(diff_chkpt_path))
     chkpt = torch.load(diff_chkpt_path)

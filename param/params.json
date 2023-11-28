@@ -33,7 +33,7 @@
         "num_classes": 5,
         "train_batch_size": 25,
         "test_batch_size": 2,
-        "num_images": 100
+        "num_images": 1000
     },
     "diffusion": {
         "timesteps": 100,
@@ -41,7 +41,7 @@
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": true,
-        "num_epochs": 1
+        "num_epochs": 4
     },
     "model":{
         "feature_dim": 614,
