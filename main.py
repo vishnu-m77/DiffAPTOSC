@@ -43,6 +43,9 @@ logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
 if __name__ == '__main__':
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    logging.info(device)
+
     # Command line arguments
     parser = argparse.ArgumentParser(description='DiffMIC')
 
@@ -91,9 +94,9 @@ if __name__ == '__main__':
     # Checks if there is a saved DCG checkpoint. If not, trains the DCG.
     if not os.path.exists(dcg_chkpt_path):
         # Initialize DCG
-        dcg = dcg_module.DCG(dcg_params)
+        dcg = dcg_module.DCG(dcg_params).to(device)
         # Trains DCG and saves the model
-        dcg_module.train_DCG(dcg, dcg_params, train_loader)
+        dcg_module.train_DCG(dcg, dcg_params, train_loader).to(device)
     
     # Loads the saved DCG model and sets to eval mode
     logging.info("Loading trained DCG checkpoint from {}".format(dcg_chkpt_path))
