@@ -112,7 +112,19 @@ if __name__ == '__main__':
 
     #################### Reverse diffusion code begins #############################
     model = ConditionalModel(config=param, guidance=False)
-    diffusion.train(dcg, model, FD, param, train_loader)
+    mode = diffusion_config['mode']
+    if mode == 'train':
+        diffusion.train(dcg, model, FD, param, train_loader)
+    elif mode == 'eval':
+        diff_chkpt_path = 'saved_diff.pth'
+        logging.info("Loading trained diffusion checkpoint from {}".format(diff_chkpt_path))
+        chkpt = torch.load(diff_chkpt_path)
+        model.load_state_dict(chkpt[0])
+        model.eval()
+        logging.info("Diffusion_checkpoint loaded")
+        diffusion.eval(dcg, model, FD, param, test_loader)
+    else:
+        raise KeyError("Invalid mode {}".format(mode))
     #################### Reverse diffusion code ends #############################
 
     if os.path.exists(report_file):

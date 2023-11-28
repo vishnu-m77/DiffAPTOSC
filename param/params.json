@@ -32,11 +32,12 @@
         "label_min_max": [0.001, 0.999],
         "num_classes": 5,
         "train_batch_size": 25,
-        "test_batch_size": 25,
+        "test_batch_size": 2,
         "num_images": 1000
     },
     "diffusion": {
         "timesteps": 1000,
+        "mode": "eval",
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
