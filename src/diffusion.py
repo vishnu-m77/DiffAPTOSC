@@ -143,11 +143,10 @@ class ReverseDiffusion(DiffusionBaseUtils):
         t = torch.tensor([t])
 
         # first we reparameterize y0 to obtain y0_hat
-        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t) *
-                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net.forward(x, y_t, t, yhat =  cond_prior)))
+        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t)) *
+                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net.forward(x, y_t, t, yhat =  cond_prior))
 
-        y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 * \
-            cond_prior+torch.sqrt(beta_var)*eps
+        y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 *cond_prior+torch.sqrt(beta_var)*eps
 
         return y_tm1, y0_hat
 
@@ -279,13 +278,16 @@ def eval(dcg, model, FD, param, test_loader):
     for i, feature_label_set in enumerate(test_loader):
         x_batch, y_labels_batch = feature_label_set
         dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+        print(y_labels_batch)
         dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label 
         y_T_mean = dcg_fusion
         #print(i)
         #print(model.forward(x_batch, y_T_mean, torch.tensor(0.), yhat = y_T_mean))
         y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-        print("Input: {}".format(y_T_mean))
-        print("Output: {}".format(y_out.softmax(dim=1)))
+        print(y_out)
+        print("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean), torch.argmax(y_out.softmax(dim=1))))
+        # print("Input: {}".format(torch.argmax(y_T_mean)))
+        # print("Output: {}".format(torch.argmax(y_out.softmax(dim=1))))
 
 # test
 if __name__ == '__main__':
