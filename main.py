@@ -42,6 +42,7 @@ logging.warning('This will get logged to a file')
 
 if __name__ == '__main__':
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Command line arguments
     parser = argparse.ArgumentParser(description='DiffMIC')
 
@@ -81,7 +82,7 @@ if __name__ == '__main__':
 
     
     # Trains DCG and saves the model
-    dcg = dcg_module.DCG(dcg_params)
+    dcg = dcg_module.DCG(dcg_params).to(device)
 
     # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
 
@@ -112,7 +113,7 @@ if __name__ == '__main__':
     logging.info("Noised Variable is {}".format(noised_var))
 
     #################### Reverse diffusion code begins #############################
-    model = ConditionalModel(config=param, guidance=False)
+    model = ConditionalModel(config=param, guidance=False).to(device)
     mode = diffusion_config['mode']
     if mode == 'train':
         diffusion.train(dcg, model, FD, param, train_loader)
