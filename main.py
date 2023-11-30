@@ -86,6 +86,12 @@ if __name__ == '__main__':
     data = dataloader.DataProcessor(data_params)
     train_loader, test_loader = data.get_dataloaders()
 
+    
+    # Trains DCG and saves the model
+    dcg = dcg_module.DCG(dcg_params).to(device)
+
+    # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
+
     y_fusions = []
     y_globals = []
     y_locals = []
@@ -111,7 +117,7 @@ if __name__ == '__main__':
     # logging.info("Noised Variable is {}".format(noised_var))
 
     #################### Reverse diffusion code begins #############################
-    model = unet_model.ConditionalModel(config=param, guidance=False)
+    model = unet_model.ConditionalModel(config=param, guidance=False).to(device)
     diff_chkpt_path = 'saved_diff.pth'
     # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
     if not os.path.exists(diff_chkpt_path):
