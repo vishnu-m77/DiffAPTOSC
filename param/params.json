@@ -35,13 +35,13 @@
         "num_images": 1000
     },
     "diffusion": {
-        "timesteps": 1000,
+        "timesteps": 500,
         "mode": "eval",
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": true,
-        "num_epochs": 4 
+        "num_epochs": 15 
     },
     "model":{
         "feature_dim": 614,
