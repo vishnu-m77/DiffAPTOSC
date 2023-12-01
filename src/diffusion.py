@@ -285,7 +285,7 @@ def eval(dcg, model, FD, param, test_loader):
         #print(model.forward(x_batch, y_T_mean, torch.tensor(0.), yhat = y_T_mean))
         y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
         print(y_out)
-        print("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean), torch.argmax(y_out.softmax(dim=1))))
+        print("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
         # print("Input: {}".format(torch.argmax(y_T_mean)))
         # print("Output: {}".format(torch.argmax(y_out.softmax(dim=1))))
 
