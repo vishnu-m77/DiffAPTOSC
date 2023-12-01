@@ -290,30 +290,13 @@ def eval(dcg, model, params, test_loader):
     # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
 
     outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
-    # for i, feature_label_set in enumerate(test_loader):
-    #     x_batch, y_labels_batch = feature_label_set
-    #     dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
-    #     dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label 
-    #     y_T_mean = dcg_fusion
-    #     #print(i)
-    #     #print(model.forward(x_batch, y_T_mean, torch.tensor(0.), yhat = y_T_mean))
-    #     y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-    #     logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean), torch.argmax(y_out.softmax(dim=1))))
-    #     print("Input: {}".format(y_T_mean))
-    #     print("Output: {}".format(y_out.softmax(dim=1)))
-    # for i, feature_label_set in enumerate(test_loader):
-    #     x_batch, y_labels_batch = feature_label_set
-    #     dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
-    #     # print(y_labels_batch)
-    #     dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label 
-    #     y_T_mean = dcg_fusion
-    #     #print(i)
-    #     #print(model.forward(x_batch, y_T_mean, torch.tensor(0.), yhat = y_T_mean))
-    #     y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-    #     # print(y_out)
-    #     logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean), torch.argmax(y_out.softmax(dim=1))))
-        # print("Input: {}".format(torch.argmax(y_T_mean)))
-        # print("Output: {}".format(torch.argmax(y_out.softmax(dim=1))))
+    for i, feature_label_set in enumerate(test_loader):
+        x_batch, y_labels_batch = feature_label_set
+        dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+        dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label 
+        y_T_mean = dcg_fusion
+        y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
+        print("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
 
 # test
 if __name__ == '__main__':
