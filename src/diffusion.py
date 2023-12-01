@@ -222,7 +222,7 @@ def train(dcg, model, params, train_loader):
             # t = torch.randint(low=0, high=num_timesteps,
             #                   size=(n // 2 + 1,))
             # t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
-            # print(t)
+            # logging.info(t)
             t = torch.randint(low=0, high=num_timesteps, size = (1,))
 
             # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
@@ -235,7 +235,7 @@ def train(dcg, model, params, train_loader):
             dcg_fusion = dcg_fusion.softmax(dim=1)
             dcg_global, dcg_local = dcg_global.softmax(
                 dim=1), dcg_local.softmax(dim=1)
-            # print(dcg_global)
+            # logging.info(dcg_global)
             y0 = y_one_hot_batch
             eps = torch.randn_like(y0)
             
@@ -246,7 +246,7 @@ def train(dcg, model, params, train_loader):
             output = model(x_batch, yt_fusion, t, dcg_fusion)
             output_global = model(x_batch, yt_global, t, dcg_global)
             output_local = model(x_batch, yt_local, t, dcg_local)
-            # print(output_global)
+            # logging.info(output_global)
             # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
             # loss = (eps - output).square().mean()
             loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps,
@@ -254,7 +254,7 @@ def train(dcg, model, params, train_loader):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            # print(loss.item())
+            # logging.info(loss.item())
             loss_arr.append(loss.item())
             logging.info(
                 f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}")
@@ -278,9 +278,9 @@ def get_out(dcg, model, feature_label_set, reverse_diffusion):
     dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label
     y_T_mean = dcg_fusion
     y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-    logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean), torch.argmax(y_out.softmax(dim=1))))
-    # print("Input: {}".format(y_T_mean))
-    # print("Output: {}".format(y_out.softmax(dim=1)))
+    logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+    # logging.info("Input: {}".format(y_T_mean))
+    # logging.info("Output: {}".format(y_out.softmax(dim=1)))
     return y_out.softmax(dim=1)
 
 def eval(dcg, model, params, test_loader):
@@ -289,16 +289,17 @@ def eval(dcg, model, params, test_loader):
     reverse_diffusion = ReverseDiffusion(config=params)
     # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
 
-    outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
+    # Parallel/ delayed code calls get_out which does the job of the for loop following it. Only of the two should be active at any given time
+    # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
     for i, feature_label_set in enumerate(test_loader):
         x_batch, y_labels_batch = feature_label_set
         dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
         dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label 
         y_T_mean = dcg_fusion
         y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-        print("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+        logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
 
 # test
 if __name__ == '__main__':
     # Add tests here
-    print("Successful")
+    logging.info("Successful")
