@@ -129,7 +129,7 @@ class RetrieveROIModule(AbstractMILUnit):
         self.crop_method = "upper_left"
         self.num_crops_per_class = params["K"]
         self.crop_shape = params["crop_shape"]
-        self.gpu_number = None if params["device_type"]!="gpu" else params["gpu_number"]
+        self.gpu_number = None if params["device"]!="gpu" else params["gpu_number"]
 
     def forward(self, x_original, cam_size, h_small):
         """
@@ -180,7 +180,7 @@ def retrieve_roi(x_original, cam_size, h_small, params):
     :param h_small: N, C, h_h, w_h pytorch tensor
     :return: N, num_classes*k, 2 numpy matrix; returned coordinates are corresponding to x_small
     """
-    gpu_number = None if params["device_type"]!="gpu" else params["gpu_number"]
+    gpu_number = None if params["device"]!="gpu" else params["gpu_number"]
     # retrieve params
     _, _, H, W = x_original.size()
     (h, w) = cam_size

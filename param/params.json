@@ -20,11 +20,11 @@
         "crop_shape": [32, 32],
         "crop_method": "upper_left",
         "post_processing_dim": 512,
-        "num_classes": 5,
         "label_min_max": [0.001, 0.999],
+        "num_classes": 5,
         "use_v1_global": 1,
         "percent_t": 1.0,
-        "num_epochs": 15
+        "num_epochs": 10
     },
     "data": {
         "train_path": "dataset/aptos/aptos_train.json",
@@ -36,18 +36,18 @@
         "num_images": 1000
     },
     "diffusion": {
-        "timesteps": 100,
+        "timesteps": 500,
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": true,
-        "num_epochs": 15
+        "num_epochs": 15 
     },
     "model":{
-        "feature_dim": 6144,
-        "hidden_dim": 6144,
+        "feature_dim": 614,
+        "hidden_dim": 614,
         "arch": "resnet18",
-        "data_dim":150528
+        "data_dim":1500
     }
 
 }
