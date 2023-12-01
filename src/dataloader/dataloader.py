@@ -17,8 +17,8 @@ logging.getLogger('PIL').setLevel(logging.WARNING)
 
 class APTOSDataset(Dataset):
     def __init__(self, data_path, total_image_num, train=True):
-        # self.trainsize = (224, 224)
-        self.trainsize = (100, 100)
+        self.trainsize = (224, 224)
+        #self.trainsize = (100, 100)
         self.total_image_num = total_image_num
         self.train = train
         self.data_path = data_path

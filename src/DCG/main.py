@@ -99,38 +99,38 @@ class DCG(nn.Module):
         return self.y_fusion, self.y_global, self.y_local
 
 
-def nonlinear_guidance_model_train_step(dcg, criterion, x_batch, y_batch, aux_optimizer):
-    """
-    One optimization step of the non-linear guidance model that predicts y_0_hat.
-    """
-    y_batch_pred, y_global, y_local = dcg(x_batch)
-    # y_batch_pred = y_batch_pred.softmax(dim=1)
-    # aux_cost = self.aux_cost_function(y_batch_pred, y_batch)+self.aux_cost_function(y_global, y_batch)+self.aux_cost_function(y_local, y_batch)
-    aux_cost = criterion(y_batch_pred, y_batch)
-    # update non-linear guidance model
-    aux_optimizer.zero_grad()
-    aux_cost.backward()
-    aux_optimizer.step()
-    return aux_cost.item()
-    return aux_cost.cpu().item()
+    def nonlinear_guidance_model_train_step(self, criterion, x_batch, y_batch, aux_optimizer):
+        """
+        One optimization step of the non-linear guidance model that predicts y_0_hat.
+        """
+        y_batch_pred, y_global, y_local = self(x_batch)
+        # y_batch_pred = y_batch_pred.softmax(dim=1)
+        # aux_cost = self.aux_cost_function(y_batch_pred, y_batch)+self.aux_cost_function(y_global, y_batch)+self.aux_cost_function(y_local, y_batch)
+        aux_cost = criterion(y_batch_pred, y_batch)
+        # update non-linear guidance model
+        aux_optimizer.zero_grad()
+        aux_cost.backward()
+        aux_optimizer.step()
+        return aux_cost.item()
+        return aux_cost.cpu().item()
 
 
-def cast_label_to_one_hot_and_prototype(y_labels_batch, param, return_prototype=True):
-    """
-    y_labels_batch: a vector of length batch_size.
-    """
-    y_one_hot_batch = nn.functional.one_hot(
-        y_labels_batch, num_classes=param["data"]["num_classes"]).float()
-    if return_prototype:
-        label_min, label_max = param["data"]["label_min_max"]
-        y_logits_batch = torch.logit(nn.functional.normalize(
-            torch.clip(y_one_hot_batch, min=label_min, max=label_max), p=1.0, dim=1))
-        return y_one_hot_batch, y_logits_batch
-    else:
-        return y_one_hot_batch
+    def cast_label_to_one_hot_and_prototype(self, y_labels_batch, return_prototype=True):
+        """
+        y_labels_batch: a vector of length batch_size.
+        """
+        y_one_hot_batch = nn.functional.one_hot(
+            y_labels_batch, num_classes=self.params["num_classes"]).float()
+        if return_prototype:
+            label_min, label_max = self.params["label_min_max"]
+            y_logits_batch = torch.logit(nn.functional.normalize(
+                torch.clip(y_one_hot_batch, min=label_min, max=label_max), p=1.0, dim=1))
+            return y_one_hot_batch, y_logits_batch
+        else:
+            return y_one_hot_batch
 
 
-def train_DCG(dcg, params, train_loader, test_loader):
+def train_DCG(dcg, params, train_loader):
     # optimizer = get_optimizer(self.params.optim, model.params())
 
     criterion = nn.CrossEntropyLoss()
@@ -143,13 +143,13 @@ def train_DCG(dcg, params, train_loader, test_loader):
     dcg.train()
     # self.cond_pred_model.train()
     pretrain_start_time = time.time()
-    for epoch in range(params["dcg"]["num_epochs"]):
+    for epoch in range(params["num_epochs"]):
         for feature_label_set in train_loader:
             x_batch, y_labels_batch = feature_label_set
-            y_one_hot_batch, y_logits_batch = cast_label_to_one_hot_and_prototype(
-                y_labels_batch, params)
-            aux_loss = nonlinear_guidance_model_train_step(
-                dcg, criterion, x_batch, y_one_hot_batch, optimizer)
+            y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(
+                y_labels_batch)
+            aux_loss = dcg.nonlinear_guidance_model_train_step(
+                criterion, x_batch, y_one_hot_batch, optimizer)
         # if epoch % params.diffusion.aux_cls.logging_interval == 0:
         #     logging.info(
         #         f"epoch: {epoch}, guidance auxiliary classifier pre-training loss: {aux_loss}"

@@ -70,7 +70,7 @@ def _retrieve_crop(x_original_pytorch, crop_positions, crop_method, parameters):
         crop_h, crop_w = parameters["crop_shape"]
 
         output = torch.ones((batch_size, num_crops, crop_h, crop_w))
-        if parameters["device_type"] == "gpu":
+        if parameters["device"] == "gpu":
             device = torch.device("cuda:{}".format(parameters["gpu_number"]))
             output = output.to(device)
         for i in range(batch_size):

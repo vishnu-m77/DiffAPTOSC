@@ -13,13 +13,14 @@
         "N_THREADS": 8
     },
     "dcg": {
-        "device_type": "device",
+        "device": "cpu",
         "gpu_number": 0,
         "cam_size": [7, 7],
         "K": 6,
         "crop_shape": [32, 32],
         "crop_method": "upper_left",
         "post_processing_dim": 512,
+        "label_min_max": [0.001, 0.999],
         "num_classes": 5,
         "use_v1_global": 1,
         "percent_t": 1.0,
@@ -36,7 +37,6 @@
     },
     "diffusion": {
         "timesteps": 500,
-        "mode": "eval",
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
