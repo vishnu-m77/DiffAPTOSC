@@ -33,7 +33,7 @@
         "num_classes": 5,
         "train_batch_size": 4,
         "test_batch_size": 2,
-        "num_images": 11
+        "num_images": 10
     },
     "diffusion": {
         "timesteps": 500,
