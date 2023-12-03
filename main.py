@@ -72,7 +72,7 @@ if __name__ == '__main__':
     data_params = param["data"]
     dcg_params = param["dcg"]
     diffusion_params = param['diffusion']
-    unet_params = param["unet"]
+    unet_params = param["model"]
 
     # The following 4 lines of code use dataset_params. If we don't need these, we can delete it but keep a copy for now.
     # dataset_params = param[dataset]
@@ -121,8 +121,9 @@ if __name__ == '__main__':
     # logging.info("Noised Variable is {}".format(noised_var))
 
     #################### Reverse diffusion code begins #############################
-    
-    model = unet_model.ConditionalModel(config=param, guidance=diffusion_params["include_guidance"]).to(device)
+
+    model = unet_model.ConditionalModel(
+        config=unet_params, n_steps=diffusion_params["timesteps"], n_classes=data_params["num_classes"], guidance=diffusion_params["include_guidance"]).to(device)
     diff_chkpt_path = 'saved_diff.pth'
     # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
     if not os.path.exists(diff_chkpt_path):
@@ -134,7 +135,8 @@ if __name__ == '__main__':
     model.load_state_dict(chkpt[0])
     model.eval()
     logging.info("Diffusion_checkpoint loaded")
-    diffusion.eval(dcg, model, diffusion_params, test_loader, report_file = report_file)
+    diffusion.eval(dcg, model, diffusion_params,
+                   test_loader, report_file=report_file)
 
     #################### Reverse diffusion code ends #############################
 

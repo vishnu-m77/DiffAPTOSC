@@ -44,19 +44,8 @@
         "num_epochs": 15,
         "num_test_batches": 2
     },
-    "unet":{
-        "model":{
-            "feature_dim": 614,
-            "hidden_dim": 614,
-            "arch": "resnet18",
-            "data_dim":1500
-        },
-        "data": {
-            "num_classes": 5
-        },
-        "diffusion": {
-            "timesteps": 500
-        }
+    "model": {
+        "feature_dim": 614,
+        "arch": "resnet18"
     }
-
 }

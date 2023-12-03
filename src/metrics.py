@@ -1,11 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-# import sklearn.metrics as metrics
-# #from imblearn.metrics import sensitivity_score, specificity_score
-# import pdb
-# # from sklearn.metrics.ranking import roc_auc_score
-# from sklearn.metrics import accuracy_score, balanced_accuracy_score, cohen_kappa_score
-# from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.metrics import f1_score
 
 
 def plot_loss(loss_arr, title, xlabel, ylabel, savedir):
@@ -15,3 +10,24 @@ def plot_loss(loss_arr, title, xlabel, ylabel, savedir):
     plt.title(title)
     plt.savefig(savedir+'.png', format='PNG')
     plt.close()
+
+
+def accuracy_torch(tensor_one, tensor_two):
+    """
+    Takes in 2 tensors and computes accuracy
+    """
+    correct = 0
+    if tensor_one.size(0) != tensor_two.size(0):
+        raise KeyError("Tensor dimension mismatch")
+    for idx in range(tensor_one.size(0)):
+        if tensor_one[idx] == tensor_two[idx]:
+            correct = correct + 1
+    return correct/tensor_one.size(0)
+
+
+def compute_f1_score(target, pred):
+    target = target.cpu().detach().numpy()
+    pred_np = pred.cpu().detach().numpy()
+    # pred_np = np.argmax(pred_np, axis=1)
+    F1 = f1_score(target, pred_np, average='macro')
+    return F1

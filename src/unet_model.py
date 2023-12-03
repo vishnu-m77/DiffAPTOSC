@@ -54,15 +54,19 @@ class ResNetEncoder(nn.Module):
 
 
 class ConditionalModel(nn.Module):
-    def __init__(self, config, guidance=False):
+    def __init__(self, config, n_steps, n_classes, guidance=False):
         super(ConditionalModel, self).__init__()
         logging.info("Initialize UNET")
-        n_steps = config["diffusion"]["timesteps"] + 1
-        data_dim = config["model"]["data_dim"]
-        y_dim = config["data"]["num_classes"]
-        arch = config["model"]["arch"]
-        feature_dim = config["model"]["feature_dim"]
-        hidden_dim = config["model"]["hidden_dim"]
+        # n_steps = config["diffusion"]["timesteps"] + 1
+        n_steps += 1
+        # data_dim = config["model"]["data_dim"]
+        # y_dim = config["data"]["num_classes"]
+        y_dim = n_classes
+        # arch = config["model"]["arch"]
+        arch = config["arch"]
+        # feature_dim = config["model"]["feature_dim"]
+        feature_dim = config["feature_dim"]
+        # hidden_dim = config["model"]["hidden_dim"]
         self.guidance = guidance
         # encoder for x
         self.encoder_x = ResNetEncoder(arch=arch, feature_dim=feature_dim)
