@@ -8,8 +8,8 @@ import time
 import src.DCG.main as dcg_module
 import src.unet_model as unet_model
 import logging
-import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
+from src.metrics import plot_loss
 
 
 class DiffusionBaseUtils():
@@ -145,9 +145,10 @@ class ReverseDiffusion(DiffusionBaseUtils):
 
         # first we reparameterize y0 to obtain y0_hat
         y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t)) *
-                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net.forward(x, y_t, t, yhat =  cond_prior))
+                                               cond_prior - torch.sqrt(1-alpha_prod_t)*score_net.forward(x, y_t, t, yhat=cond_prior))
 
-        y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 *cond_prior+torch.sqrt(beta_var)*eps
+        y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 * \
+            cond_prior+torch.sqrt(beta_var)*eps
 
         return y_tm1, y0_hat
 
@@ -204,11 +205,12 @@ def train(dcg, model, params, train_loader):
     reverse_diffusion = ReverseDiffusion(config=params)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
-    loss_arr = []
+    loss_epoch = []
     data_start = time.time()
     data_time = 0
     train_epoch_num = params["num_epochs"]
     for epoch in range(0, train_epoch_num):
+        loss_batch = []
 
         for i, feature_label_set in enumerate(train_loader):
 
@@ -223,7 +225,7 @@ def train(dcg, model, params, train_loader):
             #                   size=(n // 2 + 1,))
             # t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
             # logging.info(t)
-            t = torch.randint(low=0, high=num_timesteps, size = (1,))
+            t = torch.randint(low=0, high=num_timesteps, size=(1,))
 
             # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
             #     1], dcg(x_batch)[2]
@@ -238,7 +240,7 @@ def train(dcg, model, params, train_loader):
             # logging.info(dcg_global)
             y0 = y_one_hot_batch
             eps = torch.randn_like(y0)
-            
+
             # Creates noise with the priors
             yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
             yt_global = FD.forward(y0, dcg_global, eps=eps)
@@ -250,14 +252,16 @@ def train(dcg, model, params, train_loader):
             # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
             # loss = (eps - output).square().mean()
             loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps,
-                output_global) + compute_mmd(eps, output_local))
+                                                                     output_global) + compute_mmd(eps, output_local))
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             # logging.info(loss.item())
-            loss_arr.append(loss.item())
+            loss_batch.append(loss.item())
             logging.info(
                 f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}")
+
+        loss_epoch.append(np.mean(loss_batch))
 
     data_time = time.time() - data_start
     logging.info("\nTraining of Diffusion took {:.4f} minutes.\n".format(
@@ -268,20 +272,30 @@ def train(dcg, model, params, train_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    #TODO: Create a separate plot function
-    plt.plot(np.arange(0, len(loss_arr)), loss_arr)
-    plt.savefig('loss.png', format='PNG')
+    # TODO: Create a separate plot function
+    # plt.plot(loss_arr)
+    # plt.xlabel("Epochs")
+    # plt.ylabel("Loss")
+    # plt.title("Loss function for Diffusion Train")
+    # plt.savefig('loss.png', format='PNG')
+    # plt.close()
+    plot_loss(loss_arr=loss_epoch, title="Loss function for Diffusion Train",
+              xlabel="Epochs", ylabel="Loss", savedir="diffusion_loss")
+
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):
     x_batch, y_labels_batch = feature_label_set
     dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
-    dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label
+    dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
     y_T_mean = dcg_fusion
-    y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-    logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+    y_out = reverse_diffusion.full_reverse_diffusion(
+        x_batch, cond_prior=y_T_mean, score_net=model)
+    logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
+        y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
     # logging.info("Input: {}".format(y_T_mean))
     # logging.info("Output: {}".format(y_out.softmax(dim=1)))
     return y_out.softmax(dim=1)
+
 
 def eval(dcg, model, params, test_loader):
     # dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
@@ -294,10 +308,13 @@ def eval(dcg, model, params, test_loader):
     for i, feature_label_set in enumerate(test_loader):
         x_batch, y_labels_batch = feature_label_set
         dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
-        dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label 
+        dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
         y_T_mean = dcg_fusion
-        y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-        logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+        y_out = reverse_diffusion.full_reverse_diffusion(
+            x_batch, cond_prior=y_T_mean, score_net=model)
+        logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
+            y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+
 
 # test
 if __name__ == '__main__':

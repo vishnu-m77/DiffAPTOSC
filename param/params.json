@@ -24,16 +24,16 @@
         "num_classes": 5,
         "use_v1_global": 1,
         "percent_t": 1.0,
-        "num_epochs": 10
+        "num_epochs": 5
     },
     "data": {
         "train_path": "dataset/aptos/aptos_train.json",
         "test_path": "dataset/aptos/aptos_test.json",
         "label_min_max": [0.001, 0.999],
         "num_classes": 5,
-        "train_batch_size": 25,
+        "train_batch_size": 4,
         "test_batch_size": 2,
-        "num_images": 1000
+        "num_images": 11
     },
     "diffusion": {
         "timesteps": 500,
@@ -41,13 +41,21 @@
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": true,
-        "num_epochs": 15 
+        "num_epochs": 5
     },
-    "model":{
-        "feature_dim": 614,
-        "hidden_dim": 614,
-        "arch": "resnet18",
-        "data_dim":1500
+    "unet":{
+        "model":{
+            "feature_dim": 614,
+            "hidden_dim": 614,
+            "arch": "resnet18",
+            "data_dim":1500
+        },
+        "data": {
+            "num_classes": 5
+        },
+        "diffusion": {
+            "timesteps": 500
+        }
     }
 
 }
