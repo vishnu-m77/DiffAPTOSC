@@ -10,6 +10,7 @@ import src.unet_model as unet_model
 import logging
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
+from sklearn.metrics import f1_score
 
 
 class DiffusionBaseUtils():
@@ -208,12 +209,12 @@ def accuracy_torch(tensor_one, tensor_two):
             correct = correct + 1
     return correct/tensor_one.size(0)
 
-# def compute_f1_score(target, pred):
-#     target = target.cpu().detach().numpy()
-#     pred_np = pred.cpu().detach().numpy()
-#     pred_class = np.argmax(pred_np, axis=1)
-#     F1 = f1_score(target, pred_class, average='macro')
-#     return F1
+def compute_f1_score(target, pred):
+    target = target.cpu().detach().numpy()
+    pred_np = pred.cpu().detach().numpy()
+    # pred_np = np.argmax(pred_np, axis=1)
+    F1 = f1_score(target, pred_np, average='macro')
+    return F1
 
 def train(dcg, model, params, train_loader):
     # model = unet_model.ConditionalModel(config=param, guidance=False)
@@ -334,9 +335,11 @@ def eval(dcg, model, params, test_loader, report_file):
     dcg_accuracy = accuracy_torch(targets, dcg_output)
     diffusion_accuracy = accuracy_torch(targets, diffusion_output)
     dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
+    f1_score = compute_f1_score(targets, diffusion_output)
     logging.info("DCG accuracy {}".format(dcg_accuracy))
     logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
     logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
+    logging.info("F1 Score {}".format(f1_score))
 
     if os.path.exists(report_file):
         os.remove(report_file)
@@ -344,8 +347,8 @@ def eval(dcg, model, params, test_loader, report_file):
     f.write("Accuracy:\n")
     f.write("DCG model accuracy: \t {}\n".format(dcg_accuracy))
     f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
-    f.write("Diffusion-DCG accuracy: \t {}\n\n".format(dcg_diffusion_accuracy))
-    f.write("F1 Score:\n")
+    f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
+    f.write("F1 Score: \t {}\n".format(f1_score))
     f.close()
 
 # test
