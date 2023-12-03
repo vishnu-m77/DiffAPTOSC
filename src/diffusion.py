@@ -11,6 +11,7 @@ import src.unet_model as unet_model
 import logging
 from joblib import Parallel, delayed
 from src.metrics import *
+from sklearn.manifold import TSNE
 
 
 class DiffusionBaseUtils():
@@ -175,6 +176,27 @@ class ReverseDiffusion(DiffusionBaseUtils):
             else:
                 # so t = 1
                 y_tm1 = y0_hat
+
+            y_t_rdm = y_t.detach().numpy()
+            # print(y_t_rdm)
+            # print(np.shape(y_t_rdm))
+            # y_t_embedded = TSNE(perplexity=1).fit_transform(y_t_rdm)
+            # print(y_t_embedded)
+            # plt.scatter(y_t_embedded[0, :],
+            #             y_t_embedded[1, :], c=[0, 1, 2, 3, 4], s=5, cmap="tab5")
+            # plt.show()
+            y_t_tsne = TSNE(
+                n_components=2, perplexity=1).fit_transform(y_t_rdm)
+
+            # Plot the t-SNE visualization with color-coded classes
+            # plt.scatter(y_t_tsne[:, 0], y_t_tsne[:, 1], c=[
+            #             0, 1], cmap='viridis', marker='o', edgecolors='w', s=100)
+            # plt.title('t-SNE Visualization of 5 Classes')
+            # plt.xlabel('t-SNE Dimension 1')
+            # plt.ylabel('t-SNE Dimension 2')
+            # plt.colorbar(label='Class')
+            # plt.show()
+
         y0_synthetic = y_tm1
         return y0_synthetic
 

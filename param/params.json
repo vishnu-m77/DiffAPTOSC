@@ -41,8 +41,8 @@
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": false,
-        "num_epochs": 15,
-        "num_test_batches": 2
+        "num_epochs": 10,
+        "num_test_batches": 1
     },
     "model": {
         "feature_dim": 614,
