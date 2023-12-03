@@ -4,13 +4,14 @@ This script assumes a fully function DCG module and Dataloader module
 """
 import torch
 import numpy as np
-import time, os
+import time
+import os
 import src.DCG.main as dcg_module
 import src.unet_model as unet_model
 import logging
 from joblib import Parallel, delayed
-from src.metrics import plot_loss
-from sklearn.metrics import f1_score
+from src.metrics import *
+
 
 class DiffusionBaseUtils():
     def __init__(self, config):
@@ -197,24 +198,6 @@ def compute_mmd(x, y):
     mmd = x_kernel.mean() + y_kernel.mean() - 2*xy_kernel.mean()
     return mmd
 
-def accuracy_torch(tensor_one, tensor_two):
-    """
-    Takes in 2 tensors and computes accuracy
-    """
-    correct = 0
-    if tensor_one.size(0) != tensor_two.size(0):
-        raise KeyError("Tensor dimension mismatch")
-    for idx in range(tensor_one.size(0)):
-        if tensor_one[idx] == tensor_two[idx]:
-            correct = correct + 1
-    return correct/tensor_one.size(0)
-
-def compute_f1_score(target, pred):
-    target = target.cpu().detach().numpy()
-    pred_np = pred.cpu().detach().numpy()
-    # pred_np = np.argmax(pred_np, axis=1)
-    F1 = f1_score(target, pred_np, average='macro')
-    return F1
 
 def train(dcg, model, params, train_loader):
     # model = unet_model.ConditionalModel(config=param, guidance=False)
@@ -242,8 +225,8 @@ def train(dcg, model, params, train_loader):
             t = torch.randint(low=0, high=num_timesteps,
                               size=(n // 2 + 1,))
             t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
-            #print(t)
-            #t = torch.randint(low=0, high=num_timesteps, size = (1,))
+            # print(t)
+            # t = torch.randint(low=0, high=num_timesteps, size = (1,))
 
             # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
             #     1], dcg(x_batch)[2]
@@ -290,15 +273,9 @@ def train(dcg, model, params, train_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    # TODO: Create a separate plot function
-    # plt.plot(loss_arr)
-    # plt.xlabel("Epochs")
-    # plt.ylabel("Loss")
-    # plt.title("Loss function for Diffusion Train")
-    # plt.savefig('loss.png', format='PNG')
-    # plt.close()
     plot_loss(loss_arr=loss_epoch, title="Loss function for Diffusion Train",
               xlabel="Epochs", ylabel="Loss", savedir="diffusion_loss")
+
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):
     x_batch, y_labels_batch = feature_label_set
@@ -322,7 +299,7 @@ def eval(dcg, model, params, test_loader, report_file):
 
     # Parallel/ delayed code calls get_out which does the job of the for loop following it. Only of the two should be active at any given time
     # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
-    #outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
+    # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
     targets = []
     dcg_output = []
     diffusion_output = []
@@ -332,12 +309,14 @@ def eval(dcg, model, params, test_loader, report_file):
         dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
         dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
         y_T_mean = dcg_fusion
-        y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-        logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+        y_out = reverse_diffusion.full_reverse_diffusion(
+            x_batch, cond_prior=y_T_mean, score_net=model)
+        logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
+            y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
         targets.append(y_labels_batch)
-        dcg_output.append(torch.argmax(y_T_mean, dim=1))        
+        dcg_output.append(torch.argmax(y_T_mean, dim=1))
         diffusion_output.append(torch.argmax(y_out.softmax(dim=1), dim=1))
-        if  i+1 >= params['num_test_batches']:
+        if i+1 >= params['num_test_batches']:
             break
     targets = torch.cat(targets)
     dcg_output = torch.cat(dcg_output)
@@ -360,6 +339,7 @@ def eval(dcg, model, params, test_loader, report_file):
     f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
     f.write("F1 Score: \t {}\n".format(f1_score))
     f.close()
+
 
 # test
 if __name__ == '__main__':
