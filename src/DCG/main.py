@@ -9,6 +9,7 @@ import torch.nn as nn
 import numpy as np
 import src.DCG.utils as utils
 import src.DCG.networks as net
+from src.metrics import plot_loss
 
 # if os.path.exists('src/DCG/dcg.log'):
 #      os.remove('src/DCG/dcg.log')
@@ -98,7 +99,6 @@ class DCG(nn.Module):
         self.y_fusion = 0.5 * (self.y_global+self.y_local)
         return self.y_fusion, self.y_global, self.y_local
 
-
     def nonlinear_guidance_model_train_step(self, criterion, x_batch, y_batch, aux_optimizer):
         """
         One optimization step of the non-linear guidance model that predicts y_0_hat.
@@ -113,7 +113,6 @@ class DCG(nn.Module):
         aux_optimizer.step()
         return aux_cost.item()
         return aux_cost.cpu().item()
-
 
     def cast_label_to_one_hot_and_prototype(self, y_labels_batch, return_prototype=True):
         """
@@ -142,8 +141,10 @@ def train_DCG(dcg, params, train_loader):
         dcg.parameters(), lr=0.1, weight_decay=1e-4, momentum=0.9)
     dcg.train()
     # self.cond_pred_model.train()
+    loss_epoch = []
     pretrain_start_time = time.time()
     for epoch in range(params["num_epochs"]):
+        loss_batch = []
         for feature_label_set in train_loader:
             x_batch, y_labels_batch = feature_label_set
             y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(
@@ -154,9 +155,17 @@ def train_DCG(dcg, params, train_loader):
         #     logging.info(
         #         f"epoch: {epoch}, guidance auxiliary classifier pre-training loss: {aux_loss}"
         #     )
+            loss_batch.append(aux_loss)
+
+        loss_epoch.append(np.mean(loss_batch))
+        # logging.info(
+        #     f"epoch: {epoch+1}, DCG pre-training loss: {aux_loss}"
+        # )
         logging.info(
-            f"epoch: {epoch+1}, DCG pre-training loss: {aux_loss}"
+            f"epoch: {epoch+1}, DCG pre-training loss: {np.mean(loss_batch)}"
         )
+    plot_loss(loss_arr=loss_epoch, title="Loss function for DCG Train",
+              xlabel='Epochs', ylabel='Loss', savedir='dcg_loss')
     pretrain_end_time = time.time()
     logging.info("\nPre-training of DCG took {:.4f} minutes.\n".format(
         (pretrain_end_time - pretrain_start_time) / 60))
@@ -177,7 +186,8 @@ def train_DCG(dcg, params, train_loader):
 
 def load_DCG(params):
     model = DCG(params)
-    optimizer = torch.optim.SGD(model.parameters(), lr=0.1, weight_decay=1e-4, momentum=0.9)
+    optimizer = torch.optim.SGD(
+        model.parameters(), lr=0.1, weight_decay=1e-4, momentum=0.9)
     folder = os.getcwd()
     print(folder)
     # Load the saved model state dictionary from the .pth file
@@ -191,6 +201,7 @@ def load_DCG(params):
     # Ensure the model is in evaluation mode
     model.eval()
     return model, optimizer
+
 
 if __name__ == '__main__':
     if os.path.exists('dcg.log'):

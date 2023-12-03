@@ -30,7 +30,6 @@ import src.unet_model as unet_model
 import matplotlib.pyplot as plt
 
 
-
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
 
 if os.path.exists('project.log'):
@@ -65,16 +64,22 @@ if __name__ == '__main__':
     with open(args.param) as paramfile:
         param = json.load(paramfile)
 
+    '''
+    NOTE:
+    If changes are made to "data":"num_classes" , "diffusion":"timesteps" params;
+    make sure to make those changes in "unet" params
+    '''
     data_params = param["data"]
     dcg_params = param["dcg"]
     diffusion_params = param['diffusion']
+    unet_params = param["unet"]
 
     # The following 4 lines of code use dataset_params. If we don't need these, we can delete it but keep a copy for now.
     # dataset_params = param[dataset]
     # MODEL_VERSION_DIR = "diffmic_conditional_results/" + str(dataset_params['N_STEPS']) + "steps/nn/" + str(
     #     dataset_params["RUN_NAME"]) + "/" + str(dataset_params["PRIOR_TYPE"]) + str(dataset_params["CAT_F_PHI"]) + "/" + str(dataset_params["F_PHI_TYPE"])
     # dataset_params["MODEL_VERSION_DIR"] = MODEL_VERSION_DIR
-    
+
     # logging.debug('verbose is {}'.format(verbose))
     if verbose:
         logging.info('params are {}'.format(param))
@@ -86,44 +91,45 @@ if __name__ == '__main__':
     data = dataloader.DataProcessor(data_params)
     train_loader, test_loader = data.get_dataloaders()
 
-    
     # Trains DCG and saves the model
-    # dcg = dcg_module.DCG(dcg_params).to(device)
+    # dcg = dcg_module.DCG(dcg_params)
 
     # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
 
     y_fusions = []
     y_globals = []
     y_locals = []
-    
+
     dcg_chkpt_path = "saved_dcg.pth"
     # Checks if there is a saved DCG checkpoint. If not, trains the DCG.
     if not os.path.exists(dcg_chkpt_path):
         # Initialize DCG
-        dcg = dcg_module.DCG(dcg_params).to(device)
+        dcg = dcg_module.DCG(dcg_params)
         # Trains DCG and saves the model
         dcg_module.train_DCG(dcg, dcg_params, train_loader)
-    
     # Loads the saved DCG model and sets to eval mode
-    logging.info("Loading trained DCG checkpoint from {}".format(dcg_chkpt_path))
+    logging.info(
+        "Loading trained DCG checkpoint from {}".format(dcg_chkpt_path))
     dcg, optimizer = dcg_module.load_DCG(dcg_params)
     logging.info("DCG completed")
 
     if verbose:
         logging.info("Diffusion model parameters: {}".format(diffusion_params))
-    
+
     # forward diffusion EXAMPLE call below where the parameters are explained in difusion.py script
     # noised_var = FD.forward(var=torch.tensor(0.0), prior=torch.tensor(0))
     # logging.info("Noised Variable is {}".format(noised_var))
 
     #################### Reverse diffusion code begins #############################
+    
     model = unet_model.ConditionalModel(config=param, guidance=diffusion_params["include_guidance"]).to(device)
     diff_chkpt_path = 'saved_diff.pth'
     # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
     if not os.path.exists(diff_chkpt_path):
         diffusion.train(dcg, model, diffusion_params, train_loader)
-    
-    logging.info("Loading trained diffusion checkpoint from {}".format(diff_chkpt_path))
+
+    logging.info(
+        "Loading trained diffusion checkpoint from {}".format(diff_chkpt_path))
     chkpt = torch.load(diff_chkpt_path)
     model.load_state_dict(chkpt[0])
     model.eval()

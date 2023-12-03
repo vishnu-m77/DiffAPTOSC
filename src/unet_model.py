@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchvision.models.resnet import resnet18, resnet50
 # from torchvision.models.densenet import densenet121
-
+import logging
 
 import numpy as np
 
@@ -56,6 +56,7 @@ class ResNetEncoder(nn.Module):
 class ConditionalModel(nn.Module):
     def __init__(self, config, guidance=False):
         super(ConditionalModel, self).__init__()
+        logging.info("Initialize UNET")
         n_steps = config["diffusion"]["timesteps"] + 1
         data_dim = config["model"]["data_dim"]
         y_dim = config["data"]["num_classes"]
@@ -81,11 +82,15 @@ class ConditionalModel(nn.Module):
         self.lin4 = nn.Linear(feature_dim, y_dim)
 
     def forward(self, x, y, t, yhat=None):
+        # print(x.shape)
         x = self.encoder_x(x)
+        # print(x.shape)
         x = self.norm(x)
+        # print(x.shape)
         if self.guidance:
             # for yh in yhat:
             y = torch.cat([y, yhat], dim=-1)
+        # print(y.shape)
         y = self.lin1(y, t)
         y = self.unetnorm1(y)
         y = F.softplus(y)
