@@ -148,7 +148,7 @@ class DataProcessor():
         test_loader = DataLoader(
             test_data,
             batch_size=self.test_batch_size,
-            shuffle=False
+            shuffle=True
         )
 
         return train_loader, test_loader

@@ -107,7 +107,6 @@ if __name__ == '__main__':
         dcg = dcg_module.DCG(dcg_params)
         # Trains DCG and saves the model
         dcg_module.train_DCG(dcg, dcg_params, train_loader)
-
     # Loads the saved DCG model and sets to eval mode
     logging.info(
         "Loading trained DCG checkpoint from {}".format(dcg_chkpt_path))
@@ -122,8 +121,8 @@ if __name__ == '__main__':
     # logging.info("Noised Variable is {}".format(noised_var))
 
     #################### Reverse diffusion code begins #############################
-    model = unet_model.ConditionalModel(
-        config=unet_params, guidance=False)
+    
+    model = unet_model.ConditionalModel(config=param, guidance=diffusion_params["include_guidance"]).to(device)
     diff_chkpt_path = 'saved_diff.pth'
     # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
     if not os.path.exists(diff_chkpt_path):
@@ -135,11 +134,11 @@ if __name__ == '__main__':
     model.load_state_dict(chkpt[0])
     model.eval()
     logging.info("Diffusion_checkpoint loaded")
-    diffusion.eval(dcg, model, diffusion_params, test_loader)
+    diffusion.eval(dcg, model, diffusion_params, test_loader, report_file = report_file)
 
     #################### Reverse diffusion code ends #############################
 
-    if os.path.exists(report_file):
-        os.remove(report_file)
-    f = open(report_file, 'w')
-    f.close()
+    # if os.path.exists(report_file):
+    #     os.remove(report_file)
+    # f = open(report_file, 'w')
+    # f.close()

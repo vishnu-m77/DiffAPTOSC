@@ -40,8 +40,9 @@
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
-        "include_guidance": true,
-        "num_epochs": 5
+        "include_guidance": false,
+        "num_epochs": 15,
+        "num_test_batches": 2
     },
     "unet":{
         "model":{
