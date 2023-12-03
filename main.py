@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     
     # Trains DCG and saves the model
-    dcg = dcg_module.DCG(dcg_params).to(device)
+    # dcg = dcg_module.DCG(dcg_params).to(device)
 
     # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
 

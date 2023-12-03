@@ -40,7 +40,7 @@
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
-        "include_guidance": true,
+        "include_guidance": false,
         "num_epochs": 15,
         "num_test_batches": 2
     },

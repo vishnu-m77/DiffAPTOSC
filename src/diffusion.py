@@ -10,6 +10,7 @@ import src.unet_model as unet_model
 import logging
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
+from sklearn.metrics import f1_score
 
 
 class DiffusionBaseUtils():
@@ -208,12 +209,12 @@ def accuracy_torch(tensor_one, tensor_two):
             correct = correct + 1
     return correct/tensor_one.size(0)
 
-# def compute_f1_score(target, pred):
-#     target = target.cpu().detach().numpy()
-#     pred_np = pred.cpu().detach().numpy()
-#     pred_class = np.argmax(pred_np, axis=1)
-#     F1 = f1_score(target, pred_class, average='macro')
-#     return F1
+def compute_f1_score(target, pred):
+    target = target.cpu().detach().numpy()
+    pred_np = pred.cpu().detach().numpy()
+    # pred_np = np.argmax(pred_np, axis=1)
+    F1 = f1_score(target, pred_np, average='macro')
+    return F1
 
 def train(dcg, model, params, train_loader):
     # model = unet_model.ConditionalModel(config=param, guidance=False)
@@ -253,7 +254,7 @@ def train(dcg, model, params, train_loader):
             dcg_fusion = dcg_fusion.softmax(dim=1)
             dcg_global, dcg_local = dcg_global.softmax(
                 dim=1), dcg_local.softmax(dim=1)
-            # print(dcg_global)
+            # logging.info(dcg_global)
             y0 = y_one_hot_batch
             eps = torch.randn_like(y0)
             
@@ -264,7 +265,7 @@ def train(dcg, model, params, train_loader):
             output = model(x_batch, yt_fusion, t, dcg_fusion)
             output_global = model(x_batch, yt_global, t, dcg_global)
             output_local = model(x_batch, yt_local, t, dcg_local)
-            # print(output_global)
+            # logging.info(output_global)
             # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
             # loss = (eps - output).square().mean()
             loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps,
@@ -272,7 +273,7 @@ def train(dcg, model, params, train_loader):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            # print(loss.item())
+            # logging.info(loss.item())
             loss_arr.append(loss.item())
             logging.info(
                 f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}")
@@ -298,9 +299,9 @@ def get_out(dcg, model, feature_label_set, reverse_diffusion):
     dcg_fusion = dcg_fusion.softmax(dim=1) # the actual label
     y_T_mean = dcg_fusion
     y_out = reverse_diffusion.full_reverse_diffusion(x_batch, cond_prior = y_T_mean, score_net = model)
-    logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean), torch.argmax(y_out.softmax(dim=1))))
-    # print("Input: {}".format(y_T_mean))
-    # print("Output: {}".format(y_out.softmax(dim=1)))
+    logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+    # logging.info("Input: {}".format(y_T_mean))
+    # logging.info("Output: {}".format(y_out.softmax(dim=1)))
     return y_out.softmax(dim=1)
 
 def eval(dcg, model, params, test_loader, report_file):
@@ -309,6 +310,8 @@ def eval(dcg, model, params, test_loader, report_file):
     reverse_diffusion = ReverseDiffusion(config=params)
     # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
 
+    # Parallel/ delayed code calls get_out which does the job of the for loop following it. Only of the two should be active at any given time
+    # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
     #outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
     targets = []
     dcg_output = []
@@ -332,9 +335,11 @@ def eval(dcg, model, params, test_loader, report_file):
     dcg_accuracy = accuracy_torch(targets, dcg_output)
     diffusion_accuracy = accuracy_torch(targets, diffusion_output)
     dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
+    f1_score = compute_f1_score(targets, diffusion_output)
     logging.info("DCG accuracy {}".format(dcg_accuracy))
     logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
     logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
+    logging.info("F1 Score {}".format(f1_score))
 
     if os.path.exists(report_file):
         os.remove(report_file)
@@ -342,11 +347,11 @@ def eval(dcg, model, params, test_loader, report_file):
     f.write("Accuracy:\n")
     f.write("DCG model accuracy: \t {}\n".format(dcg_accuracy))
     f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
-    f.write("Diffusion-DCG accuracy: \t {}\n\n".format(dcg_diffusion_accuracy))
-    f.write("F1 Score:\n")
+    f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
+    f.write("F1 Score: \t {}\n".format(f1_score))
     f.close()
 
 # test
 if __name__ == '__main__':
     # Add tests here
-    print("Successful")
+    logging.info("Successful")
