@@ -64,6 +64,11 @@ if __name__ == '__main__':
     with open(args.param) as paramfile:
         param = json.load(paramfile)
 
+    '''
+    NOTE:
+    If changes are made to "data":"num_classes" , "diffusion":"timesteps" params;
+    make sure to make those changes in "unet" params
+    '''
     data_params = param["data"]
     dcg_params = param["dcg"]
     diffusion_params = param['diffusion']
