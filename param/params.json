@@ -31,9 +31,9 @@
         "test_path": "dataset/aptos/aptos_test.json",
         "label_min_max": [0.001, 0.999],
         "num_classes": 5,
-        "train_batch_size": 4,
+        "train_batch_size": 25,
         "test_batch_size": 2,
-        "num_images": 30
+        "num_images": 1000
     },
     "diffusion": {
         "timesteps": 1000,
