@@ -36,13 +36,18 @@
         "num_images": 1000
     },
     "diffusion": {
-        "timesteps": 1000,
+        "timesteps": 500,
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": false,
         "num_epochs": 10,
-        "num_test_batches": 1
+        "num_test_batches": 1,
+        "t_sne": {
+            "t1": 150,
+            "t2": 300,
+            "t3": 450
+        }
     },
     "model": {
         "feature_dim": 614,
