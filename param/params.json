@@ -33,10 +33,10 @@
         "num_classes": 5,
         "train_batch_size": 4,
         "test_batch_size": 2,
-        "num_images": 10
+        "num_images": 30
     },
     "diffusion": {
-        "timesteps": 500,
+        "timesteps": 1000,
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,

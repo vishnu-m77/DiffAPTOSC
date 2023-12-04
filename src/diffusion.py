@@ -173,12 +173,11 @@ class ReverseDiffusion(DiffusionBaseUtils):
                     x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
                 y_t = y_tm1
 
-                if t == 150:
+                if t == 250:
                     y_t_150 = y_tm1
-
-                elif t == 300:
+                elif t == 500:
                     y_t_300 = y_tm1
-                elif t == 450:
+                elif t == 750:
                     y_t_450 = y_tm1
             else:
                 # so t = 1
@@ -195,6 +194,7 @@ class ReverseDiffusion(DiffusionBaseUtils):
 
         y0_synthetic = y_tm1
         return y0_synthetic, y_t_150, y_t_300, y_t_450
+        # return y0_synthetic
 
 
 def compute_kernel(x, y):
@@ -322,9 +322,9 @@ def eval(dcg, model, params, test_loader, report_file):
     dcg_output = []
     diffusion_output = []
     y_outs = []
-    y_outs_150 = []
-    y_outs_300 = []
-    y_outs_450 = []
+    y_outs_250 = []
+    y_outs_500 = []
+    y_outs_750 = []
 
     model.eval()
     for i, feature_label_set in enumerate(test_loader):
@@ -332,7 +332,9 @@ def eval(dcg, model, params, test_loader, report_file):
         dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
         dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
         y_T_mean = dcg_fusion
-        y_out, y_out_150, y_out_300, y_out_450 = reverse_diffusion.full_reverse_diffusion(
+        # y_out = reverse_diffusion.full_reverse_diffusion(
+        #     x_batch, cond_prior=y_T_mean, score_net=model)
+        y_out, y_out_250, y_out_500, y_out_750 = reverse_diffusion.full_reverse_diffusion(
             x_batch, cond_prior=y_T_mean, score_net=model)
         logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
             y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
@@ -342,12 +344,12 @@ def eval(dcg, model, params, test_loader, report_file):
 
         for inner_array in y_out:
             y_outs.append(inner_array.detach().numpy())
-        for inner_array in y_out_150:
-            y_outs_150.append(inner_array.detach().numpy())
-        for inner_array in y_out_300:
-            y_outs_300.append(inner_array.detach().numpy())
-        for inner_array in y_out_450:
-            y_outs_450.append(inner_array.detach().numpy())
+        for inner_array in y_out_250:
+            y_outs_250.append(inner_array.detach().numpy())
+        for inner_array in y_out_500:
+            y_outs_500.append(inner_array.detach().numpy())
+        for inner_array in y_out_750:
+            y_outs_750.append(inner_array.detach().numpy())
 
         if i+1 >= params['num_test_batches']:
             break
@@ -358,10 +360,10 @@ def eval(dcg, model, params, test_loader, report_file):
     diffusion_accuracy = accuracy_torch(targets, diffusion_output)
     dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
     f1_score = compute_f1_score(targets, diffusion_output)
-    t_sne(y_outs, t_num='0')
-    t_sne(y_outs_150, t_num='150')
-    t_sne(y_outs_300, t_num='300')
-    t_sne(y_outs_450, t_num='450')
+    t_sne(targets, y_outs, t_num='0')
+    t_sne(targets, y_outs_250, t_num='250')
+    t_sne(targets, y_outs_500, t_num='500')
+    t_sne(targets, y_outs_750, t_num='750')
     logging.info("DCG accuracy {}".format(dcg_accuracy))
     logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
     logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
