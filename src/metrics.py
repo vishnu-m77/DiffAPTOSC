@@ -50,3 +50,42 @@ def t_sne(y_t, t_num):
     plt.savefig('t_sne_'+str(t_num)+'.png', format='PNG')
     # plt.legend()
     plt.close()
+
+"""
+TSNE with class labels
+"""
+# The y_t data
+y_t = np.array([[0, 2, 0, 0, 0],
+                [0, 1, 0, 0, 0],
+                [0, 0, 0, 0.5, 0],
+                [0, 0, 0, 0, 1.2],
+                [0, 0, 0, 0, -1],
+                [1, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 10, 0, 0],
+                [0, 20, 0, 0, 0]])
+
+# The corresponding labels for
+y_class = [0,1,2,3,4,2,2,3,3]
+if len(y_class)!=len(y_t):
+  raise KeyError("Size mismatch between data and labels")
+tsne = TSNE(n_components=2, perplexity=5, random_state=42)
+y_t_tsne = tsne.fit_transform(y_t)
+
+# Plot the t-SNE results
+plt.figure(figsize=(8, 6))
+legend_labels = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5']
+
+
+# Scatter plot with class labels
+for i in range(len(y_class)):
+    indices = y_class[i]
+    plt.scatter(y_t_tsne[i, 0], y_t_tsne[i, 1], label=legend_labels[indices])
+
+handles, labels = plt.gca().get_legend_handles_labels()
+by_label = dict(zip(labels, handles))
+plt.legend(by_label.values(), by_label.keys())
+
+# Show the plot
+plt.title('t-SNE Visualization of Data with Class Labels')
+plt.show()
