@@ -74,7 +74,7 @@ if __name__ == '__main__':
     data_params = param["data"]
     dcg_params = param["dcg"]
     diffusion_params = param['diffusion']
-    unet_params = param["model"]
+    unet_params = param["unet"]
 
     # The following 4 lines of code use dataset_params. If we don't need these, we can delete it but keep a copy for now.
     # dataset_params = param[dataset]
