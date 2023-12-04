@@ -1,17 +1,4 @@
 {
-    "aptos": {
-        "EXP_DIR": "./results_aptos",
-        "N_STEPS": 1000,
-        "RUN_NAME": "run_1",
-        "PRIOR_TYPE": "f_phi_prior",
-        "CAT_F_PHI": "_cat_f_phi",
-        "F_PHI_TYPE": "f_phi_self_supervised",
-        "LOSS": "diffmic_conditional",
-        "TASK": "aptos",
-        "N_SPLITS": 1,
-        "DEVICE_ID": 0,
-        "N_THREADS": 8
-    },
     "dcg": {
         "device": "cpu",
         "gpu_number": 0,
@@ -42,14 +29,14 @@
         "beta_final": 0.02,
         "include_guidance": false,
         "num_epochs": 10,
-        "num_test_batches": 1,
+        "num_test_batches": 25,
         "t_sne": {
             "t1": 150,
             "t2": 300,
             "t3": 450
         }
     },
-    "model": {
+    "unet": {
         "feature_dim": 614,
         "arch": "resnet18"
     }

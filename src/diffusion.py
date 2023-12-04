@@ -226,8 +226,7 @@ def train(dcg, model, params, train_loader):
         for i, feature_label_set in enumerate(train_loader):
 
             x_batch, y_labels_batch = feature_label_set
-            y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(
-                y_labels_batch)
+            y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(y_labels_batch)
 
             n = x_batch.size(0)
 
@@ -262,12 +261,10 @@ def train(dcg, model, params, train_loader):
             # logging.info(output_global)
             # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
             # loss = (eps - output).square().mean()
-            loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps,
-                                                                     output_global) + compute_mmd(eps, output_local))
+            loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps, output_global) + compute_mmd(eps, output_local))
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            # logging.info(loss.item())
             loss_batch.append(loss.item())
             logging.info(
                 f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}")
@@ -296,8 +293,6 @@ def get_out(dcg, model, feature_label_set, reverse_diffusion):
         x_batch, cond_prior=y_T_mean, score_net=model)
     logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
         y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
-    # logging.info("Input: {}".format(y_T_mean))
-    # logging.info("Output: {}".format(y_out.softmax(dim=1)))
     return y_out.softmax(dim=1)
 
 
@@ -308,8 +303,7 @@ def eval(dcg, model, params, test_loader, report_file):
     reverse_diffusion = ReverseDiffusion(config=params)
     # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
 
-    # Parallel/ delayed code calls get_out which does the job of the for loop following it. Only of the two should be active at any given time
-    # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
+    # Parallel/ delayed code calls get_out which does the job of the for loop following it. Only one of the two should be active at any given time
     # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
     targets = []
     dcg_output = []
@@ -361,10 +355,6 @@ def eval(dcg, model, params, test_loader, report_file):
     logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
     logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
     logging.info("F1 Score {}".format(f1_score))
-    logging.info("T-SNE at time '0' {}".format(tsne_0))
-    logging.info("T-SNE at time '{}' {}".format(t1, tsne_1))
-    logging.info("T-SNE at time '{}' {}".format(t2, tsne_2))
-    logging.info("T-SNE at time '{}' {}".format(t3, tsne_3))
 
     if os.path.exists(report_file):
         os.remove(report_file)
@@ -374,6 +364,10 @@ def eval(dcg, model, params, test_loader, report_file):
     f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
     f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
     f.write("F1 Score: \t {}\n".format(f1_score))
+    f.write("T-SNE at time '0' {}".format(tsne_0))
+    f.write("T-SNE at time '{}' {}".format(t1, tsne_1))
+    f.write("T-SNE at time '{}' {}".format(t2, tsne_2))
+    f.write("T-SNE at time '{}' {}".format(t3, tsne_3))
     f.close()
 
 
