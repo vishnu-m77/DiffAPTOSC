@@ -2,6 +2,8 @@
 
 Final Project for AMATH 495
 
+The project is based on the paper [DiffMIC: Dual-Guidance Diffusion Network for Medical Image Classification](https://arxiv.org/abs/2303.10610).
+
 `main.py` calls the modules in `src/`. The program loads a saved DCG checkpoint `saved_dcg.pth` if it exists. It trains and saves a DCG checkpoint otherwise. Similarly, for diffusion, the program loads a saved diffusion checkpoint `saved_diff.pth` if it exists. It trains and saves a diffusion checkpoint otherwise. After loading the DCG and diffusion models, the program runs inference on the test images and outputs the predicted classification [Classes 1 - 5].
 
 ## Dataset
@@ -20,6 +22,8 @@ dataset/aptos/
 
 ## Parameters
 
+NOTE: If changes are made to "data":"num_classes" , "diffusion":"timesteps" params; make sure to make those changes in "unet" params.
+
 ## dataloader
 
 ## DCG: Dual-granularity Conditional Guidance
@@ -36,8 +40,10 @@ dataset/aptos/
 
 ## UNet Model
 
-NOTE: If changes are made to "data":"num_classes" , "diffusion":"timesteps" params; make sure to make those changes in "unet" params.
-
-## Figures
+## Plots
 
 ## Report
+
+## Thanks
+Code is largely based on [scott-yjyang/DiffMIC](https://github.com/scott-yjyang/DiffMIC), [XzwHan/CARD](https://github.com/XzwHan/CARD), [CompVis/stable-diffusion](https://github.com/CompVis/stable-diffusion), [MedSegDiff](https://github.com/WuJunde/MedSegDiff/tree/master), [nyukat/GMIC](https://github.com/nyukat/GMIC)
+
