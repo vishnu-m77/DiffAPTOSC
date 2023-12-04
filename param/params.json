@@ -13,17 +13,18 @@
         "N_THREADS": 8
     },
     "dcg": {
-        "device_type": "device",
+        "device": "cpu",
         "gpu_number": 0,
         "cam_size": [7, 7],
         "K": 6,
         "crop_shape": [32, 32],
         "crop_method": "upper_left",
         "post_processing_dim": 512,
+        "label_min_max": [0.001, 0.999],
         "num_classes": 5,
         "use_v1_global": 1,
         "percent_t": 1.0,
-        "num_epochs": 10
+        "num_epochs": 5
     },
     "data": {
         "train_path": "dataset/aptos/aptos_train.json",
@@ -31,7 +32,7 @@
         "label_min_max": [0.001, 0.999],
         "num_classes": 5,
         "train_batch_size": 25,
-        "test_batch_size": 25,
+        "test_batch_size": 2,
         "num_images": 1000
     },
     "diffusion": {
@@ -39,14 +40,12 @@
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
-        "include_guidance": true,
-        "num_epochs": 4 
+        "include_guidance": false,
+        "num_epochs": 10,
+        "num_test_batches": 1
     },
-    "model":{
+    "model": {
         "feature_dim": 614,
-        "hidden_dim": 614,
-        "arch": "resnet18",
-        "data_dim":1500
+        "arch": "resnet18"
     }
-
 }

@@ -4,11 +4,13 @@ This script assumes a fully function DCG module and Dataloader module
 """
 import torch
 import numpy as np
-from src.network.unet_model import *
 import time
+import os
 import src.DCG.main as dcg_module
+import src.unet_model as unet_model
 import logging
-import matplotlib.pyplot as plt
+# from joblib import Parallel, delayed
+from src.metrics import *
 
 
 class DiffusionBaseUtils():
@@ -140,10 +142,11 @@ class ReverseDiffusion(DiffusionBaseUtils):
         gamma_0, gamma_1, gamma_2, beta_var, alpha_prod_t = self.reverse_diffusion_parameters(
             t=t)
         eps = torch.randn_like(y_t)
+        t = torch.tensor([t])
 
         # first we reparameterize y0 to obtain y0_hat
-        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t) *
-                                                      cond_prior - torch.sqrt(1-alpha_prod_t)*score_net(x, y_t, cond_prior, t)))
+        y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t)) *
+                                               cond_prior - torch.sqrt(1-alpha_prod_t)*score_net.forward(x, y_t, t, yhat=cond_prior))
 
         y_tm1 = gamma_0*y0_hat+gamma_1*y_t+gamma_2 * \
             cond_prior+torch.sqrt(beta_var)*eps
@@ -167,13 +170,31 @@ class ReverseDiffusion(DiffusionBaseUtils):
             t = self.T - t - 1
             if t > 0:
                 y_tm1, y0_hat = self.reverse_diffusion_step(
-                    self, x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
+                    x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
                 y_t = y_tm1
+
+                if t == 250:
+                    y_t_150 = y_tm1
+                elif t == 500:
+                    y_t_300 = y_tm1
+                elif t == 750:
+                    y_t_450 = y_tm1
             else:
                 # so t = 1
                 y_tm1 = y0_hat
+
+            # y_t_rdm = y_t.detach().numpy()
+            # print(y_t_rdm)
+            # print(np.shape(y_t_rdm))
+            # y_t_embedded = TSNE(perplexity=1).fit_transform(y_t_rdm)
+            # print(y_t_embedded)
+            # plt.scatter(y_t_embedded[0, :],
+            #             y_t_embedded[1, :], c=[0, 1, 2, 3, 4], s=5, cmap="tab5")
+            # plt.show()
+
         y0_synthetic = y_tm1
-        return y0_synthetic
+        return y0_synthetic, y_t_150, y_t_300, y_t_450
+        # return y0_synthetic
 
 
 def compute_kernel(x, y):
@@ -196,35 +217,34 @@ def compute_mmd(x, y):
     return mmd
 
 
-def train(dcg, model, FD, param, train_loader):
-    # model = ConditionalModel(config=param, guidance=False)
+def train(dcg, model, params, train_loader):
+    # model = unet_model.ConditionalModel(config=param, guidance=False)
+    FD = ForwardDiffusion(config=params)  # initialize class
 
-    # dcg.load_state_dict(torch.load('aux_ckpt.pth')[0])
-    dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
-    dcg.eval()
-    reverse_diffusion = ReverseDiffusion(config=param['diffusion'])
+    reverse_diffusion = ReverseDiffusion(config=params)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
-    loss_arr = []
+    loss_epoch = []
     data_start = time.time()
     data_time = 0
-    train_epoch_num = param["diffusion"]["num_epochs"]
+    train_epoch_num = params["num_epochs"]
     for epoch in range(0, train_epoch_num):
+        loss_batch = []
 
         for i, feature_label_set in enumerate(train_loader):
 
             x_batch, y_labels_batch = feature_label_set
-            y_one_hot_batch, y_logits_batch = dcg_module.cast_label_to_one_hot_and_prototype(
-                y_labels_batch, param)
+            y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(
+                y_labels_batch)
 
             n = x_batch.size(0)
 
-            num_timesteps = param["diffusion"]["timesteps"]
-            # t = torch.randint(low=0, high=num_timesteps,
-            #                   size=(n // 2 + 1,))
-            # t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
+            num_timesteps = params["timesteps"]
+            t = torch.randint(low=0, high=num_timesteps,
+                              size=(n // 2 + 1,))
+            t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
             # print(t)
-            t = torch.randint(low=0, high=num_timesteps, size = (1,))
+            # t = torch.randint(low=0, high=num_timesteps, size = (1,))
 
             # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
             #     1], dcg(x_batch)[2]
@@ -236,16 +256,18 @@ def train(dcg, model, FD, param, train_loader):
             dcg_fusion = dcg_fusion.softmax(dim=1)
             dcg_global, dcg_local = dcg_global.softmax(
                 dim=1), dcg_local.softmax(dim=1)
-            # print(dcg_global)
+            # logging.info(dcg_global)
             y0 = y_one_hot_batch
             eps = torch.randn_like(y0)
+
+            # Creates noise with the priors
             yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
             yt_global = FD.forward(y0, dcg_global, eps=eps)
             yt_local = FD.forward(y0, dcg_local, eps=eps)
             output = model(x_batch, yt_fusion, t, dcg_fusion)
             output_global = model(x_batch, yt_global, t, dcg_global)
             output_local = model(x_batch, yt_local, t, dcg_local)
-            # print(output_global)
+            # logging.info(output_global)
             # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
             # loss = (eps - output).square().mean()
             loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps,
@@ -253,10 +275,12 @@ def train(dcg, model, FD, param, train_loader):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            # print(loss.item())
-            loss_arr.append(loss.item())
+            # logging.info(loss.item())
+            loss_batch.append(loss.item())
             logging.info(
                 f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}")
+
+        loss_epoch.append(np.mean(loss_batch))
 
     data_time = time.time() - data_start
     logging.info("\nTraining of Diffusion took {:.4f} minutes.\n".format(
@@ -267,11 +291,96 @@ def train(dcg, model, FD, param, train_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plt.plot(np.arange(0, len(loss_arr)), loss_arr)
-    plt.savefig('loss_plot3.png', format='PNG')
+    plot_loss(loss_arr=loss_epoch, title="Loss function for Diffusion Train",
+              xlabel="Epochs", ylabel="Loss", savedir="diffusion_loss")
+
+
+def get_out(dcg, model, feature_label_set, reverse_diffusion):
+    x_batch, y_labels_batch = feature_label_set
+    dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+    dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
+    y_T_mean = dcg_fusion
+    y_out = reverse_diffusion.full_reverse_diffusion(
+        x_batch, cond_prior=y_T_mean, score_net=model)
+    logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
+        y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+    # logging.info("Input: {}".format(y_T_mean))
+    # logging.info("Output: {}".format(y_out.softmax(dim=1)))
+    return y_out.softmax(dim=1)
+
+
+def eval(dcg, model, params, test_loader, report_file):
+    # dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
+    # dcg.eval()
+    reverse_diffusion = ReverseDiffusion(config=params)
+    # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
+
+    # Parallel/ delayed code calls get_out which does the job of the for loop following it. Only of the two should be active at any given time
+    # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
+    # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
+    targets = []
+    dcg_output = []
+    diffusion_output = []
+    y_outs = []
+    y_outs_250 = []
+    y_outs_500 = []
+    y_outs_750 = []
+
+    model.eval()
+    for i, feature_label_set in enumerate(test_loader):
+        x_batch, y_labels_batch = feature_label_set
+        dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+        dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
+        y_T_mean = dcg_fusion
+        # y_out = reverse_diffusion.full_reverse_diffusion(
+        #     x_batch, cond_prior=y_T_mean, score_net=model)
+        y_out, y_out_250, y_out_500, y_out_750 = reverse_diffusion.full_reverse_diffusion(
+            x_batch, cond_prior=y_T_mean, score_net=model)
+        logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
+            y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
+        targets.append(y_labels_batch)
+        dcg_output.append(torch.argmax(y_T_mean, dim=1))
+        diffusion_output.append(torch.argmax(y_out.softmax(dim=1), dim=1))
+
+        for inner_array in y_out:
+            y_outs.append(inner_array.detach().numpy())
+        for inner_array in y_out_250:
+            y_outs_250.append(inner_array.detach().numpy())
+        for inner_array in y_out_500:
+            y_outs_500.append(inner_array.detach().numpy())
+        for inner_array in y_out_750:
+            y_outs_750.append(inner_array.detach().numpy())
+
+        if i+1 >= params['num_test_batches']:
+            break
+    targets = torch.cat(targets)
+    dcg_output = torch.cat(dcg_output)
+    diffusion_output = torch.cat(diffusion_output)
+    dcg_accuracy = accuracy_torch(targets, dcg_output)
+    diffusion_accuracy = accuracy_torch(targets, diffusion_output)
+    dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
+    f1_score = compute_f1_score(targets, diffusion_output)
+    t_sne(targets, y_outs, t_num='0')
+    t_sne(targets, y_outs_250, t_num='250')
+    t_sne(targets, y_outs_500, t_num='500')
+    t_sne(targets, y_outs_750, t_num='750')
+    logging.info("DCG accuracy {}".format(dcg_accuracy))
+    logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
+    logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
+    logging.info("F1 Score {}".format(f1_score))
+
+    if os.path.exists(report_file):
+        os.remove(report_file)
+    f = open(report_file, 'w')
+    f.write("Accuracy:\n")
+    f.write("DCG model accuracy: \t {}\n".format(dcg_accuracy))
+    f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
+    f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
+    f.write("F1 Score: \t {}\n".format(f1_score))
+    f.close()
 
 
 # test
 if __name__ == '__main__':
     # Add tests here
-    print("Successful")
+    logging.info("Successful")

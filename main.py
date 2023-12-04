@@ -25,10 +25,10 @@ from src.diffusion import ReverseDiffusion, ForwardDiffusion, compute_mmd
 import src.dataloader.dataloader as dataloader
 import src.DCG.main as dcg_module
 import src.diffusion as diffusion
+import src.unet_model as unet_model
 
 import matplotlib.pyplot as plt
 
-from src.network.unet_model import *
 
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
 
@@ -38,9 +38,12 @@ if os.path.exists('project.log'):
 logging.basicConfig(filename='project.log', filemode='a',
                     format='%(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-logging.warning('This will get logged to a file')
+# logging.warning('This will get logged to a file')
 
 if __name__ == '__main__':
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    logging.info(device)
 
     # Command line arguments
     parser = argparse.ArgumentParser(description='DiffMIC')
@@ -61,13 +64,22 @@ if __name__ == '__main__':
     with open(args.param) as paramfile:
         param = json.load(paramfile)
 
-    dataset_params = param[dataset]
+    '''
+    NOTE:
+    If changes are made to "data":"num_classes" , "diffusion":"timesteps" params;
+    make sure to make those changes in "unet" params
+    '''
     data_params = param["data"]
     dcg_params = param["dcg"]
+    diffusion_params = param['diffusion']
+    unet_params = param["model"]
 
-    MODEL_VERSION_DIR = "diffmic_conditional_results/" + str(dataset_params['N_STEPS']) + "steps/nn/" + str(
-        dataset_params["RUN_NAME"]) + "/" + str(dataset_params["PRIOR_TYPE"]) + str(dataset_params["CAT_F_PHI"]) + "/" + str(dataset_params["F_PHI_TYPE"])
-    dataset_params["MODEL_VERSION_DIR"] = MODEL_VERSION_DIR
+    # The following 4 lines of code use dataset_params. If we don't need these, we can delete it but keep a copy for now.
+    # dataset_params = param[dataset]
+    # MODEL_VERSION_DIR = "diffmic_conditional_results/" + str(dataset_params['N_STEPS']) + "steps/nn/" + str(
+    #     dataset_params["RUN_NAME"]) + "/" + str(dataset_params["PRIOR_TYPE"]) + str(dataset_params["CAT_F_PHI"]) + "/" + str(dataset_params["F_PHI_TYPE"])
+    # dataset_params["MODEL_VERSION_DIR"] = MODEL_VERSION_DIR
+
     # logging.debug('verbose is {}'.format(verbose))
     if verbose:
         logging.info('params are {}'.format(param))
@@ -79,9 +91,8 @@ if __name__ == '__main__':
     data = dataloader.DataProcessor(data_params)
     train_loader, test_loader = data.get_dataloaders()
 
-    
     # Trains DCG and saves the model
-    dcg = dcg_module.DCG(dcg_params)
+    # dcg = dcg_module.DCG(dcg_params)
 
     # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
 
@@ -89,34 +100,47 @@ if __name__ == '__main__':
     y_globals = []
     y_locals = []
 
+    dcg_chkpt_path = "saved_dcg.pth"
+    # Checks if there is a saved DCG checkpoint. If not, trains the DCG.
+    if not os.path.exists(dcg_chkpt_path):
+        # Initialize DCG
+        dcg = dcg_module.DCG(dcg_params)
+        # Trains DCG and saves the model
+        dcg_module.train_DCG(dcg, dcg_params, train_loader)
     # Loads the saved DCG model and sets to eval mode
+    logging.info(
+        "Loading trained DCG checkpoint from {}".format(dcg_chkpt_path))
     dcg, optimizer = dcg_module.load_DCG(dcg_params)
-    # for ind, (image, target) in enumerate(train_loader):
-    #     # Sehmi - For loop NOT NEEDED
-    #     # x = torch.flatten(x, 1)
-    #     # print(image)
-    #     # y_fusion, y_global, y_local = dcg.forward(image)
-    #     # y_fusions.append(y_fusion)
-    #     # y_locals.append(y_local)
-    #     # y_globals.append(y_global)
-    #     # logging.info(y_global)
-
     logging.info("DCG completed")
 
-    diffusion_config = param['diffusion']
     if verbose:
-        logging.info("Diffusion model parameters: {}".format(diffusion_config))
-    FD = ForwardDiffusion(config=diffusion_config)  # initialize class
+        logging.info("Diffusion model parameters: {}".format(diffusion_params))
+
     # forward diffusion EXAMPLE call below where the parameters are explained in difusion.py script
-    noised_var = FD.forward(var=torch.tensor(0.0), prior=torch.tensor(0))
-    logging.info("Noised Variable is {}".format(noised_var))
+    # noised_var = FD.forward(var=torch.tensor(0.0), prior=torch.tensor(0))
+    # logging.info("Noised Variable is {}".format(noised_var))
 
     #################### Reverse diffusion code begins #############################
-    model = ConditionalModel(config=param, guidance=False)
-    diffusion.train(dcg, model, FD, param, train_loader)
+
+    model = unet_model.ConditionalModel(
+        config=unet_params, n_steps=diffusion_params["timesteps"], n_classes=data_params["num_classes"], guidance=diffusion_params["include_guidance"]).to(device)
+    diff_chkpt_path = 'saved_diff.pth'
+    # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
+    if not os.path.exists(diff_chkpt_path):
+        diffusion.train(dcg, model, diffusion_params, train_loader)
+
+    logging.info(
+        "Loading trained diffusion checkpoint from {}".format(diff_chkpt_path))
+    chkpt = torch.load(diff_chkpt_path)
+    model.load_state_dict(chkpt[0])
+    model.eval()
+    logging.info("Diffusion_checkpoint loaded")
+    diffusion.eval(dcg, model, diffusion_params,
+                   test_loader, report_file=report_file)
+
     #################### Reverse diffusion code ends #############################
 
-    if os.path.exists(report_file):
-        os.remove(report_file)
-    f = open(report_file, 'w')
-    f.close()
+    # if os.path.exists(report_file):
+    #     os.remove(report_file)
+    # f = open(report_file, 'w')
+    # f.close()

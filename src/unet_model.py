@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchvision.models.resnet import resnet18, resnet50
 # from torchvision.models.densenet import densenet121
-
+import logging
 
 import numpy as np
 
@@ -54,14 +54,19 @@ class ResNetEncoder(nn.Module):
 
 
 class ConditionalModel(nn.Module):
-    def __init__(self, config, guidance=False):
+    def __init__(self, config, n_steps, n_classes, guidance=False):
         super(ConditionalModel, self).__init__()
-        n_steps = config["diffusion"]["timesteps"] + 1
-        data_dim = config["model"]["data_dim"]
-        y_dim = config["data"]["num_classes"]
-        arch = config["model"]["arch"]
-        feature_dim = config["model"]["feature_dim"]
-        hidden_dim = config["model"]["hidden_dim"]
+        logging.info("Initialize UNET")
+        # n_steps = config["diffusion"]["timesteps"] + 1
+        n_steps += 1
+        # data_dim = config["model"]["data_dim"]
+        # y_dim = config["data"]["num_classes"]
+        y_dim = n_classes
+        # arch = config["model"]["arch"]
+        arch = config["arch"]
+        # feature_dim = config["model"]["feature_dim"]
+        feature_dim = config["feature_dim"]
+        # hidden_dim = config["model"]["hidden_dim"]
         self.guidance = guidance
         # encoder for x
         self.encoder_x = ResNetEncoder(arch=arch, feature_dim=feature_dim)
@@ -81,11 +86,15 @@ class ConditionalModel(nn.Module):
         self.lin4 = nn.Linear(feature_dim, y_dim)
 
     def forward(self, x, y, t, yhat=None):
+        # print(x.shape)
         x = self.encoder_x(x)
+        # print(x.shape)
         x = self.norm(x)
+        # print(x.shape)
         if self.guidance:
             # for yh in yhat:
             y = torch.cat([y, yhat], dim=-1)
+        # print(y.shape)
         y = self.lin1(y, t)
         y = self.unetnorm1(y)
         y = F.softplus(y)
