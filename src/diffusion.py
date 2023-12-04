@@ -284,7 +284,7 @@ def train(dcg, model, params, train_loader):
     ]
     torch.save(diff_states, "saved_diff.pth")
     plot_loss(loss_arr=loss_epoch, title="Loss function for Diffusion Train",
-              xlabel="Epochs", ylabel="Loss", savedir="diffusion_loss")
+              xlabel="Epochs", ylabel="Loss", savedir="plots/diffusion_loss")
 
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):
