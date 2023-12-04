@@ -20,6 +20,8 @@ dataset/aptos/
 
 ## Parameters
 
+NOTE: If changes are made to "data":"num_classes" , "diffusion":"timesteps" params; make sure to make those changes in "unet" params.
+
 ## dataloader
 
 ## DCG: Dual-granularity Conditional Guidance
@@ -36,8 +38,6 @@ dataset/aptos/
 
 ## UNet Model
 
-NOTE: If changes are made to "data":"num_classes" , "diffusion":"timesteps" params; make sure to make those changes in "unet" params.
-
-## Figures
+## Plots
 
 ## Report
