@@ -42,7 +42,7 @@
         "beta_final": 0.02,
         "include_guidance": false,
         "num_epochs": 10,
-        "num_test_batches": 1,
+        "num_test_batches": 25,
         "t_sne": {
             "t1": 150,
             "t2": 300,
