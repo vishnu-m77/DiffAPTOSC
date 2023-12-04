@@ -75,12 +75,11 @@ y_t_tsne = tsne.fit_transform(y_t)
 # Plot the t-SNE results
 plt.figure(figsize=(8, 6))
 legend_labels = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5']
-
-
+color = ['blue','red','orange','purple','green']
 # Scatter plot with class labels
 for i in range(len(y_class)):
     indices = y_class[i]
-    plt.scatter(y_t_tsne[i, 0], y_t_tsne[i, 1], label=legend_labels[indices])
+    plt.scatter(y_t_tsne[i, 0], y_t_tsne[i, 1], label=legend_labels[indices], c = color[indices])
 
 handles, labels = plt.gca().get_legend_handles_labels()
 by_label = dict(zip(labels, handles))
