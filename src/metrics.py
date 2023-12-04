@@ -28,9 +28,8 @@ def accuracy_torch(tensor_one, tensor_two):
 
 
 def compute_f1_score(target, pred):
-    target = target.cpu().detach().numpy()
-    pred_np = pred.cpu().detach().numpy()
-    # pred_np = np.argmax(pred_np, axis=1)
+    target = target.detach().numpy()
+    pred_np = pred.detach().numpy()
     F1 = f1_score(target, pred_np, average='macro')
     return F1
 
