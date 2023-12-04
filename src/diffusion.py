@@ -154,11 +154,12 @@ class ReverseDiffusion(DiffusionBaseUtils):
         return y_tm1, y0_hat
 
     # cannot test without cond_prior and score_net
-    def full_reverse_diffusion(self, x, cond_prior, score_net):
+    def full_reverse_diffusion(self, x, cond_prior, score_net, t1, t2, t3):
         """
         This does the full reverse diffusion process. We start by initializing a random sample from a Gaussian Distribution
         whose mean is defined by the cond_prior and with variance I. Then reverse_diffusion_step is called self.T - 1 times. In the very last step i.e. at time = 1,
         """
+
         y_t = torch.rand_like(cond_prior)+cond_prior
         for t in range(self.T):
             # when t = 999, self.T - t - 1 = 0 for self.T = 1000
@@ -173,27 +174,18 @@ class ReverseDiffusion(DiffusionBaseUtils):
                     x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
                 y_t = y_tm1
 
-                if t == 250:
-                    y_t_150 = y_tm1
-                elif t == 500:
-                    y_t_300 = y_tm1
-                elif t == 750:
-                    y_t_450 = y_tm1
+                if t == t1:
+                    y_t_1 = y_tm1
+                elif t == t2:
+                    y_t_2 = y_tm1
+                elif t == t3:
+                    y_t_3 = y_tm1
             else:
                 # so t = 1
                 y_tm1 = y0_hat
 
-            # y_t_rdm = y_t.detach().numpy()
-            # print(y_t_rdm)
-            # print(np.shape(y_t_rdm))
-            # y_t_embedded = TSNE(perplexity=1).fit_transform(y_t_rdm)
-            # print(y_t_embedded)
-            # plt.scatter(y_t_embedded[0, :],
-            #             y_t_embedded[1, :], c=[0, 1, 2, 3, 4], s=5, cmap="tab5")
-            # plt.show()
-
         y0_synthetic = y_tm1
-        return y0_synthetic, y_t_150, y_t_300, y_t_450
+        return y0_synthetic, y_t_1, y_t_2, y_t_3
         # return y0_synthetic
 
 
@@ -312,6 +304,7 @@ def get_out(dcg, model, feature_label_set, reverse_diffusion):
 def eval(dcg, model, params, test_loader, report_file):
     # dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
     # dcg.eval()
+    t1, t2, t3 = params["t_sne"]["t1"], params["t_sne"]["t2"], params["t_sne"]["t3"]
     reverse_diffusion = ReverseDiffusion(config=params)
     # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
 
@@ -322,9 +315,9 @@ def eval(dcg, model, params, test_loader, report_file):
     dcg_output = []
     diffusion_output = []
     y_outs = []
-    y_outs_250 = []
-    y_outs_500 = []
-    y_outs_750 = []
+    y_outs_1 = []
+    y_outs_2 = []
+    y_outs_3 = []
 
     model.eval()
     for i, feature_label_set in enumerate(test_loader):
@@ -334,8 +327,8 @@ def eval(dcg, model, params, test_loader, report_file):
         y_T_mean = dcg_fusion
         # y_out = reverse_diffusion.full_reverse_diffusion(
         #     x_batch, cond_prior=y_T_mean, score_net=model)
-        y_out, y_out_250, y_out_500, y_out_750 = reverse_diffusion.full_reverse_diffusion(
-            x_batch, cond_prior=y_T_mean, score_net=model)
+        y_out, y_out_1, y_out_2, y_out_3 = reverse_diffusion.full_reverse_diffusion(
+            x_batch, cond_prior=y_T_mean, score_net=model, t1=t1, t2=t2, t3=t3)
         logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
             y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
         targets.append(y_labels_batch)
@@ -344,12 +337,12 @@ def eval(dcg, model, params, test_loader, report_file):
 
         for inner_array in y_out:
             y_outs.append(inner_array.detach().numpy())
-        for inner_array in y_out_250:
-            y_outs_250.append(inner_array.detach().numpy())
-        for inner_array in y_out_500:
-            y_outs_500.append(inner_array.detach().numpy())
-        for inner_array in y_out_750:
-            y_outs_750.append(inner_array.detach().numpy())
+        for inner_array in y_out_1:
+            y_outs_1.append(inner_array.detach().numpy())
+        for inner_array in y_out_2:
+            y_outs_2.append(inner_array.detach().numpy())
+        for inner_array in y_out_3:
+            y_outs_3.append(inner_array.detach().numpy())
 
         if i+1 >= params['num_test_batches']:
             break
@@ -361,9 +354,9 @@ def eval(dcg, model, params, test_loader, report_file):
     dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
     f1_score = compute_f1_score(targets, diffusion_output)
     t_sne(targets, y_outs, t_num='0')
-    t_sne(targets, y_outs_250, t_num='250')
-    t_sne(targets, y_outs_500, t_num='500')
-    t_sne(targets, y_outs_750, t_num='750')
+    t_sne(targets, y_outs_1, t_num=t1)
+    t_sne(targets, y_outs_2, t_num=t2)
+    t_sne(targets, y_outs_3, t_num=t3)
     logging.info("DCG accuracy {}".format(dcg_accuracy))
     logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
     logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
