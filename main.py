@@ -63,6 +63,8 @@ if __name__ == '__main__':
     # Hyperparameters from json file
     with open(args.param) as paramfile:
         param = json.load(paramfile)
+    if not os.path.exists('plots'):
+        os.makedirs('plots')
 
     '''
     NOTE:

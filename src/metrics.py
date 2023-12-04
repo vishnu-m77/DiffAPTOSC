@@ -2,6 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.metrics import f1_score
 from sklearn.manifold import TSNE
+import os
 
 
 def plot_loss(loss_arr, title, xlabel, ylabel, savedir):
@@ -36,10 +37,10 @@ def compute_f1_score(target, pred):
 
 def t_sne(targets, y_t, t_num):
     y_t = np.array(y_t)
-    print(targets)
+    # print(targets)
     y_t_values_flat = y_t.reshape((y_t.shape[0], -1))
     y_t_tsne = TSNE(
-        n_components=2, perplexity=1.7).fit_transform(y_t_values_flat)
+        n_components=2, perplexity=1.8).fit_transform(y_t_values_flat)
     # print(y_t_tsne)
     # Plot the t-SNE visualization with color-coded classes
     plt.scatter(y_t_tsne[:, 0], y_t_tsne[:, 1], c=targets,
@@ -48,9 +49,10 @@ def t_sne(targets, y_t, t_num):
     # plt.xlabel('t-SNE Dimension 1')
     # plt.ylabel('t-SNE Dimension 2')
     plt.colorbar(label='Class')
-    plt.savefig('t_sne_'+str(t_num)+'.png', format='PNG')
+    plt.savefig('plots/t_sne_'+str(t_num)+'.png', format='PNG')
     # plt.legend()
     plt.close()
+    return y_t_tsne
 
 
 if __name__ == "__main__":
