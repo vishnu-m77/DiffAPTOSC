@@ -1,4 +1,4 @@
-# DiffMIC
+# DiffAPTOSC
 
 Final Project for AMATH 495
 
