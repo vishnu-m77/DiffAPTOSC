@@ -8,7 +8,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --time=12:00:00
-#SBATCH --mem=16GB
+#SBATCH --mem=24GB
 #SBATCH --gres=gpu:k80:1      # format --gres=gpu:<gpu-type>:<number>
 #SBATCH --output=stdout-%x_%j.log
 #SBATCH --error=stderr-%x_%j.log
