@@ -36,9 +36,9 @@ NOTE: If changes are made to "data":"num_classes" , "diffusion":"timesteps" para
 
 ## Diffusion
 
-## Metrics
-
 ## UNet Model
+
+## Metrics
 
 ## Plots
 
