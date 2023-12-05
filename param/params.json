@@ -11,7 +11,7 @@
         "num_classes": 5,
         "use_v1_global": 1,
         "percent_t": 1.0,
-        "num_epochs": 5
+        "num_epochs": 10
     },
     "data": {
         "train_path": "dataset/aptos/aptos_train.json",
@@ -23,17 +23,17 @@
         "num_images": 1000
     },
     "diffusion": {
-        "timesteps": 500,
+        "timesteps": 60,
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": true,
-        "num_epochs": 10,
+        "num_epochs": 20,
         "num_test_batches": 25,
         "t_sne": {
-            "t1": 150,
-            "t2": 300,
-            "t3": 450
+            "t1": 15,
+            "t2": 30,
+            "t3": 45
         }
     },
     "unet": {
