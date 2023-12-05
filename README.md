@@ -32,7 +32,7 @@ dataset/aptos/
 
 ## DCG: Dual-granularity Conditional Guidance
 
-`main.py`: class DCG is defined along with functions that train the DCG model, and to load the DCG model from a saved checkpoint.
+`main.py`: class DCG is defined in this file. There is a function that train the DCG model, and another that loads the DCG model from a saved checkpoint also defined in this file.
 
 `networks.py`: The networks used in DCG are defined: Saliency Map, Global Network, Downsample Network, Local Network, and Attention Module.
 
