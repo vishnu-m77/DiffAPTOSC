@@ -1,33 +1,14 @@
-# import numpy as np
 import torch
-# import torch.nn as nn
-# import torch.nn.functional as func
-# import torch.nn.utils as utils
-# import torch.multiprocessing as mp
-
-# import math as m
-# import random
 import os
 import sys
-# import time
-
-# import psutil
 import argparse
 import json
-# from itertools import product, permutations, combinations
-# import tqdm
-import argparse
-# import traceback
-# import shutil
 import logging
-import matplotlib.pyplot as plt
-# from src.diffusion import ReverseDiffusion, ForwardDiffusion, compute_mmd
+
 import src.dataloader.dataloader as dataloader
 import src.DCG.main as dcg_module
 import src.diffusion as diffusion
 import src.unet_model as unet_model
-
-
 
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
 
@@ -37,7 +18,6 @@ if os.path.exists('project.log'):
 logging.basicConfig(filename='project.log', filemode='a',
                     format='%(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-# logging.warning('This will get logged to a file')
 
 if __name__ == '__main__':
 
@@ -75,28 +55,15 @@ if __name__ == '__main__':
     diffusion_params = param['diffusion']
     unet_params = param["unet"]
 
-    # The following 4 lines of code use dataset_params. If we don't need these, we can delete it but keep a copy for now.
-    # dataset_params = param[dataset]
-    # MODEL_VERSION_DIR = "diffmic_conditional_results/" + str(dataset_params['N_STEPS']) + "steps/nn/" + str(
-    #     dataset_params["RUN_NAME"]) + "/" + str(dataset_params["PRIOR_TYPE"]) + str(dataset_params["CAT_F_PHI"]) + "/" + str(dataset_params["F_PHI_TYPE"])
-    # dataset_params["MODEL_VERSION_DIR"] = MODEL_VERSION_DIR
-
-    # logging.debug('verbose is {}'.format(verbose))
     if verbose:
         logging.info('params are {}'.format(param))
-        # print(data_params)
 
     # Creates a report file
     report_file = 'report.txt'
 
     data = dataloader.DataProcessor(data_params)
     train_loader, test_loader = data.get_dataloaders()
-
-    # Trains DCG and saves the model
-    # dcg = dcg_module.DCG(dcg_params)
-
-    # dcg_module.train_DCG(dcg, param, train_loader, test_loader)
-
+    
     y_fusions = []
     y_globals = []
     y_locals = []
@@ -117,12 +84,6 @@ if __name__ == '__main__':
     if verbose:
         logging.info("Diffusion model parameters: {}".format(diffusion_params))
 
-    # forward diffusion EXAMPLE call below where the parameters are explained in difusion.py script
-    # noised_var = FD.forward(var=torch.tensor(0.0), prior=torch.tensor(0))
-    # logging.info("Noised Variable is {}".format(noised_var))
-
-    #################### Reverse diffusion code begins #############################
-
     model = unet_model.ConditionalModel(
         config=unet_params, n_steps=diffusion_params["timesteps"], n_classes=data_params["num_classes"], guidance=diffusion_params["include_guidance"]).to(device)
     diff_chkpt_path = 'saved_diff.pth'
@@ -138,10 +99,3 @@ if __name__ == '__main__':
     logging.info("Diffusion_checkpoint loaded")
     diffusion.eval(dcg, model, diffusion_params,
                    test_loader, report_file=report_file)
-
-    #################### Reverse diffusion code ends #############################
-
-    # if os.path.exists(report_file):
-    #     os.remove(report_file)
-    # f = open(report_file, 'w')
-    # f.close()
