@@ -4,6 +4,8 @@ Final Project for AMATH 495
 
 The project is based on the paper [DiffMIC: Dual-Guidance Diffusion Network for Medical Image Classification](https://arxiv.org/abs/2303.10610).
 
+Run the code: `python3 ./main.py`
+
 `main.py` calls the modules in `src/`. The program loads a saved DCG checkpoint `saved_dcg.pth` if it exists. It trains and saves a DCG checkpoint otherwise. Similarly, for diffusion, the program loads a saved diffusion checkpoint `saved_diff.pth` if it exists. It trains and saves a diffusion checkpoint otherwise. After loading the DCG and diffusion models, the program runs inference on the test images and outputs the predicted classification [5 Classes: 0, 1, 2, 3, 4].
 
 ## Dataset
@@ -38,13 +40,25 @@ dataset/aptos/
 
 ## Diffusion
 
+`diffusion.py`: Contains code for forward and reverse diffusion.
+
 ## UNet Model
+
+`unet_model.py`: Contains the UNet model used in diffusion.
 
 ## Metrics
 
+`metrics.py`: Contains the code for the classification metrics: Accuracy, f1 score, and t-SNE.
+
 ## Plots
 
+Plots are generated in the `plots/` directory. `dcg_loss.png` is generated during the training of the DCG, and `diffusion_loss.png` is generated during the training of the diffusion model. `t-SNE` plots are generated for different timesteps `t1, t2, t3` in the diffusion parameters `params["diffusion"]["t-sne"]` during the inference step.
+
 ## Report
+
+`project.log`: Logs during runtime are saved in this file.
+
+`report.txt`: Accuracy of the DCG, and the diffusion model are saved in this file. The f1 score, and the t-SNE values are also saved.
 
 ## Thanks
 
