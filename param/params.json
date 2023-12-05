@@ -27,7 +27,7 @@
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
-        "include_guidance": false,
+        "include_guidance": true,
         "num_epochs": 10,
         "num_test_batches": 25,
         "t_sne": {
