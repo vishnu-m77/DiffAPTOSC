@@ -20,7 +20,7 @@ dataset/aptos/
 
      aptos_test.json
 
-     apts_train.json
+     aptos_train.json
 
 ## Parameters
 
