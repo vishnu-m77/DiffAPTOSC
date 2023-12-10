@@ -43,5 +43,5 @@ echo ""
 
 # put your installs here
 pip3 install -r requirements.txt
-echo "" > stderr-%x_%j.log
+
 srun python3 main.py
