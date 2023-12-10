@@ -240,12 +240,20 @@ def train(dcg, model, params, train_loader, test_loader):
     data_start = time.time()
     data_time = 0
     train_epoch_num = params["num_epochs"]
-    x_test, y_labels_test = next(iter(test_loader))
+    test_iter = iter(test_loader)
     loss_batch = []
     loss_batch_test = []
     for epoch in range(0, train_epoch_num):
         for i, feature_label_set in enumerate(train_loader):
+            # load images and labels from train dataset
             x_batch, y_labels_batch = feature_label_set
+
+            # load images and labels from test dataset
+            try:
+                x_test, y_labels_test = next(test_iter)
+            except StopIteration:
+                test_iter = iter(test_loader)
+                x_test, y_labels_test = next(test_iter)
             model.train()
             loss = get_loss(x_batch,y_labels_batch, params, dcg, FD, model)
             optimizer.zero_grad()

@@ -116,9 +116,8 @@ def train_DCG(dcg, params, train_loader, test_loader):
     brier_score = nn.MSELoss()
     optimizer = torch.optim.SGD(dcg.parameters(), lr=0.1, weight_decay=1e-4, momentum=0.9)
     dcg.train()
-    loss_epoch = []
     pretrain_start_time = time.time()
-    x_test, y_labels_test = next(iter(test_loader))
+    test_iter = iter(test_loader)
     loss_batch, loss_test_array = [], []
     for epoch in range(params["num_epochs"]):
         # loss_batch = []
@@ -131,11 +130,16 @@ def train_DCG(dcg, params, train_loader, test_loader):
             loss_batch.append(aux_loss)
             # eval loss
             dcg.eval()
+            # load images and labels from test dataset
+            try:
+                x_test, y_labels_test = next(test_iter)
+            except StopIteration:
+                test_iter = iter(test_loader)
+                x_test, y_labels_test = next(test_iter)
             y_labels_test_one_hot, _ = dcg.cast_label_to_one_hot_and_prototype(y_labels_test)
             aux_loss_test = dcg.nonlinear_guidance_model_train_step(criterion, x_test, y_labels_test_one_hot, aux_optimizer=None)
             loss_test_array.append(aux_loss_test)
 
-        loss_epoch.append(np.mean(loss_batch))
         logging.info(
             f"epoch: {epoch+1}, DCG pre-training loss: {aux_loss} \t test loss: {aux_loss_test}"
         )
