@@ -345,35 +345,6 @@ def eval(dcg, model, params, test_loader):
     y = np.stack((y_outs, y_outs_1, y_outs_2, y_outs_3), axis=0)
     
     return targets, dcg_output, diffusion_output, y
-    # dcg_accuracy = accuracy_torch(targets, dcg_output)
-    # diffusion_accuracy = accuracy_torch(targets, diffusion_output)
-    # dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
-    # plot_confusion(targets, dcg_output)
-    # plot_confusion(targets, diffusion_output, 0)
-    # f1_score = compute_f1_score(targets, diffusion_output)
-    # tsne_0 = t_sne(targets, y_outs, t_num='0')
-    # tsne_1 = t_sne(targets, y_outs_1, t_num=t1)
-    # tsne_2 = t_sne(targets, y_outs_2, t_num=t2)
-    # tsne_3 = t_sne(targets, y_outs_3, t_num=t3)
-    # logging.info("DCG accuracy {}".format(dcg_accuracy))
-    # logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
-    # logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
-    # logging.info("F1 Score {}".format(f1_score))
-
-    # if os.path.exists(report_file):
-    #     os.remove(report_file)
-    # f = open(report_file, 'w')
-    # f.write("Accuracy:\n")
-    # f.write("DCG model accuracy: \t {}\n".format(dcg_accuracy))
-    # f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
-    # f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
-    # f.write("F1 Score: \t {}\n".format(f1_score))
-    # f.write("T-SNE at time '0' {}".format(tsne_0))
-    # f.write("T-SNE at time '{}' {}".format(t1, tsne_1))
-    # f.write("T-SNE at time '{}' {}".format(t2, tsne_2))
-    # f.write("T-SNE at time '{}' {}".format(t3, tsne_3))
-    # f.close()
-
 
 # test
 if __name__ == '__main__':
