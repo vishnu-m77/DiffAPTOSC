@@ -89,11 +89,11 @@ class DCG(nn.Module):
         # aux_cost = self.aux_cost_function(y_batch_pred, y_batch)+self.aux_cost_function(y_global, y_batch)+self.aux_cost_function(y_local, y_batch)
         aux_cost = criterion(y_batch_pred, y_batch)
         # update non-linear guidance model
-        aux_optimizer.zero_grad()
-        aux_cost.backward()
-        aux_optimizer.step()
+        if aux_optimizer != None:
+            aux_optimizer.zero_grad()
+            aux_cost.backward()
+            aux_optimizer.step()
         return aux_cost.item()
-        return aux_cost.cpu().item()
 
     def cast_label_to_one_hot_and_prototype(self, y_labels_batch, return_prototype=True):
         """
@@ -110,7 +110,7 @@ class DCG(nn.Module):
             return y_one_hot_batch
 
 
-def train_DCG(dcg, params, train_loader):
+def train_DCG(dcg, params, train_loader, test_loader):
 
     criterion = nn.CrossEntropyLoss()
     brier_score = nn.MSELoss()
@@ -118,20 +118,29 @@ def train_DCG(dcg, params, train_loader):
     dcg.train()
     loss_epoch = []
     pretrain_start_time = time.time()
+    x_test, y_labels_test = next(iter(test_loader))
+    loss_batch, loss_test_array = [], []
     for epoch in range(params["num_epochs"]):
-        loss_batch = []
+        # loss_batch = []
         for feature_label_set in train_loader:
+            # train loss
+            dcg.train()
             x_batch, y_labels_batch = feature_label_set
             y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(y_labels_batch)
             aux_loss = dcg.nonlinear_guidance_model_train_step(criterion, x_batch, y_one_hot_batch, optimizer)
             loss_batch.append(aux_loss)
+            # eval loss
+            dcg.eval()
+            y_labels_test_one_hot, _ = dcg.cast_label_to_one_hot_and_prototype(y_labels_test)
+            aux_loss_test = dcg.nonlinear_guidance_model_train_step(criterion, x_test, y_labels_test_one_hot, aux_optimizer=None)
+            loss_test_array.append(aux_loss_test)
 
         loss_epoch.append(np.mean(loss_batch))
         logging.info(
-            f"epoch: {epoch+1}, DCG pre-training loss: {np.mean(loss_batch)}"
+            f"epoch: {epoch+1}, DCG pre-training loss: {aux_loss} \t test loss: {aux_loss_test}"
         )
-    plot_loss(loss_arr=loss_epoch, title="Loss function for DCG Train",
-              xlabel='Epochs', ylabel='Loss', savedir='plots/dcg_loss')
+    plot_loss(loss_arr=loss_batch, test_loss_array=loss_test_array, title="Loss function for DCG Train",
+              savedir='plots/dcg_loss')
     pretrain_end_time = time.time()
     logging.info("\nPre-training of DCG took {:.4f} minutes.\n".format(
         (pretrain_end_time - pretrain_start_time) / 60))

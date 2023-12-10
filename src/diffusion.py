@@ -209,7 +209,7 @@ def compute_mmd(x, y):
     return mmd
 
 
-def train(dcg, model, params, train_loader):
+def train(dcg, model, params, train_loader, test_loader):
     # model = unet_model.ConditionalModel(config=param, guidance=False)
     FD = ForwardDiffusion(config=params)  # initialize class
 
@@ -220,11 +220,15 @@ def train(dcg, model, params, train_loader):
     data_start = time.time()
     data_time = 0
     train_epoch_num = params["num_epochs"]
+    x_test, y_labels_test = next(iter(test_loader))
+    loss_batch = []
+    loss_batch_test = []
     for epoch in range(0, train_epoch_num):
-        loss_batch = []
+        # loss_batch = []
+        # loss_batch_test = []
 
         for i, feature_label_set in enumerate(train_loader):
-
+            model.train()
             x_batch, y_labels_batch = feature_label_set
             y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(y_labels_batch)
 
@@ -252,22 +256,34 @@ def train(dcg, model, params, train_loader):
             eps = torch.randn_like(y0)
 
             # Creates noise with the priors
-            yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
-            yt_global = FD.forward(y0, dcg_global, eps=eps)
-            yt_local = FD.forward(y0, dcg_local, eps=eps)
-            output = model(x_batch, yt_fusion, t, dcg_fusion)
-            output_global = model(x_batch, yt_global, t, dcg_global)
-            output_local = model(x_batch, yt_local, t, dcg_local)
-            # logging.info(output_global)
-            # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
-            # loss = (eps - output).square().mean()
+            output, output_global, output_local = get_outputs(y0, x_batch, dcg_fusion, dcg_global, dcg_local, t, eps, FD=FD, model=model)
             loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps, output_global) + compute_mmd(eps, output_local))
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             loss_batch.append(loss.item())
+            # eval
+            model.eval()
+            y_one_hot_test_batch, _ = dcg.cast_label_to_one_hot_and_prototype(y_labels_test)
+            t_test = torch.randint(low=0, high=num_timesteps,
+                              size=(x_test.size(0) // 2 + 1,))
+            t_test = torch.cat([t_test, num_timesteps - 1 - t], dim=0)[:x_test.size(0)]
+            dcg_test_fusion, dcg_test_global, dcg_test_local = dcg.forward(x_test)
+            dcg_test_fusion = dcg_test_fusion.softmax(dim=1)
+            dcg_test_global, dcg_test_local = dcg_test_global.softmax(
+                dim=1), dcg_test_local.softmax(dim=1)
+            y0_test = y_one_hot_test_batch
+            eps_test = torch.randn_like(y0_test)
+            output_test, output_global_test, output_local_test = get_outputs(y0_test, 
+                                                                             x_test, 
+                                                                             dcg_test_fusion, 
+                                                                             dcg_test_global, 
+                                                                             dcg_test_local, 
+                                                                             t_test, eps_test, FD=FD, model=model)
+            test_loss = (eps_test - output_test).square().mean() + 0.5*(compute_mmd(eps_test, output_global_test) + compute_mmd(eps_test, output_local_test))
+            loss_batch_test.append(test_loss.item())
             logging.info(
-                f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}")
+                f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}\t test loss: {test_loss}")
 
         loss_epoch.append(np.mean(loss_batch))
 
@@ -280,9 +296,17 @@ def train(dcg, model, params, train_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plot_loss(loss_arr=loss_epoch, title="Loss function for Diffusion Train",
-              xlabel="Epochs", ylabel="Loss", savedir="plots/diffusion_loss")
+    plot_loss(loss_arr=loss_batch, test_loss_array=loss_batch_test, title="Loss function for Diffusion Train",
+              savedir="plots/diffusion_loss")
 
+def get_outputs(y0, x_batch, dcg_fusion, dcg_global, dcg_local, t, eps, FD, model):
+    yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
+    yt_global = FD.forward(y0, dcg_global, eps=eps)
+    yt_local = FD.forward(y0, dcg_local, eps=eps)
+    output = model(x_batch, yt_fusion, t, dcg_fusion)
+    output_global = model(x_batch, yt_global, t, dcg_global)
+    output_local = model(x_batch, yt_local, t, dcg_local)
+    return output, output_global, output_local
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):
     x_batch, y_labels_batch = feature_label_set
@@ -346,15 +370,15 @@ def eval(dcg, model, params, test_loader, report_file):
     dcg_accuracy = accuracy_torch(targets, dcg_output)
     diffusion_accuracy = accuracy_torch(targets, diffusion_output)
     dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
-    f1_score = compute_f1_score(targets, diffusion_output)
-    tsne_0 = t_sne(targets, y_outs, t_num='0')
-    tsne_1 = t_sne(targets, y_outs_1, t_num=t1)
-    tsne_2 = t_sne(targets, y_outs_2, t_num=t2)
-    tsne_3 = t_sne(targets, y_outs_3, t_num=t3)
-    logging.info("DCG accuracy {}".format(dcg_accuracy))
-    logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
-    logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
-    logging.info("F1 Score {}".format(f1_score))
+    # f1_score = compute_f1_score(targets, diffusion_output)
+    # tsne_0 = t_sne(targets, y_outs, t_num='0')
+    # tsne_1 = t_sne(targets, y_outs_1, t_num=t1)
+    # tsne_2 = t_sne(targets, y_outs_2, t_num=t2)
+    # tsne_3 = t_sne(targets, y_outs_3, t_num=t3)
+    # logging.info("DCG accuracy {}".format(dcg_accuracy))
+    # logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
+    # logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
+    # logging.info("F1 Score {}".format(f1_score))
 
     if os.path.exists(report_file):
         os.remove(report_file)
@@ -363,11 +387,11 @@ def eval(dcg, model, params, test_loader, report_file):
     f.write("DCG model accuracy: \t {}\n".format(dcg_accuracy))
     f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
     f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
-    f.write("F1 Score: \t {}\n".format(f1_score))
-    f.write("T-SNE at time '0' {}".format(tsne_0))
-    f.write("T-SNE at time '{}' {}".format(t1, tsne_1))
-    f.write("T-SNE at time '{}' {}".format(t2, tsne_2))
-    f.write("T-SNE at time '{}' {}".format(t3, tsne_3))
+    # f.write("F1 Score: \t {}\n".format(f1_score))
+    # f.write("T-SNE at time '0' {}".format(tsne_0))
+    # f.write("T-SNE at time '{}' {}".format(t1, tsne_1))
+    # f.write("T-SNE at time '{}' {}".format(t2, tsne_2))
+    # f.write("T-SNE at time '{}' {}".format(t3, tsne_3))
     f.close()
 
 
