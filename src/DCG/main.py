@@ -130,8 +130,7 @@ def train_DCG(dcg, params, train_loader):
         logging.info(
             f"epoch: {epoch+1}, DCG pre-training loss: {np.mean(loss_batch)}"
         )
-    plot_loss(loss_arr=loss_epoch, title="Loss function for DCG Train",
-              xlabel='Epochs', ylabel='Loss', savedir='plots/dcg_loss')
+    plot_loss(loss_arr=loss_epoch, title="Loss function for DCG Train")
     pretrain_end_time = time.time()
     logging.info("\nPre-training of DCG took {:.4f} minutes.\n".format(
         (pretrain_end_time - pretrain_start_time) / 60))
