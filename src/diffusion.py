@@ -278,8 +278,7 @@ def train(dcg, model, params, train_loader, val_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plot_loss(loss_arr=loss_batch, val_loss_array=loss_batch_val, title="Loss function for Diffusion Train",
-              savedir="plots/diffusion_loss")
+    plot_loss(loss_arr=loss_batch, title="Loss function for Diffusion Train", val_loss_array=loss_batch_val, mode = False)
 
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):
@@ -294,7 +293,7 @@ def get_out(dcg, model, feature_label_set, reverse_diffusion):
     return y_out.softmax(dim=1)
 
 
-def eval(dcg, model, params, test_loader, report_file):
+def eval(dcg, model, params, test_loader):
     # dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
     # dcg.eval()
     t1, t2, t3 = params["t_sne"]["t1"], params["t_sne"]["t2"], params["t_sne"]["t3"]
@@ -341,33 +340,9 @@ def eval(dcg, model, params, test_loader, report_file):
     targets = torch.cat(targets)
     dcg_output = torch.cat(dcg_output)
     diffusion_output = torch.cat(diffusion_output)
-    dcg_accuracy = accuracy_torch(targets, dcg_output)
-    diffusion_accuracy = accuracy_torch(targets, diffusion_output)
-    dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
-    f1_score = compute_f1_score(targets, diffusion_output)
-    tsne_0 = t_sne(targets, y_outs, t_num='0')
-    tsne_1 = t_sne(targets, y_outs_1, t_num=t1)
-    tsne_2 = t_sne(targets, y_outs_2, t_num=t2)
-    tsne_3 = t_sne(targets, y_outs_3, t_num=t3)
-    logging.info("DCG accuracy {}".format(dcg_accuracy))
-    logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
-    logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
-    logging.info("F1 Score {}".format(f1_score))
-
-    if os.path.exists(report_file):
-        os.remove(report_file)
-    f = open(report_file, 'w')
-    f.write("Accuracy:\n")
-    f.write("DCG model accuracy: \t {}\n".format(dcg_accuracy))
-    f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
-    f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
-    f.write("F1 Score: \t {}\n".format(f1_score))
-    f.write("T-SNE at time '0' {}".format(tsne_0))
-    f.write("T-SNE at time '{}' {}".format(t1, tsne_1))
-    f.write("T-SNE at time '{}' {}".format(t2, tsne_2))
-    f.write("T-SNE at time '{}' {}".format(t3, tsne_3))
-    f.close()
-
+    y = np.stack((y_outs, y_outs_1, y_outs_2, y_outs_3), axis=0)
+    
+    return targets, dcg_output, diffusion_output, y
 
 # test
 if __name__ == '__main__':

@@ -20,7 +20,7 @@
         "num_classes": 5,
         "train_batch_size": 25,
         "test_batch_size": 2,
-        "num_images": 1000
+        "num_images": 3000
     },
     "diffusion": {
         "timesteps": 60,
@@ -29,7 +29,7 @@
         "beta_final": 0.02,
         "include_guidance": true,
         "num_epochs": 20,
-        "num_test_batches": 25,
+        "num_test_batches": 100,
         "t_sne": {
             "t1": 15,
             "t2": 30,
