@@ -37,17 +37,17 @@ def plot_loss(loss_arr, title, val_loss_array=None, mode = True):
     plt.close()
 
 
-def accuracy_torch(tensor_one, tensor_two):
+def accuracy_torch(targets, predicted):
     """
     Takes in 2 tensors and computes accuracy
     """
     correct = 0
-    if tensor_one.size(0) != tensor_two.size(0):
+    if targets.size(0) != predicted.size(0):
         raise KeyError("Tensor dimension mismatch")
-    for idx in range(tensor_one.size(0)):
-        if tensor_one[idx] == tensor_two[idx]:
+    for idx in range(predicted.size(0)):
+        if targets[idx] == predicted[idx]:
             correct = correct + 1
-    return correct/tensor_one.size(0)
+    return correct/predicted.size(0)
 
 
 def compute_f1_score(target, pred):
