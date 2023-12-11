@@ -1,30 +1,53 @@
+import os
+import logging
 import numpy as np
 from matplotlib import pyplot as plt
-from sklearn.metrics import f1_score
+from sklearn.metrics import f1_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.manifold import TSNE
-import os
 
-
-def plot_loss(loss_arr, title, xlabel, ylabel, savedir):
-    plt.plot(loss_arr)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.title(title)
-    plt.savefig(savedir+'.png', format='PNG')
+def plot_confusion(expected, predicted, mode = True):
+    labels = range(5)
+    
+    cm = confusion_matrix(expected, predicted)
+    disp = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels = labels)
+    disp.plot()
+    os.makedirs('plots', exist_ok=True)
+    if mode:
+        plt.title('Confusion Matrix for DCG')
+        plt.savefig('plots/dcg_confusion'+'.png', format='PNG')
+    else:
+        plt.title('Confusion Matrix for Diffusion')
+        plt.savefig('plots/diff_confusion'+'.png', format='PNG')
     plt.close()
 
 
-def accuracy_torch(tensor_one, tensor_two):
+def plot_loss(loss_arr, title, val_loss_array=None, mode = True):
+    plt.plot(loss_arr, label = "Train Loss")
+    if val_loss_array!=None:
+        plt.plot(val_loss_array, label = "Val Loss")
+    plt.xlabel('Iterations')
+    plt.ylabel('Loss')
+    plt.title(title)
+    plt.legend()
+    os.makedirs('plots', exist_ok=True)
+    if mode:
+        plt.savefig('plots/dcg_loss'+'.png', format='PNG')
+    else:
+        plt.savefig('plots/diffusion_loss'+'.png', format='PNG')
+    plt.close()
+
+
+def accuracy_torch(targets, predicted):
     """
     Takes in 2 tensors and computes accuracy
     """
     correct = 0
-    if tensor_one.size(0) != tensor_two.size(0):
+    if targets.size(0) != predicted.size(0):
         raise KeyError("Tensor dimension mismatch")
-    for idx in range(tensor_one.size(0)):
-        if tensor_one[idx] == tensor_two[idx]:
+    for idx in range(predicted.size(0)):
+        if targets[idx] == predicted[idx]:
             correct = correct + 1
-    return correct/tensor_one.size(0)
+    return correct/predicted.size(0)
 
 
 def compute_f1_score(target, pred):
@@ -53,6 +76,44 @@ def t_sne(targets, y_t, t_num):
     plt.close()
     return y_t_tsne
 
+def call_metrics(params, targets, dcg_output, diffusion_output, y):
+    
+    t1, t2, t3 = params["t_sne"]["t1"], params["t_sne"]["t2"], params["t_sne"]["t3"]
+    y_outs = y[0]
+    y_outs_1 = y[1]
+    y_outs_2 = y[2]
+    y_outs_3 = y[3]
+    dcg_accuracy = accuracy_torch(targets, dcg_output)
+    diffusion_accuracy = accuracy_torch(targets, diffusion_output)
+    dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
+    plot_confusion(targets, dcg_output)
+    plot_confusion(targets, diffusion_output, 0)
+    f1_score = compute_f1_score(targets, diffusion_output)
+    tsne_0 = t_sne(targets, y_outs, t_num='0')
+    tsne_1 = t_sne(targets, y_outs_1, t_num=t1)
+    tsne_2 = t_sne(targets, y_outs_2, t_num=t2)
+    tsne_3 = t_sne(targets, y_outs_3, t_num=t3)
+    logging.info("DCG accuracy {}".format(dcg_accuracy))
+    logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
+    logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
+    logging.info("F1 Score {}".format(f1_score))
+    
+    # Creates a report file
+    report_file = 'report.txt'
+    if os.path.exists(report_file):
+        os.remove(report_file)
+    
+    f = open(report_file, 'w')
+    f.write("Accuracy:\n")
+    f.write("DCG model accuracy: \t {}\n".format(dcg_accuracy))
+    f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
+    f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
+    f.write("F1 Score: \t {}\n".format(f1_score))
+    f.write("T-SNE at time '0' {}".format(tsne_0))
+    f.write("T-SNE at time '{}' {}".format(t1, tsne_1))
+    f.write("T-SNE at time '{}' {}".format(t2, tsne_2))
+    f.write("T-SNE at time '{}' {}".format(t3, tsne_3))
+    f.close()
 
 if __name__ == "__main__":
     """

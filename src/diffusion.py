@@ -208,68 +208,66 @@ def compute_mmd(x, y):
     mmd = x_kernel.mean() + y_kernel.mean() - 2*xy_kernel.mean()
     return mmd
 
+def get_loss(x,y, params, dcg, FD, model):
+    y0, _ = dcg.cast_label_to_one_hot_and_prototype(y)
+    n = x.size(0)
+    num_timesteps = params["timesteps"]
+    t = torch.randint(low=0, high=num_timesteps,
+                    size=(n // 2 + 1,))
+    t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
+    dcg_fusion, dcg_global, dcg_local = dcg.forward(x)
+    dcg_fusion = dcg_fusion.softmax(dim=1)
+    dcg_global, dcg_local = dcg_global.softmax(
+        dim=1), dcg_local.softmax(dim=1)
+    eps = torch.randn_like(y0)
+    # Creates noise with the priors
+    yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
+    yt_global = FD.forward(y0, dcg_global, eps=eps)
+    yt_local = FD.forward(y0, dcg_local, eps=eps)
+    output = model(x, yt_fusion, t, dcg_fusion)
+    output_global = model(x, yt_global, t, dcg_global)
+    output_local = model(x, yt_local, t, dcg_local)
+    loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps, output_global) + compute_mmd(eps, output_local))
+    return loss
 
-def train(dcg, model, params, train_loader):
+def train(dcg, model, params, train_loader, val_loader):
     # model = unet_model.ConditionalModel(config=param, guidance=False)
     FD = ForwardDiffusion(config=params)  # initialize class
 
     reverse_diffusion = ReverseDiffusion(config=params)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
-    loss_epoch = []
     data_start = time.time()
     data_time = 0
     train_epoch_num = params["num_epochs"]
+    val_iter = iter(val_loader)
+    loss_batch = []
+    loss_batch_val = []
     for epoch in range(0, train_epoch_num):
-        loss_batch = []
-
         for i, feature_label_set in enumerate(train_loader):
-
+            # load images and labels from train dataset
             x_batch, y_labels_batch = feature_label_set
-            y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(y_labels_batch)
 
-            n = x_batch.size(0)
-
-            num_timesteps = params["timesteps"]
-            t = torch.randint(low=0, high=num_timesteps,
-                              size=(n // 2 + 1,))
-            t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
-            # print(t)
-            # t = torch.randint(low=0, high=num_timesteps, size = (1,))
-
-            # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
-            #     1], dcg(x_batch)[2]
-            dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
-            """
-            sehmi -  why softmax in the 2 line below?
-            Note sure, but it seems to work...
-            """
-            dcg_fusion = dcg_fusion.softmax(dim=1)
-            dcg_global, dcg_local = dcg_global.softmax(
-                dim=1), dcg_local.softmax(dim=1)
-            # logging.info(dcg_global)
-            y0 = y_one_hot_batch
-            eps = torch.randn_like(y0)
-
-            # Creates noise with the priors
-            yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
-            yt_global = FD.forward(y0, dcg_global, eps=eps)
-            yt_local = FD.forward(y0, dcg_local, eps=eps)
-            output = model(x_batch, yt_fusion, t, dcg_fusion)
-            output_global = model(x_batch, yt_global, t, dcg_global)
-            output_local = model(x_batch, yt_local, t, dcg_local)
-            # logging.info(output_global)
-            # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
-            # loss = (eps - output).square().mean()
-            loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps, output_global) + compute_mmd(eps, output_local))
+            # load images and labels from val dataset
+            try:
+                x_val, y_labels_val = next(val_iter)
+            except StopIteration:
+                val_iter = iter(val_loader)
+                x_val, y_labels_val = next(val_iter)
+            model.train()
+            loss = get_loss(x_batch,y_labels_batch, params, dcg, FD, model)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             loss_batch.append(loss.item())
-            logging.info(
-                f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}")
 
-        loss_epoch.append(np.mean(loss_batch))
+            # eval
+            model.eval()
+            val_loss = get_loss(x_val,y_labels_val, params, dcg, FD, model)
+            loss_batch_val.append(val_loss.item())
+
+            logging.info(
+                f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}\t validation loss: {val_loss}")
 
     data_time = time.time() - data_start
     logging.info("\nTraining of Diffusion took {:.4f} minutes.\n".format(
@@ -280,8 +278,7 @@ def train(dcg, model, params, train_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plot_loss(loss_arr=loss_epoch, title="Loss function for Diffusion Train",
-              xlabel="Epochs", ylabel="Loss", savedir="plots/diffusion_loss")
+    plot_loss(loss_arr=loss_batch, title="Loss function for Diffusion Train", val_loss_array=loss_batch_val, mode = False)
 
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):
@@ -296,7 +293,7 @@ def get_out(dcg, model, feature_label_set, reverse_diffusion):
     return y_out.softmax(dim=1)
 
 
-def eval(dcg, model, params, test_loader, report_file):
+def eval(dcg, model, params, test_loader):
     # dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
     # dcg.eval()
     t1, t2, t3 = params["t_sne"]["t1"], params["t_sne"]["t2"], params["t_sne"]["t3"]
@@ -343,33 +340,9 @@ def eval(dcg, model, params, test_loader, report_file):
     targets = torch.cat(targets)
     dcg_output = torch.cat(dcg_output)
     diffusion_output = torch.cat(diffusion_output)
-    dcg_accuracy = accuracy_torch(targets, dcg_output)
-    diffusion_accuracy = accuracy_torch(targets, diffusion_output)
-    dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
-    f1_score = compute_f1_score(targets, diffusion_output)
-    tsne_0 = t_sne(targets, y_outs, t_num='0')
-    tsne_1 = t_sne(targets, y_outs_1, t_num=t1)
-    tsne_2 = t_sne(targets, y_outs_2, t_num=t2)
-    tsne_3 = t_sne(targets, y_outs_3, t_num=t3)
-    logging.info("DCG accuracy {}".format(dcg_accuracy))
-    logging.info("Diffusion model accuracy {}".format(diffusion_accuracy))
-    logging.info("Diffusion-DCG accuracy {}".format(dcg_diffusion_accuracy))
-    logging.info("F1 Score {}".format(f1_score))
-
-    if os.path.exists(report_file):
-        os.remove(report_file)
-    f = open(report_file, 'w')
-    f.write("Accuracy:\n")
-    f.write("DCG model accuracy: \t {}\n".format(dcg_accuracy))
-    f.write("Diffusion model accuracy: \t {}\n".format(diffusion_accuracy))
-    f.write("Diffusion-DCG accuracy: \t {}\n".format(dcg_diffusion_accuracy))
-    f.write("F1 Score: \t {}\n".format(f1_score))
-    f.write("T-SNE at time '0' {}".format(tsne_0))
-    f.write("T-SNE at time '{}' {}".format(t1, tsne_1))
-    f.write("T-SNE at time '{}' {}".format(t2, tsne_2))
-    f.write("T-SNE at time '{}' {}".format(t3, tsne_3))
-    f.close()
-
+    y = np.stack((y_outs, y_outs_1, y_outs_2, y_outs_3), axis=0)
+    
+    return targets, dcg_output, diffusion_output, y
 
 # test
 if __name__ == '__main__':

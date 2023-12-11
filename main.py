@@ -9,6 +9,7 @@ import src.dataloader.dataloader as dataloader
 import src.DCG.main as dcg_module
 import src.diffusion as diffusion
 import src.unet_model as unet_model
+import src.metrics as metrics
 
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
 
@@ -42,8 +43,8 @@ if __name__ == '__main__':
     # Hyperparameters from json file
     with open(args.param) as paramfile:
         param = json.load(paramfile)
-    if not os.path.exists('plots'):
-        os.makedirs('plots')
+    # if not os.path.exists('plots'):
+    #     os.makedirs('plots')
 
     '''
     NOTE:
@@ -58,11 +59,8 @@ if __name__ == '__main__':
     if verbose:
         logging.info('params are {}'.format(param))
 
-    # Creates a report file
-    report_file = 'report.txt'
-
     data = dataloader.DataProcessor(data_params)
-    train_loader, test_loader = data.get_dataloaders()
+    train_loader, test_loader, val_loader = data.get_dataloaders()
     
     y_fusions = []
     y_globals = []
@@ -74,7 +72,7 @@ if __name__ == '__main__':
         # Initialize DCG
         dcg = dcg_module.DCG(dcg_params)
         # Trains DCG and saves the model
-        dcg_module.train_DCG(dcg, dcg_params, train_loader)
+        dcg_module.train_DCG(dcg, dcg_params, train_loader, val_loader=val_loader)
     # Loads the saved DCG model and sets to eval mode
     logging.info(
         "Loading trained DCG checkpoint from {}".format(dcg_chkpt_path))
@@ -89,7 +87,7 @@ if __name__ == '__main__':
     diff_chkpt_path = 'saved_diff.pth'
     # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
     if not os.path.exists(diff_chkpt_path):
-        diffusion.train(dcg, model, diffusion_params, train_loader)
+        diffusion.train(dcg, model, diffusion_params, train_loader, val_loader=val_loader)
 
     logging.info(
         "Loading trained diffusion checkpoint from {}".format(diff_chkpt_path))
@@ -97,5 +95,6 @@ if __name__ == '__main__':
     model.load_state_dict(chkpt[0])
     model.eval()
     logging.info("Diffusion_checkpoint loaded")
-    diffusion.eval(dcg, model, diffusion_params,
-                   test_loader, report_file=report_file)
+    targets, dcg_output, diffusion_output, y = diffusion.eval(dcg, model, diffusion_params, test_loader)
+    
+    metrics.call_metrics(diffusion_params, targets, dcg_output, diffusion_output, y)

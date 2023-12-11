@@ -48,11 +48,13 @@ dataset/aptos/
 
 ## Metrics
 
-`metrics.py`: Contains the code for the classification metrics: Accuracy, f1 score, and t-SNE.
+`metrics.py`: Contains the code for the classification metrics: Accuracy, confusion matrix, f1 score, and t-SNE.
 
 ## Plots
 
-Plots are generated in the `plots/` directory. `dcg_loss.png` is generated during the training of the DCG, and `diffusion_loss.png` is generated during the training of the diffusion model. `t-SNE` plots are generated for different timesteps `t1, t2, t3` in the diffusion parameters `params["diffusion"]["t-sne"]` during the inference step.
+Plots are generated in the `plots/` directory. `dcg_loss.png` is generated during the training of the DCG, and `diffusion_loss.png` is generated during the training of the diffusion model. Confusion matrices for DCG and diffusion are saved as `dcg_confusion.png` and `diff_confusion.png`, respectively. `t-SNE` plots are generated for different timesteps `t1, t2, t3` in the diffusion parameters `params["diffusion"]["t-sne"]` during the inference step.
+
+The plot functions have a parameter `mode` which has a default value of 1. `mode=1` implies `DCG` and `mode=0` implies `diffusion`, such that the corresponding plots for each model are generated. 
 
 ## Report
 
