@@ -230,7 +230,7 @@ def get_loss(x,y, params, dcg, FD, model):
     loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps, output_global) + compute_mmd(eps, output_local))
     return loss
 
-def train(dcg, model, params, train_loader, test_loader):
+def train(dcg, model, params, train_loader, val_loader):
     # model = unet_model.ConditionalModel(config=param, guidance=False)
     FD = ForwardDiffusion(config=params)  # initialize class
 
@@ -240,20 +240,20 @@ def train(dcg, model, params, train_loader, test_loader):
     data_start = time.time()
     data_time = 0
     train_epoch_num = params["num_epochs"]
-    test_iter = iter(test_loader)
+    val_iter = iter(val_loader)
     loss_batch = []
-    loss_batch_test = []
+    loss_batch_val = []
     for epoch in range(0, train_epoch_num):
         for i, feature_label_set in enumerate(train_loader):
             # load images and labels from train dataset
             x_batch, y_labels_batch = feature_label_set
 
-            # load images and labels from test dataset
+            # load images and labels from val dataset
             try:
-                x_test, y_labels_test = next(test_iter)
+                x_val, y_labels_val = next(val_iter)
             except StopIteration:
-                test_iter = iter(test_loader)
-                x_test, y_labels_test = next(test_iter)
+                val_iter = iter(val_loader)
+                x_val, y_labels_val = next(val_iter)
             model.train()
             loss = get_loss(x_batch,y_labels_batch, params, dcg, FD, model)
             optimizer.zero_grad()
@@ -263,11 +263,11 @@ def train(dcg, model, params, train_loader, test_loader):
 
             # eval
             model.eval()
-            test_loss = get_loss(x_test,y_labels_test, params, dcg, FD, model)
-            loss_batch_test.append(test_loss.item())
+            val_loss = get_loss(x_val,y_labels_val, params, dcg, FD, model)
+            loss_batch_val.append(val_loss.item())
 
             logging.info(
-                f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}\t test loss: {test_loss}")
+                f"epoch: {epoch+1}, batch {i+1} Diffusion training loss: {loss}\t validation loss: {val_loss}")
 
     data_time = time.time() - data_start
     logging.info("\nTraining of Diffusion took {:.4f} minutes.\n".format(
@@ -278,7 +278,7 @@ def train(dcg, model, params, train_loader, test_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plot_loss(loss_arr=loss_batch, test_loss_array=loss_batch_test, title="Loss function for Diffusion Train",
+    plot_loss(loss_arr=loss_batch, val_loss_array=loss_batch_val, title="Loss function for Diffusion Train",
               savedir="plots/diffusion_loss")
 
 

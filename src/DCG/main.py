@@ -110,40 +110,39 @@ class DCG(nn.Module):
             return y_one_hot_batch
 
 
-def train_DCG(dcg, params, train_loader, test_loader):
+def train_DCG(dcg, params, train_loader, val_loader):
 
     criterion = nn.CrossEntropyLoss()
-    brier_score = nn.MSELoss()
     optimizer = torch.optim.SGD(dcg.parameters(), lr=0.1, weight_decay=1e-4, momentum=0.9)
     dcg.train()
     pretrain_start_time = time.time()
-    test_iter = iter(test_loader)
-    loss_batch, loss_test_array = [], []
+    val_iter = iter(val_loader)
+    loss_batch, loss_val_array = [], []
     for epoch in range(params["num_epochs"]):
         # loss_batch = []
         for feature_label_set in train_loader:
             # train loss
             dcg.train()
             x_batch, y_labels_batch = feature_label_set
-            y_one_hot_batch, y_logits_batch = dcg.cast_label_to_one_hot_and_prototype(y_labels_batch)
+            y_one_hot_batch, _ = dcg.cast_label_to_one_hot_and_prototype(y_labels_batch)
             aux_loss = dcg.nonlinear_guidance_model_train_step(criterion, x_batch, y_one_hot_batch, optimizer)
             loss_batch.append(aux_loss)
             # eval loss
             dcg.eval()
-            # load images and labels from test dataset
+            # load images and labels from validation dataset
             try:
-                x_test, y_labels_test = next(test_iter)
+                x_val, y_labels_val = next(val_iter)
             except StopIteration:
-                test_iter = iter(test_loader)
-                x_test, y_labels_test = next(test_iter)
-            y_labels_test_one_hot, _ = dcg.cast_label_to_one_hot_and_prototype(y_labels_test)
-            aux_loss_test = dcg.nonlinear_guidance_model_train_step(criterion, x_test, y_labels_test_one_hot, aux_optimizer=None)
-            loss_test_array.append(aux_loss_test)
+                val_iter = iter(val_loader)
+                x_val, y_labels_val = next(val_iter)
+            y_labels_val_one_hot, _ = dcg.cast_label_to_one_hot_and_prototype(y_labels_val)
+            aux_loss_val = dcg.nonlinear_guidance_model_train_step(criterion, x_val, y_labels_val_one_hot, aux_optimizer=None)
+            loss_val_array.append(aux_loss_val)
 
         logging.info(
-            f"epoch: {epoch+1}, DCG pre-training loss: {aux_loss} \t test loss: {aux_loss_test}"
+            f"epoch: {epoch+1}, DCG pre-training loss: {aux_loss} \t validation loss: {aux_loss_val}"
         )
-    plot_loss(loss_arr=loss_batch, test_loss_array=loss_test_array, title="Loss function for DCG Train",
+    plot_loss(loss_arr=loss_batch, val_loss_array=loss_val_array, title="Loss function for DCG Train",
               savedir='plots/dcg_loss')
     pretrain_end_time = time.time()
     logging.info("\nPre-training of DCG took {:.4f} minutes.\n".format(

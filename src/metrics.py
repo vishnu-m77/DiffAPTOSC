@@ -5,10 +5,10 @@ from sklearn.manifold import TSNE
 import os
 
 
-def plot_loss(loss_arr, title, savedir, test_loss_array=None):
+def plot_loss(loss_arr, title, savedir, val_loss_array=None):
     plt.plot(loss_arr, label = "Train Loss")
-    if test_loss_array!=None:
-        plt.plot(test_loss_array, label = "Test Loss")
+    if val_loss_array!=None:
+        plt.plot(val_loss_array, label = "Val Loss")
     plt.xlabel("Iteration")
     plt.ylabel("Loss")
     plt.title(title)
