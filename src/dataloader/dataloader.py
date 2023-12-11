@@ -129,6 +129,7 @@ class DataProcessor():
         self.test_path = config["test_path"]
         self.train_batch_size = config["train_batch_size"]
         self.test_batch_size = config["test_batch_size"]
+        self.valid_batch_size = config["valid_batch_size"]
         self.total_image_num = config["num_images"]
 
     def get_dataloaders(self):
@@ -150,8 +151,13 @@ class DataProcessor():
             batch_size=self.test_batch_size,
             shuffle=True
         )
+        valid_loader = DataLoader(
+            test_data,
+            batch_size=self.valid_batch_size,
+            shuffle=True
+        )
 
-        return train_loader, test_loader
+        return train_loader, test_loader, valid_loader
 
 
 def random_image_selection(original, total_image_num, multiplier):
