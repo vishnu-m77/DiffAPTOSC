@@ -209,6 +209,16 @@ def compute_mmd(x, y):
     return mmd
 
 def weight_wrapper(y, weights = [1/100,1,1,1,1], weighted_loss = True):
+    """
+    Wrapper function which takes in y (labels), weights of each label and a boolean weighted_loss
+    Wrapper function returns a weight_function function.
+    If weighted_loss is False, weight_function returns the original loss and otherwise computed weighted loss
+    Size of y is [batch_size]
+    y is mapped to a tensor weight_list (also of size [batch_size])
+    weight_function takes in a loss vector of size [batch x *]
+    where * denotes arbitrary dimensions and then computes element wise multiplication with weight_list
+    to produce weighted loss vector of size [batch_size]
+    """
     def weight_function(loss_vector):
         if weighted_loss:
             weight_list = []
