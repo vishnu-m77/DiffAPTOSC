@@ -208,6 +208,17 @@ def compute_mmd(x, y):
     mmd = x_kernel + y_kernel - 2*xy_kernel
     return mmd
 
+def weight_modif(y, loss_vector, weights = [1/100,1,1,1,1], weighted_loss = False):
+    if weighted_loss:
+        weight_list = []
+        logging.info(y)
+        for label in y:
+            label = weights[label]
+            weight_list.append(label)
+        loss_vector = torch.sum(loss_vector, dim=1)
+        loss_vector = loss_vector*torch.tensor(weight_list)
+    return loss_vector
+    
 def weight_wrapper(y, weights = [1/100,1,1,1,1], weighted_loss = False):
     """
     Wrapper function which takes in y (labels), weights of each label and a boolean weighted_loss
@@ -251,9 +262,13 @@ def get_loss(x,y, params, dcg, FD, model):
     output = model(x, yt_fusion, t, dcg_fusion)
     output_global = model(x, yt_global, t, dcg_global)
     output_local = model(x, yt_local, t, dcg_local)
-    weight_function = weight_wrapper(y=y)
-    loss = weight_function((eps - output).square()).mean() + 0.5*(weight_function(compute_mmd(eps, output_global)).mean() + 
-                                                      weight_function(compute_mmd(eps, output_local)).mean())
+    loss = weight_modif(y, (eps - output).square()).mean() + 
+            0.5*(weight_modif(y, compute_mmd(eps, output_global)).mean() + 
+            weight_modif(y, compute_mmd(eps, output_local)).mean())
+            
+    # weight_function = weight_wrapper(y=y)
+    # loss = weight_function((eps - output).square()).mean() + 0.5*(weight_function(compute_mmd(eps, output_global)).mean() + 
+    #                                                   weight_function(compute_mmd(eps, output_local)).mean())
     return loss
 
 def train(dcg, model, params, train_loader, val_loader):
