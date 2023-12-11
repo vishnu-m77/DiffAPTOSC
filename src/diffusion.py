@@ -208,7 +208,7 @@ def compute_mmd(x, y):
     mmd = x_kernel + y_kernel - 2*xy_kernel
     return mmd
 
-def weight_wrapper(y, weights = [1/100,1,1,1,1], weighted_loss = True):
+def weight_wrapper(y, weights = [1/100,1,1,1,1], weighted_loss = False):
     """
     Wrapper function which takes in y (labels), weights of each label and a boolean weighted_loss
     Wrapper function returns a weight_function function.
@@ -226,10 +226,7 @@ def weight_wrapper(y, weights = [1/100,1,1,1,1], weighted_loss = True):
             for label in y:
                 label = weights[label]
                 weight_list.append(label)
-            logging.info(weight_list)
             loss_vector = torch.sum(loss_vector, dim=1)
-            logging.info(loss_vector)
-            logging.info(loss_vector*torch.tensor(weight_list))
             return loss_vector*torch.tensor(weight_list)
         else:
             return loss_vector
