@@ -205,8 +205,49 @@ def compute_mmd(x, y):
     x_kernel = compute_kernel(x, x)
     y_kernel = compute_kernel(y, y)
     xy_kernel = compute_kernel(x, y)
-    mmd = x_kernel.mean() + y_kernel.mean() - 2*xy_kernel.mean()
+    mmd = x_kernel + y_kernel - 2*xy_kernel
     return mmd
+
+class weighted_loss():
+    def __init__(self, y, weights = [1/100,1,1,1,1], weighted_loss = False):
+        self.y = y
+        self.weights = weights
+        self.weighted_loss = weighted_loss
+    
+    def loss(self, loss_vector):
+        if self.weighted_loss:
+            weight_list = []
+            logging.info(self.y)
+            for label in self.y:
+                label = self.weights[label]
+                weight_list.append(label)
+            loss_vector = torch.sum(loss_vector, dim=1)
+            loss_vector = loss_vector*torch.tensor(weight_list)
+        return loss_vector
+    
+def weight_wrapper(y, weights = [1/100,1,1,1,1], weighted_loss = False):
+    """
+    Wrapper function which takes in y (labels), weights of each label and a boolean weighted_loss
+    Wrapper function returns a weight_function function.
+    If weighted_loss is False, weight_function returns the original loss and otherwise computed weighted loss
+    Size of y is [batch_size]
+    y is mapped to a tensor weight_list (also of size [batch_size])
+    weight_function takes in a loss vector of size [batch x *]
+    where * denotes arbitrary dimensions and then computes element wise multiplication with weight_list
+    to produce weighted loss vector of size [batch_size]
+    """
+    def weight_function(loss_vector):
+        if weighted_loss:
+            weight_list = []
+            logging.info(y)
+            for label in y:
+                label = weights[label]
+                weight_list.append(label)
+            loss_vector = torch.sum(loss_vector, dim=1)
+            return loss_vector*torch.tensor(weight_list)
+        else:
+            return loss_vector
+    return weight_function
 
 def get_loss(x,y, params, dcg, FD, model):
     y0, _ = dcg.cast_label_to_one_hot_and_prototype(y)
@@ -227,7 +268,14 @@ def get_loss(x,y, params, dcg, FD, model):
     output = model(x, yt_fusion, t, dcg_fusion)
     output_global = model(x, yt_global, t, dcg_global)
     output_local = model(x, yt_local, t, dcg_local)
-    loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps, output_global) + compute_mmd(eps, output_local))
+    
+    weighted = weighted_loss(y=y)
+    loss = weighted.loss((eps - output).square()).mean() + 0.5*(weighted.loss(compute_mmd(eps, output_global)).mean() + 
+                                                      weighted.loss(compute_mmd(eps, output_local)).mean())
+            
+    # weight_function = weight_wrapper(y=y)
+    # loss = weight_function((eps - output).square()).mean() + 0.5*(weight_function(compute_mmd(eps, output_global)).mean() + 
+    #                                                   weight_function(compute_mmd(eps, output_local)).mean())
     return loss
 
 def train(dcg, model, params, train_loader, val_loader):
