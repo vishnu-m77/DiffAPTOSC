@@ -225,30 +225,6 @@ class weighted_loss():
             loss_vector = loss_vector*torch.tensor(weight_list)
         return loss_vector
     
-def weight_wrapper(y, weights = [1/100,1,1,1,1], weighted_loss = False):
-    """
-    Wrapper function which takes in y (labels), weights of each label and a boolean weighted_loss
-    Wrapper function returns a weight_function function.
-    If weighted_loss is False, weight_function returns the original loss and otherwise computed weighted loss
-    Size of y is [batch_size]
-    y is mapped to a tensor weight_list (also of size [batch_size])
-    weight_function takes in a loss vector of size [batch x *]
-    where * denotes arbitrary dimensions and then computes element wise multiplication with weight_list
-    to produce weighted loss vector of size [batch_size]
-    """
-    def weight_function(loss_vector):
-        if weighted_loss:
-            weight_list = []
-            logging.info(y)
-            for label in y:
-                label = weights[label]
-                weight_list.append(label)
-            loss_vector = torch.sum(loss_vector, dim=1)
-            return loss_vector*torch.tensor(weight_list)
-        else:
-            return loss_vector
-    return weight_function
-
 def get_loss(x,y, params, dcg, FD, model):
     y0, _ = dcg.cast_label_to_one_hot_and_prototype(y)
     n = x.size(0)
@@ -272,10 +248,7 @@ def get_loss(x,y, params, dcg, FD, model):
     weighted = weighted_loss(y=y)
     loss = weighted.loss((eps - output).square()).mean() + 0.5*(weighted.loss(compute_mmd(eps, output_global)).mean() + 
                                                       weighted.loss(compute_mmd(eps, output_local)).mean())
-            
-    # weight_function = weight_wrapper(y=y)
-    # loss = weight_function((eps - output).square()).mean() + 0.5*(weight_function(compute_mmd(eps, output_global)).mean() + 
-    #                                                   weight_function(compute_mmd(eps, output_local)).mean())
+
     return loss
 
 def train(dcg, model, params, train_loader, val_loader):
@@ -326,7 +299,7 @@ def train(dcg, model, params, train_loader, val_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plot_loss(loss_arr=loss_batch, val_loss_array=loss_batch_val, mode = False)
+    plot_loss(loss_arr=loss_batch, val_loss_array=loss_batch_val, mode = "diffusion")
 
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):
