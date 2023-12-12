@@ -278,7 +278,7 @@ def train(dcg, model, params, train_loader, val_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plot_loss(loss_arr=loss_batch, title="Loss function for Diffusion Train", val_loss_array=loss_batch_val, mode = False)
+    plot_loss(loss_arr=loss_batch, val_loss_array=loss_batch_val, mode = False)
 
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):

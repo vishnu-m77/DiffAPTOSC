@@ -20,17 +20,28 @@ def plot_confusion(expected, predicted, mode = True):
         plt.savefig('plots/diff_confusion'+'.png', format='PNG')
     plt.close()
 
-
-def plot_loss(loss_arr, title, val_loss_array=None, mode = True):
-    plt.plot(loss_arr, label = "Train Loss")
-    if val_loss_array!=None:
-        plt.plot(val_loss_array, label = "Val Loss")
-    plt.xlabel('Iterations')
-    plt.ylabel('Loss')
-    plt.title(title)
-    plt.legend()
+def plot_loss(loss_arr, val_loss_array=None, mode = "dcg"):
+    
+    if mode != "dcg" and mode != "diffusion":
+        logging.error('Check value of the mode for plotting. Loss plots not generated.')
+        return
+    if len(loss_arr) >= 50:
+        loss_arr = loss_arr[30:]
+        val_loss_array = val_loss_array[30:]
+    
+    fig, ax = plt.subplots(nrows=2, ncols=1, constrained_layout=True)
+    ax[0].set_xlabel('Iterations')
+    ax[0].set_ylabel('Loss')
+    ax[0].set_title('Train Loss')
+    ax[0].plot(loss_arr, label = "Train Loss")
+    
+    ax[1].set_xlabel('Iterations')
+    ax[1].set_ylabel('Loss')
+    ax[1].set_title('Validation Loss')
+    ax[1].plot(val_loss_array, label = "Val Loss")
+    
     os.makedirs('plots', exist_ok=True)
-    if mode:
+    if mode == "dcg":
         plt.savefig('plots/dcg_loss'+'.png', format='PNG')
     else:
         plt.savefig('plots/diffusion_loss'+'.png', format='PNG')
