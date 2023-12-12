@@ -209,7 +209,7 @@ def compute_mmd(x, y):
     return mmd
 
 class weighted_loss():
-    def __init__(self, y, weights = [1/100,1,1,1,1], weighted_loss = False):
+    def __init__(self, y, weights = [1/100,1,1,1,1], weighted_loss = True):
         self.y = y
         self.weights = weights
         self.weighted_loss = weighted_loss
@@ -217,7 +217,7 @@ class weighted_loss():
     def loss(self, loss_vector):
         if self.weighted_loss:
             weight_list = []
-            logging.info(self.y)
+            # logging.info(self.y)
             for label in self.y:
                 label = self.weights[label]
                 weight_list.append(label)
