@@ -209,20 +209,18 @@ def compute_mmd(x, y):
     return mmd
 
 class weighted_loss():
-    def __init__(self, y, weights = [1/100,1,1,1,1], weighted_loss = True):
+    def __init__(self, y, weights = [1/100,1,1,1,1]):
         self.y = y
         self.weights = weights
-        self.weighted_loss = weighted_loss
     
     def loss(self, loss_vector):
-        if self.weighted_loss:
-            weight_list = []
-            # logging.info(self.y)
-            for label in self.y:
-                label = self.weights[label]
-                weight_list.append(label)
-            loss_vector = torch.sum(loss_vector, dim=1)
-            loss_vector = loss_vector*torch.tensor(weight_list)
+        weight_list = []
+        # logging.info(self.y)
+        for label in self.y:
+            label = self.weights[label]
+            weight_list.append(label)
+        loss_vector = torch.sum(loss_vector, dim=1)
+        loss_vector = loss_vector*torch.tensor(weight_list)
         return loss_vector
     
 def get_loss(x,y, params, dcg, FD, model):
