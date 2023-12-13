@@ -260,7 +260,6 @@ def get_loss(x, y, params, dcg, FD, model):
 def train(dcg, model, params, train_loader, val_loader):
     FD = ForwardDiffusion(config=params)  # initialize class
 
-    reverse_diffusion = ReverseDiffusion(config=params)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
     data_start = time.time()
