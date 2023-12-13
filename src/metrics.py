@@ -70,20 +70,15 @@ def compute_f1_score(target, pred):
 
 def t_sne(targets, y_t, t_num):
     y_t = np.array(y_t)
-    # print(targets)
     y_t_values_flat = y_t.reshape((y_t.shape[0], -1))
     y_t_tsne = TSNE(
         n_components=2, perplexity=1.8).fit_transform(y_t_values_flat)
-    # print(y_t_tsne)
     # Plot the t-SNE visualization with color-coded classes
     plt.scatter(y_t_tsne[:, 0], y_t_tsne[:, 1], c=targets,
                 cmap='viridis', marker='o', edgecolors='w', s=100)
     plt.title('t-SNE Visualization of 5 Classes at t='+str(t_num))
-    # plt.xlabel('t-SNE Dimension 1')
-    # plt.ylabel('t-SNE Dimension 2')
     plt.colorbar(label='Class')
     plt.savefig('plots/t_sne_'+str(t_num)+'.png', format='PNG')
-    # plt.legend()
     plt.close()
     return y_t_tsne
 
