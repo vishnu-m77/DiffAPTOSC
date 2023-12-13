@@ -25,6 +25,7 @@
     },
     "diffusion": {
         "timesteps": 60,
+        "weight": "n",
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,

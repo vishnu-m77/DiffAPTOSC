@@ -1,0 +1,2230 @@
+root - INFO - cpu
+root - INFO - Initialize DataLoader for train dataset
+root - INFO - Initialize DataLoader for test dataset
+root - INFO - Loading trained DCG checkpoint from saved_dcg.pth
+root - INFO - Initialize DCG
+root - INFO - DCG completed
+root - INFO - Initialize UNET
+
+
+root - INFO - epoch: 1, batch 1 Diffusion training loss: 0.020097514909414582	 validation loss: 2.6743666635340544
+
+
+root - INFO - epoch: 1, batch 2 Diffusion training loss: 0.02739849299335283	 validation loss: 446.13737655733854
+
+
+root - INFO - epoch: 1, batch 3 Diffusion training loss: 0.01742858097511324	 validation loss: 8670.308259370599
+
+
+root - INFO - epoch: 1, batch 4 Diffusion training loss: 0.014236388071227518	 validation loss: 5570.019294935487
+
+
+root - INFO - epoch: 1, batch 5 Diffusion training loss: 0.016958435585227156	 validation loss: 371.8537967777116
+
+
+root - INFO - epoch: 1, batch 6 Diffusion training loss: 0.0230603239084321	 validation loss: 319.7834018027028
+
+
+root - INFO - epoch: 1, batch 7 Diffusion training loss: 0.0189385219819908	 validation loss: 4.397349857937996
+
+
+root - INFO - epoch: 1, batch 8 Diffusion training loss: 0.016860565957486712	 validation loss: 2.862671739685983
+
+
+root - INFO - epoch: 1, batch 9 Diffusion training loss: 0.011079758639098465	 validation loss: 0.17048540439590976
+
+
+root - INFO - epoch: 1, batch 10 Diffusion training loss: 0.010609351611918689	 validation loss: 0.03527056722416285
+
+
+root - INFO - epoch: 1, batch 11 Diffusion training loss: 0.023012560833695912	 validation loss: 0.11340842434207433
+
+
+root - INFO - epoch: 1, batch 12 Diffusion training loss: 0.013768818888143734	 validation loss: 0.20286038299758657
+
+
+root - INFO - epoch: 1, batch 13 Diffusion training loss: 0.013824477942235094	 validation loss: 0.629152109426962
+
+
+root - INFO - epoch: 1, batch 14 Diffusion training loss: 0.006693307530030837	 validation loss: 1.6536401129762528
+
+
+root - INFO - epoch: 1, batch 15 Diffusion training loss: 0.017671354394412527	 validation loss: 2.8868745353369314
+
+
+root - INFO - epoch: 1, batch 16 Diffusion training loss: 0.008404743568092805	 validation loss: 1.4941166201949228
+
+
+root - INFO - epoch: 1, batch 17 Diffusion training loss: 0.011979818658704088	 validation loss: 0.23988739904877754
+
+
+root - INFO - epoch: 1, batch 18 Diffusion training loss: 0.012879363903697474	 validation loss: 0.45349639171297645
+
+
+root - INFO - epoch: 1, batch 19 Diffusion training loss: 0.010889713409316104	 validation loss: 0.11695548181170609
+
+
+root - INFO - epoch: 1, batch 20 Diffusion training loss: 0.010400064179701678	 validation loss: 0.09576210082774805
+
+
+root - INFO - epoch: 1, batch 21 Diffusion training loss: 0.009429679763823579	 validation loss: 0.1254257189929941
+
+
+root - INFO - epoch: 1, batch 22 Diffusion training loss: 0.00925156050709192	 validation loss: 0.070136784556714
+
+
+root - INFO - epoch: 1, batch 23 Diffusion training loss: 0.008846728513489867	 validation loss: 0.06795736883643035
+
+
+root - INFO - epoch: 1, batch 24 Diffusion training loss: 0.009639663017632279	 validation loss: 0.018147037158269323
+
+
+root - INFO - epoch: 1, batch 25 Diffusion training loss: 0.007450356919532545	 validation loss: 0.06234022718077019
+
+
+root - INFO - epoch: 1, batch 26 Diffusion training loss: 0.011050939809650048	 validation loss: 0.01526341413118296
+
+
+root - INFO - epoch: 1, batch 27 Diffusion training loss: 0.0081415495704086	 validation loss: 0.035535861926567144
+
+
+root - INFO - epoch: 1, batch 28 Diffusion training loss: 0.00986822977022388	 validation loss: 0.056393931036623185
+
+
+root - INFO - epoch: 1, batch 29 Diffusion training loss: 0.010628995343572912	 validation loss: 0.018580841495337556
+
+
+root - INFO - epoch: 1, batch 30 Diffusion training loss: 0.01681806807003433	 validation loss: 0.055650242906088575
+
+
+root - INFO - epoch: 1, batch 31 Diffusion training loss: 0.013422860336434196	 validation loss: 0.062050190834652054
+
+
+root - INFO - epoch: 1, batch 32 Diffusion training loss: 0.008944124122016582	 validation loss: 0.02875735294658
+
+
+root - INFO - epoch: 1, batch 33 Diffusion training loss: 0.010760735520906823	 validation loss: 0.0515609770930119
+
+
+root - INFO - epoch: 1, batch 34 Diffusion training loss: 0.011651352038619516	 validation loss: 0.016624242115595562
+
+
+root - INFO - epoch: 1, batch 35 Diffusion training loss: 0.005883570459805471	 validation loss: 0.031239605765154534
+
+
+root - INFO - epoch: 1, batch 36 Diffusion training loss: 0.012917728170430921	 validation loss: 0.031481744469996964
+
+
+root - INFO - epoch: 1, batch 37 Diffusion training loss: 0.004106544634590549	 validation loss: 0.0644381104588074
+
+
+root - INFO - epoch: 1, batch 38 Diffusion training loss: 0.005626150459794614	 validation loss: 0.04912602336762998
+
+
+root - INFO - epoch: 1, batch 39 Diffusion training loss: 0.00976679504930953	 validation loss: 0.03866742367782019
+
+
+root - INFO - epoch: 1, batch 40 Diffusion training loss: 0.005861230348173239	 validation loss: 0.07506712620200337
+
+
+root - INFO - epoch: 1, batch 41 Diffusion training loss: 0.0063609143595943045	 validation loss: 0.03100362003479399
+
+
+root - INFO - epoch: 1, batch 42 Diffusion training loss: 0.011899204427640992	 validation loss: 0.014779044299579052
+
+
+root - INFO - epoch: 1, batch 43 Diffusion training loss: 0.006848324111664631	 validation loss: 0.01739540786184211
+
+
+root - INFO - epoch: 1, batch 44 Diffusion training loss: 0.009925983713752112	 validation loss: 0.02474888672751248
+
+
+root - INFO - epoch: 1, batch 45 Diffusion training loss: 0.0051215699548181354	 validation loss: 0.03612667943697207
+
+
+root - INFO - epoch: 1, batch 46 Diffusion training loss: 0.00790355962487866	 validation loss: 0.006570014731307904
+
+
+root - INFO - epoch: 1, batch 47 Diffusion training loss: 0.007924858381971711	 validation loss: 0.03373033315636418
+
+
+root - INFO - epoch: 1, batch 48 Diffusion training loss: 0.01146478531306254	 validation loss: 0.047327459475700204
+
+
+root - INFO - epoch: 1, batch 49 Diffusion training loss: 0.012622450043535106	 validation loss: 0.06825584891485467
+
+
+root - INFO - epoch: 1, batch 50 Diffusion training loss: 0.00735807189032971	 validation loss: 0.04585369135693973
+
+
+root - INFO - epoch: 1, batch 51 Diffusion training loss: 0.006896093245271381	 validation loss: 0.023819464141271725
+
+
+root - INFO - epoch: 1, batch 52 Diffusion training loss: 0.00799659651553608	 validation loss: 0.03616941781031904
+
+
+root - INFO - epoch: 1, batch 53 Diffusion training loss: 0.009387381432302942	 validation loss: 0.01040979468538606
+
+
+root - INFO - epoch: 1, batch 54 Diffusion training loss: 0.007050352655329864	 validation loss: 0.013425061584308434
+
+
+root - INFO - epoch: 1, batch 55 Diffusion training loss: 0.005095820897070169	 validation loss: 0.01773118380708435
+
+
+root - INFO - epoch: 1, batch 56 Diffusion training loss: 0.007842566414133336	 validation loss: 0.015095496545406487
+
+
+root - INFO - epoch: 1, batch 57 Diffusion training loss: 0.005241469185020038	 validation loss: 0.013094867171886328
+
+
+root - INFO - epoch: 1, batch 58 Diffusion training loss: 0.010317861527126763	 validation loss: 0.04534673788467659
+
+
+root - INFO - epoch: 1, batch 59 Diffusion training loss: 0.01477521704873012	 validation loss: 0.006963656007287994
+
+
+root - INFO - epoch: 1, batch 60 Diffusion training loss: 0.01341197044863375	 validation loss: 0.007436125717359793
+
+
+root - INFO - epoch: 1, batch 61 Diffusion training loss: 0.007066920176038473	 validation loss: 0.007586020841375354
+
+
+root - INFO - epoch: 1, batch 62 Diffusion training loss: 0.005857159639034306	 validation loss: 0.009020788834953723
+
+
+root - INFO - epoch: 1, batch 63 Diffusion training loss: 0.007932692553135091	 validation loss: 0.011537261029988878
+
+
+root - INFO - epoch: 1, batch 64 Diffusion training loss: 0.010326714525932545	 validation loss: 0.008258987123302128
+
+
+root - INFO - epoch: 1, batch 65 Diffusion training loss: 0.007415240689962981	 validation loss: 0.00566272967547266
+
+
+root - INFO - epoch: 1, batch 66 Diffusion training loss: 0.005598618026558806	 validation loss: 0.00923635937225515
+
+
+root - INFO - epoch: 1, batch 67 Diffusion training loss: 0.012600601669054785	 validation loss: 0.0030521619244838747
+
+
+root - INFO - epoch: 1, batch 68 Diffusion training loss: 0.00478197419351144	 validation loss: 0.008632669705284821
+
+
+root - INFO - epoch: 1, batch 69 Diffusion training loss: 0.00803844102433442	 validation loss: 0.006451748141577594
+
+
+root - INFO - epoch: 1, batch 70 Diffusion training loss: 0.007651744389794818	 validation loss: 0.005333096353058238
+
+
+root - INFO - epoch: 1, batch 71 Diffusion training loss: 0.008770215929891372	 validation loss: 0.003959555996359152
+
+
+root - INFO - epoch: 1, batch 72 Diffusion training loss: 0.004847973956918442	 validation loss: 0.0061800898864176924
+
+
+root - INFO - epoch: 1, batch 73 Diffusion training loss: 0.007379102842406221	 validation loss: 0.004727290447754639
+
+
+root - INFO - epoch: 1, batch 74 Diffusion training loss: 0.007748750148870762	 validation loss: 0.007289471865742755
+
+
+root - INFO - epoch: 1, batch 75 Diffusion training loss: 0.011196060146699036	 validation loss: 0.007421789071010612
+
+
+root - INFO - epoch: 1, batch 76 Diffusion training loss: 0.005134732185364268	 validation loss: 0.006972946156269913
+
+
+root - INFO - epoch: 1, batch 77 Diffusion training loss: 0.010059556818481852	 validation loss: 0.019359100596850788
+
+
+root - INFO - epoch: 1, batch 78 Diffusion training loss: 0.010315367066394366	 validation loss: 0.003676159654564669
+
+
+root - INFO - epoch: 1, batch 79 Diffusion training loss: 0.008457989238104476	 validation loss: 0.018484280797079384
+
+
+root - INFO - epoch: 1, batch 80 Diffusion training loss: 0.008395645637814059	 validation loss: 0.014983846549380403
+
+
+root - INFO - epoch: 1, batch 81 Diffusion training loss: 0.006655091216007332	 validation loss: 0.02769883815150883
+
+
+root - INFO - epoch: 1, batch 82 Diffusion training loss: 0.003969100999914699	 validation loss: 0.013395744523467833
+
+
+root - INFO - epoch: 1, batch 83 Diffusion training loss: 0.006436639044736434	 validation loss: 0.007899661099697962
+
+
+root - INFO - epoch: 1, batch 84 Diffusion training loss: 0.009283277358318121	 validation loss: 0.0480631316564874
+
+
+root - INFO - epoch: 2, batch 1 Diffusion training loss: 0.005415784039135521	 validation loss: 0.006578162091381639
+
+
+root - INFO - epoch: 2, batch 2 Diffusion training loss: 0.005022709868704317	 validation loss: 0.016402891592292808
+
+
+root - INFO - epoch: 2, batch 3 Diffusion training loss: 0.003858092991906413	 validation loss: 0.011059205850537396
+
+
+root - INFO - epoch: 2, batch 4 Diffusion training loss: 0.0065361480336104515	 validation loss: 0.005055587811994406
+
+
+root - INFO - epoch: 2, batch 5 Diffusion training loss: 0.0027166860295537608	 validation loss: 0.012077353039641692
+
+
+root - INFO - epoch: 2, batch 6 Diffusion training loss: 0.007743610556719382	 validation loss: 0.009585445242517308
+
+
+root - INFO - epoch: 2, batch 7 Diffusion training loss: 0.004132791433560143	 validation loss: 0.037401527715992366
+
+
+root - INFO - epoch: 2, batch 8 Diffusion training loss: 0.006461201076504642	 validation loss: 0.005829156447674279
+
+
+root - INFO - epoch: 2, batch 9 Diffusion training loss: 0.007614976164246814	 validation loss: 0.01470868530377336
+
+
+root - INFO - epoch: 2, batch 10 Diffusion training loss: 0.0032003824516507566	 validation loss: 0.004493696946404582
+
+
+root - INFO - epoch: 2, batch 11 Diffusion training loss: 0.004325055325437743	 validation loss: 0.0022459972916941437
+
+
+root - INFO - epoch: 2, batch 12 Diffusion training loss: 0.003744021710267503	 validation loss: 0.0030910948615540017
+
+
+root - INFO - epoch: 2, batch 13 Diffusion training loss: 0.005787808276969772	 validation loss: 0.0039300241677679175
+
+
+root - INFO - epoch: 2, batch 14 Diffusion training loss: 0.0037243430898772053	 validation loss: 0.00389016513780833
+
+
+root - INFO - epoch: 2, batch 15 Diffusion training loss: 0.0032986660239262555	 validation loss: 0.003556287555442913
+
+
+root - INFO - epoch: 2, batch 16 Diffusion training loss: 0.003209530083405182	 validation loss: 0.0034450285187792645
+
+
+root - INFO - epoch: 2, batch 17 Diffusion training loss: 0.005484541875452961	 validation loss: 0.005224182642983752
+
+
+root - INFO - epoch: 2, batch 18 Diffusion training loss: 0.006858324787594172	 validation loss: 0.0042867111469090825
+
+
+root - INFO - epoch: 2, batch 19 Diffusion training loss: 0.0037296079581555655	 validation loss: 0.005519815286433295
+
+
+root - INFO - epoch: 2, batch 20 Diffusion training loss: 0.0035271116537690947	 validation loss: 0.01893646137737237
+
+
+root - INFO - epoch: 2, batch 21 Diffusion training loss: 0.005717618963356635	 validation loss: 0.08606917940095758
+
+
+root - INFO - epoch: 2, batch 22 Diffusion training loss: 0.0026772422466822907	 validation loss: 0.07237647583398954
+
+
+root - INFO - epoch: 2, batch 23 Diffusion training loss: 0.004157294021481962	 validation loss: 0.004719089837161149
+
+
+root - INFO - epoch: 2, batch 24 Diffusion training loss: 0.006871346189403621	 validation loss: 0.01288240976699182
+
+
+root - INFO - epoch: 2, batch 25 Diffusion training loss: 0.002227541237118226	 validation loss: 0.0034057397721875375
+
+
+root - INFO - epoch: 2, batch 26 Diffusion training loss: 0.007734029964440032	 validation loss: 0.00419826967757326
+
+
+root - INFO - epoch: 2, batch 27 Diffusion training loss: 0.0038899031649884536	 validation loss: 0.003794385759210022
+
+
+root - INFO - epoch: 2, batch 28 Diffusion training loss: 0.008589992147898348	 validation loss: 0.002494705358246444
+
+
+root - INFO - epoch: 2, batch 29 Diffusion training loss: 0.005390870829348784	 validation loss: 0.005099289160997423
+
+
+root - INFO - epoch: 2, batch 30 Diffusion training loss: 0.010035136140342125	 validation loss: 0.04796689883435995
+
+
+root - INFO - epoch: 2, batch 31 Diffusion training loss: 0.009987083978106888	 validation loss: 0.32195750595788375
+
+
+root - INFO - epoch: 2, batch 32 Diffusion training loss: 0.0052168430029610365	 validation loss: 0.06655339348241356
+
+
+root - INFO - epoch: 2, batch 33 Diffusion training loss: 0.006638444350965139	 validation loss: 0.11731273264470504
+
+
+root - INFO - epoch: 2, batch 34 Diffusion training loss: 0.00971201214780586	 validation loss: 0.017682833758246592
+
+
+root - INFO - epoch: 2, batch 35 Diffusion training loss: 0.00728365760212683	 validation loss: 0.051548703584733326
+
+
+root - INFO - epoch: 2, batch 36 Diffusion training loss: 0.003682938876591908	 validation loss: 0.008878987955272892
+
+
+root - INFO - epoch: 2, batch 37 Diffusion training loss: 0.0045831490471748065	 validation loss: 0.014433085520093704
+
+
+root - INFO - epoch: 2, batch 38 Diffusion training loss: 0.005431660180183774	 validation loss: 0.00781892860864321
+
+
+root - INFO - epoch: 2, batch 39 Diffusion training loss: 0.006960936847573696	 validation loss: 0.010838400641902654
+
+
+root - INFO - epoch: 2, batch 40 Diffusion training loss: 0.0070584140322491225	 validation loss: 0.026910158847387084
+
+
+root - INFO - epoch: 2, batch 41 Diffusion training loss: 0.004671615605086301	 validation loss: 0.004516924400773989
+
+
+root - INFO - epoch: 2, batch 42 Diffusion training loss: 0.0034431838764541513	 validation loss: 0.005283367973383441
+
+
+root - INFO - epoch: 2, batch 43 Diffusion training loss: 0.004566336754223994	 validation loss: 0.02143650278563974
+
+
+root - INFO - epoch: 2, batch 44 Diffusion training loss: 0.00700785782986049	 validation loss: 0.0032897185066484568
+
+
+root - INFO - epoch: 2, batch 45 Diffusion training loss: 0.004279082884843478	 validation loss: 0.006445599597928288
+
+
+root - INFO - epoch: 2, batch 46 Diffusion training loss: 0.002263143882442424	 validation loss: 0.00460409129925163
+
+
+root - INFO - epoch: 2, batch 47 Diffusion training loss: 0.008715493421748863	 validation loss: 0.00455227253697496
+
+
+root - INFO - epoch: 2, batch 48 Diffusion training loss: 0.004427380976294452	 validation loss: 0.0067091993934123885
+
+
+root - INFO - epoch: 2, batch 49 Diffusion training loss: 0.00599879854130141	 validation loss: 0.0066992753410022405
+
+
+root - INFO - epoch: 2, batch 50 Diffusion training loss: 0.005490677674694029	 validation loss: 0.007244487757085002
+
+
+root - INFO - epoch: 2, batch 51 Diffusion training loss: 0.0033195423999849774	 validation loss: 0.0022683106744712327
+
+
+root - INFO - epoch: 2, batch 52 Diffusion training loss: 0.003443692381968632	 validation loss: 0.006438246717366294
+
+
+root - INFO - epoch: 2, batch 53 Diffusion training loss: 0.011525628581997148	 validation loss: 0.006158887575123534
+
+
+root - INFO - epoch: 2, batch 54 Diffusion training loss: 0.011967240120639508	 validation loss: 0.004192174941430177
+
+
+root - INFO - epoch: 2, batch 55 Diffusion training loss: 0.0027255359290068518	 validation loss: 0.0069400748465905234
+
+
+root - INFO - epoch: 2, batch 56 Diffusion training loss: 0.0047347371109460025	 validation loss: 0.010443001303592787
+
+
+root - INFO - epoch: 2, batch 57 Diffusion training loss: 0.0037696034782837154	 validation loss: 0.06630810210021437
+
+
+root - INFO - epoch: 2, batch 58 Diffusion training loss: 0.006260755226036701	 validation loss: 0.041170520391827
+
+
+root - INFO - epoch: 2, batch 59 Diffusion training loss: 0.0030385856266333085	 validation loss: 0.007250138476574133
+
+
+root - INFO - epoch: 2, batch 60 Diffusion training loss: 0.0028837132167811976	 validation loss: 0.010912891010202048
+
+
+root - INFO - epoch: 2, batch 61 Diffusion training loss: 0.005180309328178222	 validation loss: 0.01705307868204258
+
+
+root - INFO - epoch: 2, batch 62 Diffusion training loss: 0.008157812729309015	 validation loss: 0.036187316205517246
+
+
+root - INFO - epoch: 2, batch 63 Diffusion training loss: 0.002100625718147618	 validation loss: 0.005498465619966514
+
+
+root - INFO - epoch: 2, batch 64 Diffusion training loss: 0.005362051031832781	 validation loss: 0.007159448426759353
+
+
+root - INFO - epoch: 2, batch 65 Diffusion training loss: 0.0046762659005630145	 validation loss: 0.008633985592213516
+
+
+root - INFO - epoch: 2, batch 66 Diffusion training loss: 0.005864989239500174	 validation loss: 0.012538034728626819
+
+
+root - INFO - epoch: 2, batch 67 Diffusion training loss: 0.010669898067808964	 validation loss: 0.06190321162853161
+
+
+root - INFO - epoch: 2, batch 68 Diffusion training loss: 0.0035973280490907786	 validation loss: 0.0027105020179003995
+
+
+root - INFO - epoch: 2, batch 69 Diffusion training loss: 0.003940063084457138	 validation loss: 0.016801312828494844
+
+
+root - INFO - epoch: 2, batch 70 Diffusion training loss: 0.0027799825989580844	 validation loss: 0.004471175961427316
+
+
+root - INFO - epoch: 2, batch 71 Diffusion training loss: 0.0034573107820387245	 validation loss: 0.0038195780760395966
+
+
+root - INFO - epoch: 2, batch 72 Diffusion training loss: 0.003553328913642757	 validation loss: 0.004208303312489361
+
+
+root - INFO - epoch: 2, batch 73 Diffusion training loss: 0.0041159728056630795	 validation loss: 0.005328836105700705
+
+
+root - INFO - epoch: 2, batch 74 Diffusion training loss: 0.004577189183241377	 validation loss: 0.03163699721658538
+
+
+root - INFO - epoch: 2, batch 75 Diffusion training loss: 0.004489697764735705	 validation loss: 0.008774637635332512
+
+
+root - INFO - epoch: 2, batch 76 Diffusion training loss: 0.004009349319499276	 validation loss: 0.009990263558436782
+
+
+root - INFO - epoch: 2, batch 77 Diffusion training loss: 0.0028190756422912136	 validation loss: 0.014968823576823612
+
+
+root - INFO - epoch: 2, batch 78 Diffusion training loss: 0.009342786131694408	 validation loss: 0.025839104537099
+
+
+root - INFO - epoch: 2, batch 79 Diffusion training loss: 0.00887058384692246	 validation loss: 0.2191951120783162
+
+
+root - INFO - epoch: 2, batch 80 Diffusion training loss: 0.007881375476348346	 validation loss: 0.0035622111639427565
+
+
+root - INFO - epoch: 2, batch 81 Diffusion training loss: 0.005402858378605492	 validation loss: 0.004110217064587163
+
+
+root - INFO - epoch: 2, batch 82 Diffusion training loss: 0.007767472879104744	 validation loss: 0.026284086634240478
+
+
+root - INFO - epoch: 2, batch 83 Diffusion training loss: 0.0103263232834221	 validation loss: 0.008738318083117237
+
+
+root - INFO - epoch: 2, batch 84 Diffusion training loss: 0.006341205840166788	 validation loss: 0.0029191499957826857
+
+
+root - INFO - epoch: 3, batch 1 Diffusion training loss: 0.004918936802849285	 validation loss: 0.012204562588739207
+
+
+root - INFO - epoch: 3, batch 2 Diffusion training loss: 0.0013513261787378916	 validation loss: 0.028120124568795243
+
+
+root - INFO - epoch: 3, batch 3 Diffusion training loss: 0.01056824790152582	 validation loss: 0.019428429858784593
+
+
+root - INFO - epoch: 3, batch 4 Diffusion training loss: 0.005488426180425816	 validation loss: 0.00216642308867721
+
+
+root - INFO - epoch: 3, batch 5 Diffusion training loss: 0.008515882980252097	 validation loss: 0.0028090943410702665
+
+
+root - INFO - epoch: 3, batch 6 Diffusion training loss: 0.002525933701920398	 validation loss: 0.004250461286029338
+
+
+root - INFO - epoch: 3, batch 7 Diffusion training loss: 0.003519599590627873	 validation loss: 0.0058543035649593345
+
+
+root - INFO - epoch: 3, batch 8 Diffusion training loss: 0.0029660796469733984	 validation loss: 0.005881253577145831
+
+
+root - INFO - epoch: 3, batch 9 Diffusion training loss: 0.0050831403391860845	 validation loss: 0.08957443539554243
+
+
+root - INFO - epoch: 3, batch 10 Diffusion training loss: 0.0043546156047497495	 validation loss: 0.004556488717642731
+
+
+root - INFO - epoch: 3, batch 11 Diffusion training loss: 0.006274120130525214	 validation loss: 0.0512720069636148
+
+
+root - INFO - epoch: 3, batch 12 Diffusion training loss: 0.002452276040692436	 validation loss: 0.001951123909391882
+
+
+root - INFO - epoch: 3, batch 13 Diffusion training loss: 0.004790002110733965	 validation loss: 0.005800812721961058
+
+
+root - INFO - epoch: 3, batch 14 Diffusion training loss: 0.00560207997432372	 validation loss: 0.0021251322908957563
+
+
+root - INFO - epoch: 3, batch 15 Diffusion training loss: 0.005058604331955109	 validation loss: 0.00418891794899015
+
+
+root - INFO - epoch: 3, batch 16 Diffusion training loss: 0.007344415658930679	 validation loss: 0.0025011118289802897
+
+
+root - INFO - epoch: 3, batch 17 Diffusion training loss: 0.001982068043924066	 validation loss: 0.003051384542585382
+
+
+root - INFO - epoch: 3, batch 18 Diffusion training loss: 0.004397056186515832	 validation loss: 0.002750870034529394
+
+
+root - INFO - epoch: 3, batch 19 Diffusion training loss: 0.0029864798903638246	 validation loss: 0.00576558448765154
+
+
+root - INFO - epoch: 3, batch 20 Diffusion training loss: 0.004188934378006145	 validation loss: 0.005287298447482786
+
+
+root - INFO - epoch: 3, batch 21 Diffusion training loss: 0.003198384608488168	 validation loss: 0.005628528376276422
+
+
+root - INFO - epoch: 3, batch 22 Diffusion training loss: 0.0034025814904448345	 validation loss: 0.0028056855953154745
+
+
+root - INFO - epoch: 3, batch 23 Diffusion training loss: 0.0023259056730082473	 validation loss: 0.004222122691619327
+
+
+root - INFO - epoch: 3, batch 24 Diffusion training loss: 0.0010077134453645147	 validation loss: 0.004685548367069623
+
+
+root - INFO - epoch: 3, batch 25 Diffusion training loss: 0.0029747168683794106	 validation loss: 0.006911286225716466
+
+
+root - INFO - epoch: 3, batch 26 Diffusion training loss: 0.009321390665317666	 validation loss: 0.00411514816743176
+
+
+root - INFO - epoch: 3, batch 27 Diffusion training loss: 0.001310385813615394	 validation loss: 0.0038973979432730256
+
+
+root - INFO - epoch: 3, batch 28 Diffusion training loss: 0.004545778871626023	 validation loss: 0.003319752657829283
+
+
+root - INFO - epoch: 3, batch 29 Diffusion training loss: 0.004885790256038022	 validation loss: 0.0036921034095126477
+
+
+root - INFO - epoch: 3, batch 30 Diffusion training loss: 0.006098755361459429	 validation loss: 0.005064663894328756
+
+
+root - INFO - epoch: 3, batch 31 Diffusion training loss: 0.005096854226141258	 validation loss: 0.004307950850649988
+
+
+root - INFO - epoch: 3, batch 32 Diffusion training loss: 0.0038143455157938584	 validation loss: 0.004681592985367694
+
+
+root - INFO - epoch: 3, batch 33 Diffusion training loss: 0.005512041010518543	 validation loss: 0.0011521849562851105
+
+
+root - INFO - epoch: 3, batch 34 Diffusion training loss: 0.003544447237988773	 validation loss: 0.0021428091530407978
+
+
+root - INFO - epoch: 3, batch 35 Diffusion training loss: 0.002953578976198085	 validation loss: 0.0036874706304162942
+
+
+root - INFO - epoch: 3, batch 36 Diffusion training loss: 0.005862454362243356	 validation loss: 0.003071975117192452
+
+
+root - INFO - epoch: 3, batch 37 Diffusion training loss: 0.006063874866752777	 validation loss: 0.016414811242362517
+
+
+root - INFO - epoch: 3, batch 38 Diffusion training loss: 0.003895067426004498	 validation loss: 0.007781676086086618
+
+
+root - INFO - epoch: 3, batch 39 Diffusion training loss: 0.005698935007984355	 validation loss: 0.005258572329102697
+
+
+root - INFO - epoch: 3, batch 40 Diffusion training loss: 0.011505170681575732	 validation loss: 0.176831352303829
+
+
+root - INFO - epoch: 3, batch 41 Diffusion training loss: 0.007150146121109082	 validation loss: 0.0502796190345745
+
+
+root - INFO - epoch: 3, batch 42 Diffusion training loss: 0.005197707510398752	 validation loss: 0.029934247896737154
+
+
+root - INFO - epoch: 3, batch 43 Diffusion training loss: 0.008028113700417632	 validation loss: 0.02109546720316916
+
+
+root - INFO - epoch: 3, batch 44 Diffusion training loss: 0.009145657514825453	 validation loss: 0.7089722112921529
+
+
+root - INFO - epoch: 3, batch 45 Diffusion training loss: 0.0095017803868837	 validation loss: 0.1907709295072119
+
+
+root - INFO - epoch: 3, batch 46 Diffusion training loss: 0.0063326715527659205	 validation loss: 0.008051744832316006
+
+
+root - INFO - epoch: 3, batch 47 Diffusion training loss: 0.005257333817570563	 validation loss: 0.011539404369721885
+
+
+root - INFO - epoch: 3, batch 48 Diffusion training loss: 0.0070157047719014865	 validation loss: 0.008640238938522693
+
+
+root - INFO - epoch: 3, batch 49 Diffusion training loss: 0.007379534970731324	 validation loss: 0.09781117030996131
+
+
+root - INFO - epoch: 3, batch 50 Diffusion training loss: 0.0029456182180963054	 validation loss: 0.42193949072870596
+
+
+root - INFO - epoch: 3, batch 51 Diffusion training loss: 0.0079218916135153	 validation loss: 0.06551541761192374
+
+
+root - INFO - epoch: 3, batch 52 Diffusion training loss: 0.002455083866314627	 validation loss: 0.0033723095443242866
+
+
+root - INFO - epoch: 3, batch 53 Diffusion training loss: 0.0018394419323901144	 validation loss: 0.015178635388658076
+
+
+root - INFO - epoch: 3, batch 54 Diffusion training loss: 0.002343172565575576	 validation loss: 0.05414628244104805
+
+
+root - INFO - epoch: 3, batch 55 Diffusion training loss: 0.004649933442878452	 validation loss: 0.005996457884130564
+
+
+root - INFO - epoch: 3, batch 56 Diffusion training loss: 0.002839499461842792	 validation loss: 0.005005927418156874
+
+
+root - INFO - epoch: 3, batch 57 Diffusion training loss: 0.006070379330107585	 validation loss: 0.03661079354306103
+
+
+root - INFO - epoch: 3, batch 58 Diffusion training loss: 0.0032032143342344346	 validation loss: 0.0031232355833798334
+
+
+root - INFO - epoch: 3, batch 59 Diffusion training loss: 0.007547186744885916	 validation loss: 0.007786289173281689
+
+
+root - INFO - epoch: 3, batch 60 Diffusion training loss: 0.004271618251514297	 validation loss: 0.0035757478706288067
+
+
+root - INFO - epoch: 3, batch 61 Diffusion training loss: 0.005691694373141789	 validation loss: 0.002570938832949548
+
+
+root - INFO - epoch: 3, batch 62 Diffusion training loss: 0.005694463328075509	 validation loss: 0.0032420893244760485
+
+
+root - INFO - epoch: 3, batch 63 Diffusion training loss: 0.0036209177055568555	 validation loss: 0.003812461892523906
+
+
+root - INFO - epoch: 3, batch 64 Diffusion training loss: 0.004035803088905587	 validation loss: 0.0017043216467864234
+
+
+root - INFO - epoch: 3, batch 65 Diffusion training loss: 0.0020395081209847554	 validation loss: 0.0020194198037530734
+
+
+root - INFO - epoch: 3, batch 66 Diffusion training loss: 0.0019059726726948466	 validation loss: 0.008690272050704941
+
+
+root - INFO - epoch: 3, batch 67 Diffusion training loss: 0.0027800914120650598	 validation loss: 0.0014432039346047888
+
+
+root - INFO - epoch: 3, batch 68 Diffusion training loss: 0.0038612328944375735	 validation loss: 0.0009987377577158542
+
+
+root - INFO - epoch: 3, batch 69 Diffusion training loss: 0.004947234569691988	 validation loss: 0.029727902002453982
+
+
+root - INFO - epoch: 3, batch 70 Diffusion training loss: 0.00827772762473752	 validation loss: 0.3449492993731917
+
+
+root - INFO - epoch: 3, batch 71 Diffusion training loss: 0.001882834449122901	 validation loss: 0.2727133276142194
+
+
+root - INFO - epoch: 3, batch 72 Diffusion training loss: 0.002256159446294006	 validation loss: 0.1373051164401955
+
+
+root - INFO - epoch: 3, batch 73 Diffusion training loss: 0.003176478378273079	 validation loss: 0.38205781544269346
+
+
+root - INFO - epoch: 3, batch 74 Diffusion training loss: 0.0055208744099011445	 validation loss: 0.8994407682302172
+
+
+root - INFO - epoch: 3, batch 75 Diffusion training loss: 0.0034496735881188395	 validation loss: 0.03835787644995568
+
+
+root - INFO - epoch: 3, batch 76 Diffusion training loss: 0.0032679873039390536	 validation loss: 0.0062782919252823335
+
+
+root - INFO - epoch: 3, batch 77 Diffusion training loss: 0.002382905306029027	 validation loss: 0.007418665469872658
+
+
+root - INFO - epoch: 3, batch 78 Diffusion training loss: 0.003026671304652678	 validation loss: 0.003545406145611705
+
+
+root - INFO - epoch: 3, batch 79 Diffusion training loss: 0.0054121734547157956	 validation loss: 0.021136554891274147
+
+
+root - INFO - epoch: 3, batch 80 Diffusion training loss: 0.00687618460391123	 validation loss: 0.0077158765105721505
+
+
+root - INFO - epoch: 3, batch 81 Diffusion training loss: 0.0037671814013856167	 validation loss: 0.005323099886581341
+
+
+root - INFO - epoch: 3, batch 82 Diffusion training loss: 0.002434621065834733	 validation loss: 0.004743350826114381
+
+
+root - INFO - epoch: 3, batch 83 Diffusion training loss: 0.0017153524993922123	 validation loss: 0.0037868936348297213
+
+
+root - INFO - epoch: 3, batch 84 Diffusion training loss: 0.004978424069687692	 validation loss: 0.018466414833921987
+
+
+root - INFO - epoch: 4, batch 1 Diffusion training loss: 0.008414435914217243	 validation loss: 0.0039499852286891055
+
+
+root - INFO - epoch: 4, batch 2 Diffusion training loss: 0.0034879282763815864	 validation loss: 0.008435017786570687
+
+
+root - INFO - epoch: 4, batch 3 Diffusion training loss: 0.004849207852122488	 validation loss: 0.015419853710544953
+
+
+root - INFO - epoch: 4, batch 4 Diffusion training loss: 0.0018912021582052185	 validation loss: 0.0058856835021567815
+
+
+root - INFO - epoch: 4, batch 5 Diffusion training loss: 0.002953273883077677	 validation loss: 0.013303189418682793
+
+
+root - INFO - epoch: 4, batch 6 Diffusion training loss: 0.006715134279349947	 validation loss: 0.10402193155137761
+
+
+root - INFO - epoch: 4, batch 7 Diffusion training loss: 0.003592815000363433	 validation loss: 0.008117423001333612
+
+
+root - INFO - epoch: 4, batch 8 Diffusion training loss: 0.005618986348489808	 validation loss: 0.001496493588130309
+
+
+root - INFO - epoch: 4, batch 9 Diffusion training loss: 0.004538935709642899	 validation loss: 0.00785656470385184
+
+
+root - INFO - epoch: 4, batch 10 Diffusion training loss: 0.0014938089235326786	 validation loss: 0.003472017801846042
+
+
+root - INFO - epoch: 4, batch 11 Diffusion training loss: 0.007430889305165845	 validation loss: 0.057063088240072356
+
+
+root - INFO - epoch: 4, batch 12 Diffusion training loss: 0.0033958248159423215	 validation loss: 0.011856059782903999
+
+
+root - INFO - epoch: 4, batch 13 Diffusion training loss: 0.007789583576449663	 validation loss: 0.003478863601427385
+
+
+root - INFO - epoch: 4, batch 14 Diffusion training loss: 0.009113980157540731	 validation loss: 0.003498608760005943
+
+
+root - INFO - epoch: 4, batch 15 Diffusion training loss: 0.004392252848985882	 validation loss: 0.0068175074878776875
+
+
+root - INFO - epoch: 4, batch 16 Diffusion training loss: 0.0035001103601752103	 validation loss: 0.004177115266135185
+
+
+root - INFO - epoch: 4, batch 17 Diffusion training loss: 0.009003386759757565	 validation loss: 0.003353431099372529
+
+
+root - INFO - epoch: 4, batch 18 Diffusion training loss: 0.0030644831256800434	 validation loss: 0.004208884646888339
+
+
+root - INFO - epoch: 4, batch 19 Diffusion training loss: 0.0023853638795625584	 validation loss: 0.007516231369881213
+
+
+root - INFO - epoch: 4, batch 20 Diffusion training loss: 0.0033310423569572457	 validation loss: 0.023334082253039276
+
+
+root - INFO - epoch: 4, batch 21 Diffusion training loss: 0.0026534515367646356	 validation loss: 0.0033848683925829376
+
+
+root - INFO - epoch: 4, batch 22 Diffusion training loss: 0.004770673542001588	 validation loss: 0.004790448037520912
+
+
+root - INFO - epoch: 4, batch 23 Diffusion training loss: 0.004748616572476867	 validation loss: 0.002396734738216848
+
+
+root - INFO - epoch: 4, batch 24 Diffusion training loss: 0.003143354013203174	 validation loss: 0.0028340843993573156
+
+
+root - INFO - epoch: 4, batch 25 Diffusion training loss: 0.00481113742328798	 validation loss: 0.004784348713265729
+
+
+root - INFO - epoch: 4, batch 26 Diffusion training loss: 0.00623974412575886	 validation loss: 0.002444000992579478
+
+
+root - INFO - epoch: 4, batch 27 Diffusion training loss: 0.0021547138234846376	 validation loss: 0.004883037961086611
+
+
+root - INFO - epoch: 4, batch 28 Diffusion training loss: 0.004787585596899965	 validation loss: 0.0018493262091179258
+
+
+root - INFO - epoch: 4, batch 29 Diffusion training loss: 0.005442244152096307	 validation loss: 0.0009041754935012753
+
+
+root - INFO - epoch: 4, batch 30 Diffusion training loss: 0.004238819892061505	 validation loss: 0.01742515941287016
+
+
+root - INFO - epoch: 4, batch 31 Diffusion training loss: 0.0016093236115078409	 validation loss: 0.0038570895380799107
+
+
+root - INFO - epoch: 4, batch 32 Diffusion training loss: 0.004572560861852211	 validation loss: 0.0013603283683727993
+
+
+root - INFO - epoch: 4, batch 33 Diffusion training loss: 0.0041443379593974015	 validation loss: 0.04370521436938345
+
+
+root - INFO - epoch: 4, batch 34 Diffusion training loss: 0.004018874583759626	 validation loss: 0.003098030318639237
+
+
+root - INFO - epoch: 4, batch 35 Diffusion training loss: 0.0023402354438024275	 validation loss: 0.005303244887455444
+
+
+root - INFO - epoch: 4, batch 36 Diffusion training loss: 0.005697498863872245	 validation loss: 0.014247977704655274
+
+
+root - INFO - epoch: 4, batch 37 Diffusion training loss: 0.004720536818129996	 validation loss: 0.0019744628666125163
+
+
+root - INFO - epoch: 4, batch 38 Diffusion training loss: 0.004475235946179227	 validation loss: 0.0013542983960612763
+
+
+root - INFO - epoch: 4, batch 39 Diffusion training loss: 0.0022379230969934313	 validation loss: 0.0022671908003041143
+
+
+root - INFO - epoch: 4, batch 40 Diffusion training loss: 0.0022230747642753568	 validation loss: 0.013442018316916356
+
+
+root - INFO - epoch: 4, batch 41 Diffusion training loss: 0.006182921099170755	 validation loss: 0.00795248159765452
+
+
+root - INFO - epoch: 4, batch 42 Diffusion training loss: 0.001873737144960205	 validation loss: 0.0018954951537365479
+
+
+root - INFO - epoch: 4, batch 43 Diffusion training loss: 0.002623057304728482	 validation loss: 0.004291535785185744
+
+
+root - INFO - epoch: 4, batch 44 Diffusion training loss: 0.002879684229498236	 validation loss: 0.004502199830598969
+
+
+root - INFO - epoch: 4, batch 45 Diffusion training loss: 0.0022681006274085326	 validation loss: 0.0034204723033520175
+
+
+root - INFO - epoch: 4, batch 46 Diffusion training loss: 0.00823317955174618	 validation loss: 0.0013363619047939675
+
+
+root - INFO - epoch: 4, batch 47 Diffusion training loss: 0.0033951231721986758	 validation loss: 0.002380708430665232
+
+
+root - INFO - epoch: 4, batch 48 Diffusion training loss: 0.004502122472574664	 validation loss: 0.004270232483390361
+
+
+root - INFO - epoch: 4, batch 49 Diffusion training loss: 0.00239680777070217	 validation loss: 0.00337142131341508
+
+
+root - INFO - epoch: 4, batch 50 Diffusion training loss: 0.0061374826565262774	 validation loss: 0.004587624625239598
+
+
+root - INFO - epoch: 4, batch 51 Diffusion training loss: 0.005277388279410231	 validation loss: 0.00413867100798809
+
+
+root - INFO - epoch: 4, batch 52 Diffusion training loss: 0.004464428820553845	 validation loss: 0.0017016027959686235
+
+
+root - INFO - epoch: 4, batch 53 Diffusion training loss: 0.0009944730215233522	 validation loss: 0.003427712815531948
+
+
+root - INFO - epoch: 4, batch 54 Diffusion training loss: 0.0062815210540660225	 validation loss: 0.0026407489294948752
+
+
+root - INFO - epoch: 4, batch 55 Diffusion training loss: 0.0063054982528676735	 validation loss: 0.004536318844368524
+
+
+root - INFO - epoch: 4, batch 56 Diffusion training loss: 0.004664402659943951	 validation loss: 0.001557861134988429
+
+
+root - INFO - epoch: 4, batch 57 Diffusion training loss: 0.003323003004157629	 validation loss: 0.002297418750110276
+
+
+root - INFO - epoch: 4, batch 58 Diffusion training loss: 0.002325622939531999	 validation loss: 0.015352832719456975
+
+
+root - INFO - epoch: 4, batch 59 Diffusion training loss: 0.002597308020628914	 validation loss: 0.008449674542796784
+
+
+root - INFO - epoch: 4, batch 60 Diffusion training loss: 0.0025063282333722074	 validation loss: 0.001552514796216494
+
+
+root - INFO - epoch: 4, batch 61 Diffusion training loss: 0.0031426575959484144	 validation loss: 0.0025952269544142837
+
+
+root - INFO - epoch: 4, batch 62 Diffusion training loss: 0.00126667769028933	 validation loss: 0.009727363051647715
+
+
+root - INFO - epoch: 4, batch 63 Diffusion training loss: 0.0014050218231891577	 validation loss: 0.0015169530789848245
+
+
+root - INFO - epoch: 4, batch 64 Diffusion training loss: 0.004071595886929741	 validation loss: 0.005844923244571643
+
+
+root - INFO - epoch: 4, batch 65 Diffusion training loss: 0.002025268819915935	 validation loss: 0.0017242471937344872
+
+
+root - INFO - epoch: 4, batch 66 Diffusion training loss: 0.0050296259105851926	 validation loss: 0.002437516557155745
+
+
+root - INFO - epoch: 4, batch 67 Diffusion training loss: 0.001102751534111972	 validation loss: 0.006034441428899137
+
+
+root - INFO - epoch: 4, batch 68 Diffusion training loss: 0.002447156830981703	 validation loss: 0.004882173432645478
+
+
+root - INFO - epoch: 4, batch 69 Diffusion training loss: 0.0012549869066285906	 validation loss: 0.0069556746012590705
+
+
+root - INFO - epoch: 4, batch 70 Diffusion training loss: 0.002829294146545423	 validation loss: 0.004988328115524582
+
+
+root - INFO - epoch: 4, batch 71 Diffusion training loss: 0.004176571553879563	 validation loss: 0.01083814834116328
+
+
+root - INFO - epoch: 4, batch 72 Diffusion training loss: 0.00246341426436359	 validation loss: 0.0014374236446259405
+
+
+root - INFO - epoch: 4, batch 73 Diffusion training loss: 0.0020859203176636087	 validation loss: 0.0037943788692127983
+
+
+root - INFO - epoch: 4, batch 74 Diffusion training loss: 0.0019745719130136647	 validation loss: 0.006353776348346355
+
+
+root - INFO - epoch: 4, batch 75 Diffusion training loss: 0.006160544446592249	 validation loss: 0.003970433246810936
+
+
+root - INFO - epoch: 4, batch 76 Diffusion training loss: 0.002129603142366384	 validation loss: 0.030899122381382815
+
+
+root - INFO - epoch: 4, batch 77 Diffusion training loss: 0.003604232390843211	 validation loss: 0.0020723375362581894
+
+
+root - INFO - epoch: 4, batch 78 Diffusion training loss: 0.001738640172628756	 validation loss: 0.0025620516075218584
+
+
+root - INFO - epoch: 4, batch 79 Diffusion training loss: 0.0037748114462230493	 validation loss: 0.002721149264944958
+
+
+root - INFO - epoch: 4, batch 80 Diffusion training loss: 0.004215803325000881	 validation loss: 0.003144373867566409
+
+
+root - INFO - epoch: 4, batch 81 Diffusion training loss: 0.0027436245164699415	 validation loss: 0.02252768337404686
+
+
+root - INFO - epoch: 4, batch 82 Diffusion training loss: 0.0035257114907749185	 validation loss: 0.0010694227561693591
+
+
+root - INFO - epoch: 4, batch 83 Diffusion training loss: 0.000901511360475377	 validation loss: 0.014132778485198219
+
+
+root - INFO - epoch: 4, batch 84 Diffusion training loss: 0.0026347066748442166	 validation loss: 0.016807295675151317
+
+
+root - INFO - epoch: 5, batch 1 Diffusion training loss: 0.004029638807442668	 validation loss: 0.021292174626879896
+
+
+root - INFO - epoch: 5, batch 2 Diffusion training loss: 0.0033725081572206217	 validation loss: 0.0055365737715267
+
+
+root - INFO - epoch: 5, batch 3 Diffusion training loss: 0.007166044845505884	 validation loss: 0.011188801152964011
+
+
+root - INFO - epoch: 5, batch 4 Diffusion training loss: 0.003457282138801949	 validation loss: 0.0046217235611097805
+
+
+root - INFO - epoch: 5, batch 5 Diffusion training loss: 0.0024981172173473114	 validation loss: 0.003490404920398574
+
+
+root - INFO - epoch: 5, batch 6 Diffusion training loss: 0.0017881067617605403	 validation loss: 0.008533145463961793
+
+
+root - INFO - epoch: 5, batch 7 Diffusion training loss: 0.003785809978838548	 validation loss: 0.0023681625429270163
+
+
+root - INFO - epoch: 5, batch 8 Diffusion training loss: 0.002238431844347087	 validation loss: 0.0007441373605901855
+
+
+root - INFO - epoch: 5, batch 9 Diffusion training loss: 0.0032957868105284683	 validation loss: 0.007229988066553149
+
+
+root - INFO - epoch: 5, batch 10 Diffusion training loss: 0.000672269578706888	 validation loss: 0.002235112520480031
+
+
+root - INFO - epoch: 5, batch 11 Diffusion training loss: 0.0013653402494751515	 validation loss: 0.003033843356749777
+
+
+root - INFO - epoch: 5, batch 12 Diffusion training loss: 0.0034235107829826204	 validation loss: 0.003016883209316064
+
+
+root - INFO - epoch: 5, batch 13 Diffusion training loss: 0.002362341241369076	 validation loss: 0.005793116485358321
+
+
+root - INFO - epoch: 5, batch 14 Diffusion training loss: 0.00325834902171149	 validation loss: 0.007549415813821332
+
+
+root - INFO - epoch: 5, batch 15 Diffusion training loss: 0.0017199739399939358	 validation loss: 0.0052027244239092945
+
+
+root - INFO - epoch: 5, batch 16 Diffusion training loss: 0.0018383476825084997	 validation loss: 0.046967171396465036
+
+
+root - INFO - epoch: 5, batch 17 Diffusion training loss: 0.007069414011157823	 validation loss: 0.00385611514850145
+
+
+root - INFO - epoch: 5, batch 18 Diffusion training loss: 0.00466989371457329	 validation loss: 0.0026150499566095745
+
+
+root - INFO - epoch: 5, batch 19 Diffusion training loss: 0.0035454163626445585	 validation loss: 0.0025261701132418156
+
+
+root - INFO - epoch: 5, batch 20 Diffusion training loss: 0.002131937459756609	 validation loss: 0.005854315696097928
+
+
+root - INFO - epoch: 5, batch 21 Diffusion training loss: 0.00548321864867609	 validation loss: 0.005163891646213781
+
+
+root - INFO - epoch: 5, batch 22 Diffusion training loss: 0.01328227950164362	 validation loss: 0.0025584643879745456
+
+
+root - INFO - epoch: 5, batch 23 Diffusion training loss: 0.0018101145928921811	 validation loss: 0.001719340254168639
+
+
+root - INFO - epoch: 5, batch 24 Diffusion training loss: 0.002596135401685194	 validation loss: 0.03137698487277073
+
+
+root - INFO - epoch: 5, batch 25 Diffusion training loss: 0.0026244622184516085	 validation loss: 0.0021857322615739445
+
+
+root - INFO - epoch: 5, batch 26 Diffusion training loss: 0.003087654626279279	 validation loss: 0.004357099690164831
+
+
+root - INFO - epoch: 5, batch 27 Diffusion training loss: 0.0038506828531412324	 validation loss: 0.029378662526515602
+
+
+root - INFO - epoch: 5, batch 28 Diffusion training loss: 0.004606932993744648	 validation loss: 0.0021224226825520185
+
+
+root - INFO - epoch: 5, batch 29 Diffusion training loss: 0.002703443317476223	 validation loss: 0.0010663191725583951
+
+
+root - INFO - epoch: 5, batch 30 Diffusion training loss: 0.004446782965635757	 validation loss: 0.003884781656580831
+
+
+root - INFO - epoch: 5, batch 31 Diffusion training loss: 0.006361156497951517	 validation loss: 0.0029972118477757707
+
+
+root - INFO - epoch: 5, batch 32 Diffusion training loss: 0.0038701652342958033	 validation loss: 0.002615316746924213
+
+
+root - INFO - epoch: 5, batch 33 Diffusion training loss: 0.004635778964262718	 validation loss: 0.0012168898923818265
+
+
+root - INFO - epoch: 5, batch 34 Diffusion training loss: 0.006516445360402872	 validation loss: 0.0011879415297372134
+
+
+root - INFO - epoch: 5, batch 35 Diffusion training loss: 0.0016627951373400433	 validation loss: 0.0019413301815557112
+
+
+root - INFO - epoch: 5, batch 36 Diffusion training loss: 0.004286330107263997	 validation loss: 0.0265359151764676
+
+
+root - INFO - epoch: 5, batch 37 Diffusion training loss: 0.006016868194116265	 validation loss: 0.0022836228145648144
+
+
+root - INFO - epoch: 5, batch 38 Diffusion training loss: 0.0010362190843519973	 validation loss: 0.0030074292042070044
+
+
+root - INFO - epoch: 5, batch 39 Diffusion training loss: 0.004336146981217669	 validation loss: 0.0009306579791585493
+
+
+root - INFO - epoch: 5, batch 40 Diffusion training loss: 0.003252580014347385	 validation loss: 0.0023066961018561928
+
+
+root - INFO - epoch: 5, batch 41 Diffusion training loss: 0.0016006461853871599	 validation loss: 0.0017502790066307814
+
+
+root - INFO - epoch: 5, batch 42 Diffusion training loss: 0.0016466960805705238	 validation loss: 0.0039204908932287215
+
+
+root - INFO - epoch: 5, batch 43 Diffusion training loss: 0.0011975845814374522	 validation loss: 0.04873287250753319
+
+
+root - INFO - epoch: 5, batch 44 Diffusion training loss: 0.0025352530792443206	 validation loss: 0.025229101004421935
+
+
+root - INFO - epoch: 5, batch 45 Diffusion training loss: 0.0025255788909634997	 validation loss: 0.0022212751035692495
+
+
+root - INFO - epoch: 5, batch 46 Diffusion training loss: 0.002665785561601357	 validation loss: 0.0002555128790943525
+
+
+root - INFO - epoch: 5, batch 47 Diffusion training loss: 0.0021598181751899276	 validation loss: 0.0017079555310821144
+
+
+root - INFO - epoch: 5, batch 48 Diffusion training loss: 0.002158009262054471	 validation loss: 0.004255931089203646
+
+
+root - INFO - epoch: 5, batch 49 Diffusion training loss: 0.005058538183713724	 validation loss: 0.08734101658378343
+
+
+root - INFO - epoch: 5, batch 50 Diffusion training loss: 0.00676288671517712	 validation loss: 0.13322659463426187
+
+
+root - INFO - epoch: 5, batch 51 Diffusion training loss: 0.0004583868862174873	 validation loss: 0.004637797180550777
+
+
+root - INFO - epoch: 5, batch 52 Diffusion training loss: 0.0024013901893696864	 validation loss: 0.021371074638177785
+
+
+root - INFO - epoch: 5, batch 53 Diffusion training loss: 0.0029366176663159333	 validation loss: 0.026906575642144822
+
+
+root - INFO - epoch: 5, batch 54 Diffusion training loss: 0.001095934494886021	 validation loss: 0.003294408577249254
+
+
+root - INFO - epoch: 5, batch 55 Diffusion training loss: 0.004030657016225891	 validation loss: 0.0009553683282054161
+
+
+root - INFO - epoch: 5, batch 56 Diffusion training loss: 0.0033249498414361055	 validation loss: 0.04883135555406682
+
+
+root - INFO - epoch: 5, batch 57 Diffusion training loss: 0.0007737508747177788	 validation loss: 0.009907542353054598
+
+
+root - INFO - epoch: 5, batch 58 Diffusion training loss: 0.0027378565753420573	 validation loss: 0.002506440695604684
+
+
+root - INFO - epoch: 5, batch 59 Diffusion training loss: 0.0012711671111296004	 validation loss: 0.044406413727330285
+
+
+root - INFO - epoch: 5, batch 60 Diffusion training loss: 0.004872363427026479	 validation loss: 0.004021036254801762
+
+
+root - INFO - epoch: 5, batch 61 Diffusion training loss: 0.0020354683340964804	 validation loss: 0.032957496441967084
+
+
+root - INFO - epoch: 5, batch 62 Diffusion training loss: 0.002909271825947824	 validation loss: 0.010914675761056224
+
+
+root - INFO - epoch: 5, batch 63 Diffusion training loss: 0.0020384783661393075	 validation loss: 0.040018695817407086
+
+
+root - INFO - epoch: 5, batch 64 Diffusion training loss: 0.0031377856625506677	 validation loss: 0.025893072325341715
+
+
+root - INFO - epoch: 5, batch 65 Diffusion training loss: 0.0027236165419309627	 validation loss: 0.0026579032815739366
+
+
+root - INFO - epoch: 5, batch 66 Diffusion training loss: 0.0025305519514136647	 validation loss: 0.003940304805119383
+
+
+root - INFO - epoch: 5, batch 67 Diffusion training loss: 0.005000003576570348	 validation loss: 0.0022087466382956947
+
+
+root - INFO - epoch: 5, batch 68 Diffusion training loss: 0.0019041153386245896	 validation loss: 0.002232237998340954
+
+
+root - INFO - epoch: 5, batch 69 Diffusion training loss: 0.004352183503447178	 validation loss: 0.002377160600339901
+
+
+root - INFO - epoch: 5, batch 70 Diffusion training loss: 0.004104277003185275	 validation loss: 0.0025562849694827504
+
+
+root - INFO - epoch: 5, batch 71 Diffusion training loss: 0.004259060865748246	 validation loss: 0.0012942255410959764
+
+
+root - INFO - epoch: 5, batch 72 Diffusion training loss: 0.004903735135053396	 validation loss: 0.004074691686323644
+
+
+root - INFO - epoch: 5, batch 73 Diffusion training loss: 0.002680908348242493	 validation loss: 0.0019471058376129787
+
+
+root - INFO - epoch: 5, batch 74 Diffusion training loss: 0.004627504416717481	 validation loss: 0.002391988567134379
+
+
+root - INFO - epoch: 5, batch 75 Diffusion training loss: 0.005721379977251741	 validation loss: 0.002495186838997025
+
+
+root - INFO - epoch: 5, batch 76 Diffusion training loss: 0.007651809110484863	 validation loss: 0.002139776713009206
+
+
+root - INFO - epoch: 5, batch 77 Diffusion training loss: 0.0037935315105621474	 validation loss: 0.001993715792017076
+
+
+root - INFO - epoch: 5, batch 78 Diffusion training loss: 0.001675738794428785	 validation loss: 0.028741027750444646
+
+
+root - INFO - epoch: 5, batch 79 Diffusion training loss: 0.004732205850679221	 validation loss: 0.0047487811062470325
+
+
+root - INFO - epoch: 5, batch 80 Diffusion training loss: 0.004837300549029533	 validation loss: 0.0029185387100106285
+
+
+root - INFO - epoch: 5, batch 81 Diffusion training loss: 0.0037972779502106722	 validation loss: 0.04367011249363733
+
+
+root - INFO - epoch: 5, batch 82 Diffusion training loss: 0.006447263223186599	 validation loss: 0.0031917247223248973
+
+
+root - INFO - epoch: 5, batch 83 Diffusion training loss: 0.002095991609268325	 validation loss: 0.18820149534070807
+
+
+root - INFO - epoch: 5, batch 84 Diffusion training loss: 0.0009397694307308825	 validation loss: 0.041729751371424414
+
+
+root - INFO - epoch: 6, batch 1 Diffusion training loss: 0.001923610145558041	 validation loss: 0.0038704568664904215
+
+
+root - INFO - epoch: 6, batch 2 Diffusion training loss: 0.0030042085916712497	 validation loss: 0.10246552503901989
+
+
+root - INFO - epoch: 6, batch 3 Diffusion training loss: 0.005006015576357104	 validation loss: 0.0015155091254118746
+
+
+root - INFO - epoch: 6, batch 4 Diffusion training loss: 0.0023607775069750666	 validation loss: 0.0032412686746124443
+
+
+root - INFO - epoch: 6, batch 5 Diffusion training loss: 0.0015369054020159694	 validation loss: 0.005318774587562102
+
+
+root - INFO - epoch: 6, batch 6 Diffusion training loss: 0.004358816537231962	 validation loss: 0.0026637894859169015
+
+
+root - INFO - epoch: 6, batch 7 Diffusion training loss: 0.007167506164490134	 validation loss: 0.006085477954869275
+
+
+root - INFO - epoch: 6, batch 8 Diffusion training loss: 0.0035937340636370725	 validation loss: 0.022661945418833672
+
+
+root - INFO - epoch: 6, batch 9 Diffusion training loss: 0.002661241005754954	 validation loss: 0.02412016942984008
+
+
+root - INFO - epoch: 6, batch 10 Diffusion training loss: 0.005415349842686492	 validation loss: 0.008611997917685951
+
+
+root - INFO - epoch: 6, batch 11 Diffusion training loss: 0.004361881664013481	 validation loss: 0.0021654918160054744
+
+
+root - INFO - epoch: 6, batch 12 Diffusion training loss: 0.0018469986402071393	 validation loss: 0.002748995787169425
+
+
+root - INFO - epoch: 6, batch 13 Diffusion training loss: 0.001465013722368792	 validation loss: 0.0016937413455782033
+
+
+root - INFO - epoch: 6, batch 14 Diffusion training loss: 0.003960390272228524	 validation loss: 0.0028511769789579646
+
+
+root - INFO - epoch: 6, batch 15 Diffusion training loss: 0.0026171400966968072	 validation loss: 0.00247311419667074
+
+
+root - INFO - epoch: 6, batch 16 Diffusion training loss: 0.0027967423809179366	 validation loss: 0.003390982894590799
+
+
+root - INFO - epoch: 6, batch 17 Diffusion training loss: 0.003270163590853194	 validation loss: 0.045729624429762236
+
+
+root - INFO - epoch: 6, batch 18 Diffusion training loss: 0.0050459960608900244	 validation loss: 0.004144623510370709
+
+
+root - INFO - epoch: 6, batch 19 Diffusion training loss: 0.007529217544780263	 validation loss: 0.031423915832140895
+
+
+root - INFO - epoch: 6, batch 20 Diffusion training loss: 0.0025198757868295555	 validation loss: 0.00410998572305084
+
+
+root - INFO - epoch: 6, batch 21 Diffusion training loss: 0.006089183274822191	 validation loss: 0.004478795844721235
+
+
+root - INFO - epoch: 6, batch 22 Diffusion training loss: 0.005298469887569033	 validation loss: 0.0020380505171440928
+
+
+root - INFO - epoch: 6, batch 23 Diffusion training loss: 0.00274116181157768	 validation loss: 0.009689438609207752
+
+
+root - INFO - epoch: 6, batch 24 Diffusion training loss: 0.0025118324522794555	 validation loss: 0.025278279046323748
+
+
+root - INFO - epoch: 6, batch 25 Diffusion training loss: 0.0018679198271221238	 validation loss: 0.0019761932223287784
+
+
+root - INFO - epoch: 6, batch 26 Diffusion training loss: 0.003000736838469054	 validation loss: 0.002057708210639232
+
+
+root - INFO - epoch: 6, batch 27 Diffusion training loss: 0.0018170179813810062	 validation loss: 0.0010877263357212453
+
+
+root - INFO - epoch: 6, batch 28 Diffusion training loss: 0.0016555463057512931	 validation loss: 0.003316660691660883
+
+
+root - INFO - epoch: 6, batch 29 Diffusion training loss: 0.003745711493707244	 validation loss: 0.008433364146342347
+
+
+root - INFO - epoch: 6, batch 30 Diffusion training loss: 0.0015171426994330876	 validation loss: 0.022973769359154735
+
+
+root - INFO - epoch: 6, batch 31 Diffusion training loss: 0.0013478898023649992	 validation loss: 0.0038622476892741955
+
+
+root - INFO - epoch: 6, batch 32 Diffusion training loss: 0.003416088441233882	 validation loss: 0.0017010815073924116
+
+
+root - INFO - epoch: 6, batch 33 Diffusion training loss: 0.002640701645726942	 validation loss: 0.010120527694350817
+
+
+root - INFO - epoch: 6, batch 34 Diffusion training loss: 0.0011643901961130236	 validation loss: 0.0007480820348591938
+
+
+root - INFO - epoch: 6, batch 35 Diffusion training loss: 0.0010534367337443607	 validation loss: 0.004279340899410003
+
+
+root - INFO - epoch: 6, batch 36 Diffusion training loss: 0.003250321593303157	 validation loss: 0.002142901800631384
+
+
+root - INFO - epoch: 6, batch 37 Diffusion training loss: 0.004277943252247278	 validation loss: 0.0019623587780242036
+
+
+root - INFO - epoch: 6, batch 38 Diffusion training loss: 0.003353690286123396	 validation loss: 0.0010604074495303376
+
+
+root - INFO - epoch: 6, batch 39 Diffusion training loss: 0.0013199152312960958	 validation loss: 0.001444594324122105
+
+
+root - INFO - epoch: 6, batch 40 Diffusion training loss: 0.0023823013694238998	 validation loss: 0.001992640864610942
+
+
+root - INFO - epoch: 6, batch 41 Diffusion training loss: 0.004831899367521612	 validation loss: 0.015680420030285382
+
+
+root - INFO - epoch: 6, batch 42 Diffusion training loss: 0.0031352620171460387	 validation loss: 0.00473206254794507
+
+
+root - INFO - epoch: 6, batch 43 Diffusion training loss: 0.002468960475671808	 validation loss: 0.003269258782795939
+
+
+root - INFO - epoch: 6, batch 44 Diffusion training loss: 0.0061217149285381885	 validation loss: 0.002727632447759644
+
+
+root - INFO - epoch: 6, batch 45 Diffusion training loss: 0.004091522653452677	 validation loss: 0.004723606217965835
+
+
+root - INFO - epoch: 6, batch 46 Diffusion training loss: 0.003999365674910422	 validation loss: 0.0035311283341119843
+
+
+root - INFO - epoch: 6, batch 47 Diffusion training loss: 0.006880218993585444	 validation loss: 0.0024964694383977494
+
+
+root - INFO - epoch: 6, batch 48 Diffusion training loss: 0.0014874837198499509	 validation loss: 0.0015395338870762825
+
+
+root - INFO - epoch: 6, batch 49 Diffusion training loss: 0.006665106027164585	 validation loss: 0.0028075208705481197
+
+
+root - INFO - epoch: 6, batch 50 Diffusion training loss: 0.0036460943480574495	 validation loss: 0.0014956292520032272
+
+
+root - INFO - epoch: 6, batch 51 Diffusion training loss: 0.0036715814760366	 validation loss: 0.0041046370889938405
+
+
+root - INFO - epoch: 6, batch 52 Diffusion training loss: 0.0038808584870814442	 validation loss: 0.002613490229761254
+
+
+root - INFO - epoch: 6, batch 53 Diffusion training loss: 0.0037561017924742836	 validation loss: 0.0008198155461478016
+
+
+root - INFO - epoch: 6, batch 54 Diffusion training loss: 0.0028952135254419692	 validation loss: 0.0012619989343334026
+
+
+root - INFO - epoch: 6, batch 55 Diffusion training loss: 0.0033294947797310546	 validation loss: 0.0017936184073156737
+
+
+root - INFO - epoch: 6, batch 56 Diffusion training loss: 0.0042089231703122225	 validation loss: 0.0036047258017586526
+
+
+root - INFO - epoch: 6, batch 57 Diffusion training loss: 0.004105393544012724	 validation loss: 0.0020822697384127536
+
+
+root - INFO - epoch: 6, batch 58 Diffusion training loss: 0.0017579117562843804	 validation loss: 0.0024629002521808115
+
+
+root - INFO - epoch: 6, batch 59 Diffusion training loss: 0.002678863142282048	 validation loss: 0.006456579920309053
+
+
+root - INFO - epoch: 6, batch 60 Diffusion training loss: 0.0028372818440957504	 validation loss: 0.02842183185061251
+
+
+root - INFO - epoch: 6, batch 61 Diffusion training loss: 0.005000710211950534	 validation loss: 0.4483435035689801
+
+
+root - INFO - epoch: 6, batch 62 Diffusion training loss: 0.0026082810136089096	 validation loss: 0.028662542152731417
+
+
+root - INFO - epoch: 6, batch 63 Diffusion training loss: 0.004170596812684601	 validation loss: 0.01589796666482384
+
+
+root - INFO - epoch: 6, batch 64 Diffusion training loss: 0.001854202547504937	 validation loss: 0.33574105224997947
+
+
+root - INFO - epoch: 6, batch 65 Diffusion training loss: 0.00430057648475045	 validation loss: 0.0549812275593886
+
+
+root - INFO - epoch: 6, batch 66 Diffusion training loss: 0.0023553227680280686	 validation loss: 0.32892680716983935
+
+
+root - INFO - epoch: 6, batch 67 Diffusion training loss: 0.0032455834072049406	 validation loss: 0.11687014033421865
+
+
+root - INFO - epoch: 6, batch 68 Diffusion training loss: 0.0009504100589220557	 validation loss: 0.004709886045437855
+
+
+root - INFO - epoch: 6, batch 69 Diffusion training loss: 0.0019186771154727303	 validation loss: 0.0012491516471917238
+
+
+root - INFO - epoch: 6, batch 70 Diffusion training loss: 0.0014724919815562638	 validation loss: 0.6343715245509697
+
+
+root - INFO - epoch: 6, batch 71 Diffusion training loss: 0.009166467263984613	 validation loss: 0.0024730127428979256
+
+
+root - INFO - epoch: 6, batch 72 Diffusion training loss: 0.0049117015478111325	 validation loss: 0.002994880466112994
+
+
+root - INFO - epoch: 6, batch 73 Diffusion training loss: 0.0032206271019790344	 validation loss: 0.006013397824827285
+
+
+root - INFO - epoch: 6, batch 74 Diffusion training loss: 0.0006496179390666191	 validation loss: 0.26260878722417935
+
+
+root - INFO - epoch: 6, batch 75 Diffusion training loss: 0.0050604144986562075	 validation loss: 0.06132783797976381
+
+
+root - INFO - epoch: 6, batch 76 Diffusion training loss: 0.0054168726955819875	 validation loss: 0.004788580874750924
+
+
+root - INFO - epoch: 6, batch 77 Diffusion training loss: 0.004100896143695845	 validation loss: 0.0021195374179342947
+
+
+root - INFO - epoch: 6, batch 78 Diffusion training loss: 0.0023949188199380218	 validation loss: 0.038948366028409155
+
+
+root - INFO - epoch: 6, batch 79 Diffusion training loss: 0.0015983370685501888	 validation loss: 0.005816140879894117
+
+
+root - INFO - epoch: 6, batch 80 Diffusion training loss: 0.0044071684613220165	 validation loss: 0.003876769026469408
+
+
+root - INFO - epoch: 6, batch 81 Diffusion training loss: 0.0039145866735104395	 validation loss: 0.0057169854179239185
+
+
+root - INFO - epoch: 6, batch 82 Diffusion training loss: 0.004452946407193324	 validation loss: 0.001485120138559112
+
+
+root - INFO - epoch: 6, batch 83 Diffusion training loss: 0.003976239409891805	 validation loss: 0.0024174893181853237
+
+
+root - INFO - epoch: 6, batch 84 Diffusion training loss: 0.0036387695047471282	 validation loss: 0.010368559237951661
+
+
+root - INFO - epoch: 7, batch 1 Diffusion training loss: 0.003098319189525533	 validation loss: 0.0048605900587167464
+
+
+root - INFO - epoch: 7, batch 2 Diffusion training loss: 0.004698213327457904	 validation loss: 0.09927482578625427
+
+
+root - INFO - epoch: 7, batch 3 Diffusion training loss: 0.005876463029610375	 validation loss: 0.004254935044530167
+
+
+root - INFO - epoch: 7, batch 4 Diffusion training loss: 0.0033180918303061004	 validation loss: 0.002212615056077385
+
+
+root - INFO - epoch: 7, batch 5 Diffusion training loss: 0.0028599788569214505	 validation loss: 0.0018530490957043414
+
+
+root - INFO - epoch: 7, batch 6 Diffusion training loss: 0.0027521589121297365	 validation loss: 0.01607671289442727
+
+
+root - INFO - epoch: 7, batch 7 Diffusion training loss: 0.0028398858704413734	 validation loss: 0.0052350844250450765
+
+
+root - INFO - epoch: 7, batch 8 Diffusion training loss: 0.006683642511487927	 validation loss: 0.00798380293975283
+
+
+root - INFO - epoch: 7, batch 9 Diffusion training loss: 0.0021373805840877586	 validation loss: 0.007772208622302934
+
+
+root - INFO - epoch: 7, batch 10 Diffusion training loss: 0.0023054490723205708	 validation loss: 0.003242908050772406
+
+
+root - INFO - epoch: 7, batch 11 Diffusion training loss: 0.0033539254055447026	 validation loss: 0.003366932611050496
+
+
+root - INFO - epoch: 7, batch 12 Diffusion training loss: 0.0031049862858509533	 validation loss: 0.002074127234275497
+
+
+root - INFO - epoch: 7, batch 13 Diffusion training loss: 0.0024485729799218975	 validation loss: 0.00259216938066024
+
+
+root - INFO - epoch: 7, batch 14 Diffusion training loss: 0.0032529027297783244	 validation loss: 0.0034449199866618636
+
+
+root - INFO - epoch: 7, batch 15 Diffusion training loss: 0.009029538769867902	 validation loss: 0.0023250862751221808
+
+
+root - INFO - epoch: 7, batch 16 Diffusion training loss: 0.0022127816929648726	 validation loss: 0.0040075431173269924
+
+
+root - INFO - epoch: 7, batch 17 Diffusion training loss: 0.003557041193958491	 validation loss: 0.01800657881611492
+
+
+root - INFO - epoch: 7, batch 18 Diffusion training loss: 0.0026524489068060057	 validation loss: 0.03993818653068487
+
+
+root - INFO - epoch: 7, batch 19 Diffusion training loss: 0.0013686855974239275	 validation loss: 0.004922468809426165
+
+
+root - INFO - epoch: 7, batch 20 Diffusion training loss: 0.009419129623992651	 validation loss: 0.002269264233025246
+
+
+root - INFO - epoch: 7, batch 21 Diffusion training loss: 0.001969775748567897	 validation loss: 0.0026693560541818
+
+
+root - INFO - epoch: 7, batch 22 Diffusion training loss: 0.002578477461831725	 validation loss: 0.0029346539044061335
+
+
+root - INFO - epoch: 7, batch 23 Diffusion training loss: 0.003021226948298873	 validation loss: 0.002197151788545626
+
+
+root - INFO - epoch: 7, batch 24 Diffusion training loss: 0.0010744011736319873	 validation loss: 0.004313660456312346
+
+
+root - INFO - epoch: 7, batch 25 Diffusion training loss: 0.002997806611182473	 validation loss: 0.0017632752175712391
+
+
+root - INFO - epoch: 7, batch 26 Diffusion training loss: 0.0026430355211240104	 validation loss: 0.04802679904634836
+
+
+root - INFO - epoch: 7, batch 27 Diffusion training loss: 0.0029212573748310902	 validation loss: 0.030961614277142044
+
+
+root - INFO - epoch: 7, batch 28 Diffusion training loss: 0.00194399182170932	 validation loss: 0.008954547823597744
+
+
+root - INFO - epoch: 7, batch 29 Diffusion training loss: 0.0025451058834057476	 validation loss: 0.007947804451360604
+
+
+root - INFO - epoch: 7, batch 30 Diffusion training loss: 0.003936741845228166	 validation loss: 0.013423678593231
+
+
+root - INFO - epoch: 7, batch 31 Diffusion training loss: 0.0025116180611122066	 validation loss: 0.003165980014430836
+
+
+root - INFO - epoch: 7, batch 32 Diffusion training loss: 0.0031114398531106556	 validation loss: 0.030097104046784583
+
+
+root - INFO - epoch: 7, batch 33 Diffusion training loss: 0.0033311781924564962	 validation loss: 0.004895306591538022
+
+
+root - INFO - epoch: 7, batch 34 Diffusion training loss: 0.004116290541724238	 validation loss: 0.0026152080711240116
+
+
+root - INFO - epoch: 7, batch 35 Diffusion training loss: 0.0015367240930396517	 validation loss: 0.1107785619709624
+
+
+root - INFO - epoch: 7, batch 36 Diffusion training loss: 0.010983599488474157	 validation loss: 0.0059612004150314995
+
+
+root - INFO - epoch: 7, batch 37 Diffusion training loss: 0.005523181145061739	 validation loss: 0.002419041924174856
+
+
+root - INFO - epoch: 7, batch 38 Diffusion training loss: 0.006536337818368473	 validation loss: 0.001513609253960089
+
+
+root - INFO - epoch: 7, batch 39 Diffusion training loss: 0.004904672749529039	 validation loss: 0.002389217950629729
+
+
+root - INFO - epoch: 7, batch 40 Diffusion training loss: 0.0017265585230705825	 validation loss: 0.00644590037870391
+
+
+root - INFO - epoch: 7, batch 41 Diffusion training loss: 0.0053754660740242075	 validation loss: 0.007063631140044319
+
+
+root - INFO - epoch: 7, batch 42 Diffusion training loss: 0.01000799075022854	 validation loss: 0.004369782847410189
+
+
+root - INFO - epoch: 7, batch 43 Diffusion training loss: 0.005281921483949738	 validation loss: 0.002502895621184288
+
+
+root - INFO - epoch: 7, batch 44 Diffusion training loss: 0.0013628983333439388	 validation loss: 0.002754198574028312
+
+
+root - INFO - epoch: 7, batch 45 Diffusion training loss: 0.004694248572521069	 validation loss: 0.004977730731013771
+
+
+root - INFO - epoch: 7, batch 46 Diffusion training loss: 0.003064382677643424	 validation loss: 0.07873502875779194
+
+
+root - INFO - epoch: 7, batch 47 Diffusion training loss: 0.003550157793515439	 validation loss: 0.03368453208465497
+
+
+root - INFO - epoch: 7, batch 48 Diffusion training loss: 0.0055297409652574495	 validation loss: 0.0023902520828953298
+
+
+root - INFO - epoch: 7, batch 49 Diffusion training loss: 0.007624606969581067	 validation loss: 0.21194329180815683
+
+
+root - INFO - epoch: 7, batch 50 Diffusion training loss: 0.0030790615334767434	 validation loss: 0.002878010521049172
+
+
+root - INFO - epoch: 7, batch 51 Diffusion training loss: 0.0021207583704764485	 validation loss: 0.017535060883632814
+
+
+root - INFO - epoch: 7, batch 52 Diffusion training loss: 0.003837499081087835	 validation loss: 0.014807738770064536
+
+
+root - INFO - epoch: 7, batch 53 Diffusion training loss: 0.008200757205855422	 validation loss: 0.041403812419562605
+
+
+root - INFO - epoch: 7, batch 54 Diffusion training loss: 0.004535395349447215	 validation loss: 0.002976402665868784
+
+
+root - INFO - epoch: 7, batch 55 Diffusion training loss: 0.004841185208531027	 validation loss: 0.009956463356751403
+
+
+root - INFO - epoch: 7, batch 56 Diffusion training loss: 0.0017802589083273832	 validation loss: 0.001202205683499003
+
+
+root - INFO - epoch: 7, batch 57 Diffusion training loss: 0.0020233388467668237	 validation loss: 0.005383168065447716
+
+
+root - INFO - epoch: 7, batch 58 Diffusion training loss: 0.006794667719027989	 validation loss: 0.0037499032272077485
+
+
+root - INFO - epoch: 7, batch 59 Diffusion training loss: 0.004216208051217955	 validation loss: 0.002310050633540216
+
+
+root - INFO - epoch: 7, batch 60 Diffusion training loss: 0.004774749828459753	 validation loss: 0.01968058886517509
+
+
+root - INFO - epoch: 7, batch 61 Diffusion training loss: 0.0028031389612189596	 validation loss: 0.0026774299332292563
+
+
+root - INFO - epoch: 7, batch 62 Diffusion training loss: 0.0015184946399183414	 validation loss: 0.00398094536335082
+
+
+root - INFO - epoch: 7, batch 63 Diffusion training loss: 0.0019417433836066006	 validation loss: 0.0037840813354029727
+
+
+root - INFO - epoch: 7, batch 64 Diffusion training loss: 0.0019414929037968097	 validation loss: 0.008029550165224539
+
+
+root - INFO - epoch: 7, batch 65 Diffusion training loss: 0.0019425736389689675	 validation loss: 0.0025115593860366167
+
+
+root - INFO - epoch: 7, batch 66 Diffusion training loss: 0.0017478798711366157	 validation loss: 0.005618172734106184
+
+
+root - INFO - epoch: 7, batch 67 Diffusion training loss: 0.002780055517252794	 validation loss: 0.011006597900978405
+
+
+root - INFO - epoch: 7, batch 68 Diffusion training loss: 0.0008876795860287387	 validation loss: 0.0017103401425718622
+
+
+root - INFO - epoch: 7, batch 69 Diffusion training loss: 0.0005041223602372513	 validation loss: 0.00170745306193885
+
+
+root - INFO - epoch: 7, batch 70 Diffusion training loss: 0.0022872095850358775	 validation loss: 0.003996670682031021
+
+
+root - INFO - epoch: 7, batch 71 Diffusion training loss: 0.005554090870732437	 validation loss: 0.0010773937615331025
+
+
+root - INFO - epoch: 7, batch 72 Diffusion training loss: 0.0025482787537863157	 validation loss: 0.003413323506811914
+
+
+root - INFO - epoch: 7, batch 73 Diffusion training loss: 0.0019230029575165743	 validation loss: 0.021326669828691268
+
+
+root - INFO - epoch: 7, batch 74 Diffusion training loss: 0.0017469148336099116	 validation loss: 0.001079094628597886
+
+
+root - INFO - epoch: 7, batch 75 Diffusion training loss: 0.002851937389846879	 validation loss: 0.002229970317216579
+
+
+root - INFO - epoch: 7, batch 76 Diffusion training loss: 0.005420285921953124	 validation loss: 0.001965856227526439
+
+
+root - INFO - epoch: 7, batch 77 Diffusion training loss: 0.0045292628690176626	 validation loss: 0.21882236498002836
+
+
+root - INFO - epoch: 7, batch 78 Diffusion training loss: 0.0004984739975882778	 validation loss: 0.0012921111390977297
+
+
+root - INFO - epoch: 7, batch 79 Diffusion training loss: 0.0031533586765985994	 validation loss: 0.004787118977350641
+
+
+root - INFO - epoch: 7, batch 80 Diffusion training loss: 0.0015076273528398935	 validation loss: 0.0036325774918547814
+
+
+root - INFO - epoch: 7, batch 81 Diffusion training loss: 0.0046546429766536924	 validation loss: 0.008460892074371652
+
+
+root - INFO - epoch: 7, batch 82 Diffusion training loss: 0.004543025473913668	 validation loss: 0.009390744035714483
+
+
+root - INFO - epoch: 7, batch 83 Diffusion training loss: 0.004140337636153721	 validation loss: 0.03885348101618285
+
+
+root - INFO - epoch: 7, batch 84 Diffusion training loss: 0.0021031080983743757	 validation loss: 0.0026409044918701673
+root - INFO - 
+Training of Diffusion took 148.6149 minutes.
+
+root - INFO - Loading trained diffusion checkpoint from saved_diff.pth
+root - INFO - Diffusion_checkpoint loaded
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([4, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([1, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([1, 1]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([4, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([0, 3]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([3, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 3]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 3])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([3, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([3, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 0])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 3]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 3]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([1, 4])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([1, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([3, 0]), Diff_out: tensor([3, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 3]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 3]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 1])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 4])
+root - INFO - Actual: tensor([3, 4]), DCG_out: tensor([3, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([1, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([3, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([4, 1]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 1])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 2]), DCG_out: tensor([3, 2]), Diff_out: tensor([3, 4])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([3, 1])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([4, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([3, 1])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 3]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 3]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([4, 3])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([3, 0]), Diff_out: tensor([3, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([1, 1]), Diff_out: tensor([1, 1])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([4, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([1, 3]), DCG_out: tensor([1, 4]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([1, 1])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([1, 1]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 1]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 1])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([1, 1]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([1, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 3])
+root - INFO - Actual: tensor([2, 3]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([1, 2]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([1, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 3]), DCG_out: tensor([2, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 4])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([2, 3]), DCG_out: tensor([2, 2]), Diff_out: tensor([3, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([0, 1])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([1, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([3, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([0, 3]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 1])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 1]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([1, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 1])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([4, 3])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([2, 3]), DCG_out: tensor([2, 3]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([1, 1]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 4])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 4])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 1]), Diff_out: tensor([1, 1])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([2, 1]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([1, 4])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 3])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([4, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 4]), DCG_out: tensor([0, 1]), Diff_out: tensor([1, 1])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([3, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([3, 2]), DCG_out: tensor([4, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 3]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 4])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([3, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([1, 4]), DCG_out: tensor([1, 2]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([3, 3])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 1])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 3]), DCG_out: tensor([0, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([3, 3])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([4, 3]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([1, 1]), Diff_out: tensor([1, 4])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([1, 1]), Diff_out: tensor([4, 1])
+root - INFO - Actual: tensor([1, 3]), DCG_out: tensor([1, 3]), Diff_out: tensor([1, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([4, 3]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 3])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([4, 0]), Diff_out: tensor([4, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([4, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([1, 1]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([3, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 4])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([1, 1]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([4, 1]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 3])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([1, 4])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 4])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 3]), Diff_out: tensor([1, 3])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([3, 3])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([4, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([0, 1])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 4])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([1, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([1, 2]), DCG_out: tensor([1, 0]), Diff_out: tensor([3, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([4, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([1, 2]), Diff_out: tensor([3, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([3, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([3, 4])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([4, 1]), DCG_out: tensor([3, 2]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([1, 1]), Diff_out: tensor([1, 3])
+root - INFO - Actual: tensor([2, 3]), DCG_out: tensor([1, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([1, 4]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 4])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 1]), Diff_out: tensor([4, 4])
+root - INFO - Actual: tensor([2, 2]), DCG_out: tensor([3, 2]), Diff_out: tensor([3, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([3, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([2, 1]), DCG_out: tensor([2, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 3]), Diff_out: tensor([4, 3])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([3, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([1, 1])
+root - INFO - Actual: tensor([0, 4]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 4])
+root - INFO - Actual: tensor([2, 4]), DCG_out: tensor([1, 2]), Diff_out: tensor([1, 3])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([1, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([4, 2])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 2]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 1]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 2]), Diff_out: tensor([2, 3])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([2, 1])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([4, 0])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([4, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 2])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 1])
+root - INFO - Actual: tensor([0, 0]), DCG_out: tensor([0, 0]), Diff_out: tensor([0, 2])
+root - INFO - Actual: tensor([2, 0]), DCG_out: tensor([1, 0]), Diff_out: tensor([4, 0])
+root - INFO - Actual: tensor([0, 1]), DCG_out: tensor([0, 1]), Diff_out: tensor([4, 1])
+root - INFO - Actual: tensor([3, 0]), DCG_out: tensor([2, 0]), Diff_out: tensor([2, 0])
+root - INFO - Actual: tensor([0, 2]), DCG_out: tensor([0, 1]), Diff_out: tensor([0, 1])
+root - INFO - DCG accuracy 0.7366666666666667
+root - INFO - Diffusion model accuracy 0.35888888888888887
+root - INFO - Diffusion-DCG accuracy 0.45111111111111113
+root - INFO - F1 Score 0.28743876489003195

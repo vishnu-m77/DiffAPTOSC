@@ -210,18 +210,31 @@ def compute_mmd(x, y):
 
 
 class weighted_loss():
-    def __init__(self, y, weights=[1/1805, 1/370, 1/999, 1/193, 1/295]):
+    def __init__(self, y, weight = "n"):
         self.y = y
-        self.weights = weights
+        w = [1/1805, 1/370, 1/999, 1/193, 1/295]
+        w = np.asarray(w)
+        w = torch.from_numpy(w)
+        if weight == "None":
+            self.weights = None
+        elif weight == "n":
+            self.weights = w
+        elif weight == "sqrt":
+            w1 = torch.sqrt(w)
+            self.weights = w1
+        else:
+            logging.error("Unknown value given to weight parameter in diffusion")
+            raise KeyError("Unknown value given to weight parameter in diffusion")
 
     def loss(self, loss_vector):
-        weight_list = []
-        # logging.info(self.y)
-        for label in self.y:
-            label = self.weights[label]
-            weight_list.append(label)
-        loss_vector = torch.sum(loss_vector, dim=1)
-        loss_vector = loss_vector*torch.tensor(weight_list)
+        if self.weights != None:
+            weight_list = []
+            # logging.info(self.y)
+            for label in self.y:
+                label = self.weights[label]
+                weight_list.append(label)
+            loss_vector = torch.sum(loss_vector, dim=1)
+            loss_vector = loss_vector*torch.tensor(weight_list)
         return loss_vector
 
 
@@ -245,7 +258,7 @@ def get_loss(x, y, params, dcg, FD, model):
     output_global = model(x, yt_global, t, dcg_global)
     output_local = model(x, yt_local, t, dcg_local)
 
-    weighted = weighted_loss(y=y)
+    weighted = weighted_loss(y=y, weight=params["weight"])
     loss = weighted.loss((eps - output).square()).mean() + 0.5*(weighted.loss(compute_mmd(eps, output_global)).mean() +
                                                                 weighted.loss(compute_mmd(eps, output_local)).mean())
 
