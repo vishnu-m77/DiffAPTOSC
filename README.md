@@ -42,6 +42,11 @@ dataset/aptos/
 
 `diffusion.py`: Contains code for forward and reverse diffusion.
 
+A class for `weighted_loss` has been implemented which takes `weight` as a parameter that is passed from the diffusion parameters `params["diffusion"]["weight"]`. There are three types of loss: 
+- Unweighted MMD loss (`weight=None`)
+- Weighted MMD loss with the inverse of number of images in each class (`weight=n`)
+- Weighted MMD loss with the square root of the inverse of number of images in each class (`weight=sqrt`)
+
 ## UNet Model
 
 `unet_model.py`: Contains the UNet model used in diffusion.
@@ -54,7 +59,7 @@ dataset/aptos/
 
 Plots are generated in the `plots/` directory. `dcg_loss.png` is generated during the training of the DCG, and `diffusion_loss.png` is generated during the training of the diffusion model. Confusion matrices for DCG and diffusion are saved as `dcg_confusion.png` and `diff_confusion.png`, respectively. `t-SNE` plots are generated for different timesteps `t1, t2, t3` in the diffusion parameters `params["diffusion"]["t-sne"]` during the inference step.
 
-The plot functions have a parameter `mode` which has a default value of 1. `mode=1` implies `DCG` and `mode=0` implies `diffusion`, such that the corresponding plots for each model are generated. 
+The plot functions have a parameter `mode` which can take a value of either `dcg` or `diffusion`, such that the corresponding plots for each model are generated. The default value is `mode=dcg`. If the value of `mode` is not `dcg` or `diffusion`, an error will be raised and the plots will not be generated.
 
 ## Report
 

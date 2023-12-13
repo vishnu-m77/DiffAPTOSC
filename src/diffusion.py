@@ -205,15 +205,45 @@ def compute_mmd(x, y):
     x_kernel = compute_kernel(x, x)
     y_kernel = compute_kernel(y, y)
     xy_kernel = compute_kernel(x, y)
-    mmd = x_kernel.mean() + y_kernel.mean() - 2*xy_kernel.mean()
+    mmd = x_kernel + y_kernel - 2*xy_kernel
     return mmd
 
-def get_loss(x,y, params, dcg, FD, model):
+
+class weighted_loss():
+    def __init__(self, y, weight = "n"):
+        self.y = y
+        w = [1/1805, 1/370, 1/999, 1/193, 1/295]
+        w = np.asarray(w)
+        w = torch.from_numpy(w)
+        if weight == "None":
+            self.weights = None
+        elif weight == "n":
+            self.weights = w
+        elif weight == "sqrt":
+            w1 = torch.sqrt(w)
+            self.weights = w1
+        else:
+            logging.error("Unknown value given to weight parameter in diffusion")
+            raise KeyError("Unknown value given to weight parameter in diffusion")
+
+    def loss(self, loss_vector):
+        if self.weights != None:
+            weight_list = []
+            # logging.info(self.y)
+            for label in self.y:
+                label = self.weights[label]
+                weight_list.append(label)
+            loss_vector = torch.sum(loss_vector, dim=1)
+            loss_vector = loss_vector*torch.tensor(weight_list)
+        return loss_vector
+
+
+def get_loss(x, y, params, dcg, FD, model):
     y0, _ = dcg.cast_label_to_one_hot_and_prototype(y)
     n = x.size(0)
     num_timesteps = params["timesteps"]
     t = torch.randint(low=0, high=num_timesteps,
-                    size=(n // 2 + 1,))
+                      size=(n // 2 + 1,))
     t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
     dcg_fusion, dcg_global, dcg_local = dcg.forward(x)
     dcg_fusion = dcg_fusion.softmax(dim=1)
@@ -227,8 +257,13 @@ def get_loss(x,y, params, dcg, FD, model):
     output = model(x, yt_fusion, t, dcg_fusion)
     output_global = model(x, yt_global, t, dcg_global)
     output_local = model(x, yt_local, t, dcg_local)
-    loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps, output_global) + compute_mmd(eps, output_local))
+
+    weighted = weighted_loss(y=y, weight=params["weight"])
+    loss = weighted.loss((eps - output).square()).mean() + 0.5*(weighted.loss(compute_mmd(eps, output_global)).mean() +
+                                                                weighted.loss(compute_mmd(eps, output_local)).mean())
+
     return loss
+
 
 def train(dcg, model, params, train_loader, val_loader):
     # model = unet_model.ConditionalModel(config=param, guidance=False)
@@ -255,7 +290,7 @@ def train(dcg, model, params, train_loader, val_loader):
                 val_iter = iter(val_loader)
                 x_val, y_labels_val = next(val_iter)
             model.train()
-            loss = get_loss(x_batch,y_labels_batch, params, dcg, FD, model)
+            loss = get_loss(x_batch, y_labels_batch, params, dcg, FD, model)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -263,7 +298,7 @@ def train(dcg, model, params, train_loader, val_loader):
 
             # eval
             model.eval()
-            val_loss = get_loss(x_val,y_labels_val, params, dcg, FD, model)
+            val_loss = get_loss(x_val, y_labels_val, params, dcg, FD, model)
             loss_batch_val.append(val_loss.item())
 
             logging.info(
@@ -278,7 +313,8 @@ def train(dcg, model, params, train_loader, val_loader):
         optimizer.state_dict(),
     ]
     torch.save(diff_states, "saved_diff.pth")
-    plot_loss(loss_arr=loss_batch, title="Loss function for Diffusion Train", val_loss_array=loss_batch_val, mode = False)
+    plot_loss(loss_arr=loss_batch,
+              val_loss_array=loss_batch_val, mode="diffusion")
 
 
 def get_out(dcg, model, feature_label_set, reverse_diffusion):
@@ -335,14 +371,13 @@ def eval(dcg, model, params, test_loader):
         for inner_array in y_out_3:
             y_outs_3.append(inner_array.detach().numpy())
 
-        if i+1 >= params['num_test_batches']:
-            break
     targets = torch.cat(targets)
     dcg_output = torch.cat(dcg_output)
     diffusion_output = torch.cat(diffusion_output)
     y = np.stack((y_outs, y_outs_1, y_outs_2, y_outs_3), axis=0)
-    
+
     return targets, dcg_output, diffusion_output, y
+
 
 # test
 if __name__ == '__main__':

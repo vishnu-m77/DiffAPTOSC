@@ -142,7 +142,7 @@ def train_DCG(dcg, params, train_loader, val_loader):
         logging.info(
             f"epoch: {epoch+1}, DCG pre-training loss: {aux_loss} \t validation loss: {aux_loss_val}"
         )
-    plot_loss(loss_arr=loss_batch, title="Loss function for DCG Train", val_loss_array=loss_val_array)
+    plot_loss(loss_arr=loss_batch, val_loss_array=loss_val_array, mode = "dcg")
     pretrain_end_time = time.time()
     logging.info("\nPre-training of DCG took {:.4f} minutes.\n".format(
         (pretrain_end_time - pretrain_start_time) / 60))
