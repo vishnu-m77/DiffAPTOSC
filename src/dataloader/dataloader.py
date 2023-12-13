@@ -140,10 +140,10 @@ class DataProcessor():
         based on issue #19, minimum total images are set to 1000. if config["num_images"] > 1000,
         total images will be set to config["num_images"]
         '''
-        if config["num_images"] > 1000:
+        if config["num_images"] > 100:
             self.total_image_num = config["num_images"]
         else:
-            self.total_image_num = 1000
+            self.total_image_num = 100
 
     def get_dataloaders(self):
         train_data = APTOSDataset(

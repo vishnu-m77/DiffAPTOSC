@@ -46,11 +46,6 @@ if __name__ == '__main__':
     # if not os.path.exists('plots'):
     #     os.makedirs('plots')
 
-    '''
-    NOTE:
-    If changes are made to "data":"num_classes" , "diffusion":"timesteps" params;
-    make sure to make those changes in "unet" params
-    '''
     data_params = param["data"]
     dcg_params = param["dcg"]
     diffusion_params = param['diffusion']
@@ -87,7 +82,7 @@ if __name__ == '__main__':
         logging.info("Diffusion model parameters: {}".format(diffusion_params))
 
     model = unet_model.ConditionalModel(
-        config=unet_params, n_steps=diffusion_params["timesteps"], n_classes=data_params["num_classes"], guidance=diffusion_params["include_guidance"]).to(device)
+        config=unet_params, n_steps=diffusion_params["timesteps"], n_classes=dcg_params["num_classes"], guidance=diffusion_params["include_guidance"]).to(device)
     diff_chkpt_path = 'saved_diff.pth'
     # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
     if not os.path.exists(diff_chkpt_path):

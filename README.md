@@ -38,7 +38,7 @@ dataset/aptos/
 
 `include_guidance`: Ensures that DCG priors are used in diffusion. `true` indicates using DCG priors for diffusion, `false` indicates not using DCG priors for diffusion.
 
-`weight`: For a detailed description look at Diffusion section of README.
+`weight`: For a detailed description look at Diffusion [here](#diffusion) section of README.
 
 ## Dataloader
 
