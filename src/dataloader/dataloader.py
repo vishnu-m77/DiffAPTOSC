@@ -55,7 +55,8 @@ class APTOSDataset(Dataset):
             '''
             Lakshay - quick update:
             now selecting randomly generated n number of images. n is mentioned in total_images in params.json
-            mulitplier 0.3 mentioned to make sure we select 0.3 * n images from all testing images
+            for test: mulitplier 0.2 mentioned to make sure we select 0.2 * n images from all testing images
+            for val: mulitplier 0.1 mentioned to make sure we select 0.1 * n images from all testing images
             '''
             if self.type == 'val':
                 self.dataset = random_image_selection(
@@ -135,7 +136,14 @@ class DataProcessor():
         self.train_batch_size = config["train_batch_size"]
         self.test_batch_size = config["test_batch_size"]
         self.valid_batch_size = config["valid_batch_size"]
-        self.total_image_num = config["num_images"]
+        '''
+        based on issue #19, minimum total images are set to 1000. if config["num_images"] > 1000,
+        total images will be set to config["num_images"]
+        '''
+        if config["num_images"] > 1000:
+            self.total_image_num = config["num_images"]
+        else:
+            self.total_image_num = 1000
 
     def get_dataloaders(self):
         train_data = APTOSDataset(
