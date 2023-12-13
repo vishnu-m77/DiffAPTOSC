@@ -215,16 +215,16 @@ class weighted_loss():
         w = [1/1805, 1/370, 1/999, 1/193, 1/295]
         w = np.asarray(w)
         w = torch.from_numpy(w)
-        if weight != "sqrt" and weight != "n":
-            logging.info("Unweighted loss function used for Diffusion")
+        if weight == "None":
             self.weights = None
         elif weight == "n":
-            logging.info("Weighted loss function (n) used for Diffusion")
             self.weights = w
         elif weight == "sqrt":
-            logging.info("Weighted loss function (sqrt(n)) used for Diffusion")
             w1 = torch.sqrt(w)
             self.weights = w1
+        else:
+            logging.error("Unknown value given to weight parameter in diffusion")
+            raise KeyError("Unknown value given to weight parameter in diffusion")
 
     def loss(self, loss_vector):
         if self.weights != None:
