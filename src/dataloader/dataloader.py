@@ -137,7 +137,7 @@ class DataProcessor():
         self.test_batch_size = config["test_batch_size"]
         self.valid_batch_size = config["valid_batch_size"]
         '''
-        based on issue #19, minimum total images are set to 1000. if config["num_images"] > 1000,
+        based on issue #19, minimum total images are set to 100. if config["num_images"] > 100,
         total images will be set to config["num_images"]
         '''
         if config["num_images"] > 100:
