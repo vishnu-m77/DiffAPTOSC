@@ -25,12 +25,12 @@
     },
     "diffusion": {
         "timesteps": 60,
+        "weight": "n",
         "noise_schedule": "Linear",
         "beta_initial": 0.0001, 
         "beta_final": 0.02,
         "include_guidance": true,
         "num_epochs": 7,
-        "num_test_batches": 400,
         "t_sne": {
             "t1": 15,
             "t2": 30,
