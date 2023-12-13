@@ -85,8 +85,6 @@ class DCG(nn.Module):
         One optimization step of the non-linear guidance model that predicts y_0_hat.
         """
         y_batch_pred, y_global, y_local = self(x_batch)
-        # y_batch_pred = y_batch_pred.softmax(dim=1)
-        # aux_cost = self.aux_cost_function(y_batch_pred, y_batch)+self.aux_cost_function(y_global, y_batch)+self.aux_cost_function(y_local, y_batch)
         aux_cost = criterion(y_batch_pred, y_batch)
         # update non-linear guidance model
         if aux_optimizer != None:
@@ -119,7 +117,6 @@ def train_DCG(dcg, params, train_loader, val_loader):
     val_iter = iter(val_loader)
     loss_batch, loss_val_array = [], []
     for epoch in range(params["num_epochs"]):
-        # loss_batch = []
         for feature_label_set in train_loader:
             # train loss
             dcg.train()
@@ -160,7 +157,6 @@ def load_DCG(params):
     folder = os.getcwd()
     print(folder)
     # Load the saved model state dictionary from the .pth file
-    # checkpoint_path = os.path.join(folder, "saved_dcg.pth")
     checkpoint_path = "saved_dcg.pth"
     checkpoint = torch.load(checkpoint_path)
     # Load the state dictionary into the model

@@ -162,12 +162,6 @@ class ReverseDiffusion(DiffusionBaseUtils):
 
         y_t = torch.rand_like(cond_prior)+cond_prior
         for t in range(self.T):
-            # when t = 999, self.T - t - 1 = 0 for self.T = 1000
-            # then, from the else condition, we see that we just use the previous y0_hat quantity
-            # instead of doing one more reverse diffusion step.
-            # The reason I have the - 1 is to follow the convention in the script that we count form 0
-            # In card code, they counted from 1 and so here the - 1 ensures that we start counting from 0 and not 1.
-            # *** POTENTIAL_BUG ****
             t = self.T - t - 1
             if t > 0:
                 y_tm1, y0_hat = self.reverse_diffusion_step(
@@ -186,7 +180,6 @@ class ReverseDiffusion(DiffusionBaseUtils):
 
         y0_synthetic = y_tm1
         return y0_synthetic, y_t_1, y_t_2, y_t_3
-        # return y0_synthetic
 
 
 def compute_kernel(x, y):
@@ -229,7 +222,6 @@ class weighted_loss():
     def loss(self, loss_vector):
         if self.weights != None:
             weight_list = []
-            # logging.info(self.y)
             for label in self.y:
                 label = self.weights[label]
                 weight_list.append(label)
@@ -266,7 +258,6 @@ def get_loss(x, y, params, dcg, FD, model):
 
 
 def train(dcg, model, params, train_loader, val_loader):
-    # model = unet_model.ConditionalModel(config=param, guidance=False)
     FD = ForwardDiffusion(config=params)  # initialize class
 
     reverse_diffusion = ReverseDiffusion(config=params)
@@ -330,8 +321,6 @@ def get_out(dcg, model, feature_label_set, reverse_diffusion):
 
 
 def eval(dcg, model, params, test_loader):
-    # dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
-    # dcg.eval()
     t1, t2, t3 = params["t_sne"]["t1"], params["t_sne"]["t2"], params["t_sne"]["t3"]
     reverse_diffusion = ReverseDiffusion(config=params)
     # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
@@ -352,8 +341,6 @@ def eval(dcg, model, params, test_loader):
         dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
         dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
         y_T_mean = dcg_fusion
-        # y_out = reverse_diffusion.full_reverse_diffusion(
-        #     x_batch, cond_prior=y_T_mean, score_net=model)
         y_out, y_out_1, y_out_2, y_out_3 = reverse_diffusion.full_reverse_diffusion(
             x_batch, cond_prior=y_T_mean, score_net=model, t1=t1, t2=t2, t3=t3)
         logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
@@ -378,8 +365,3 @@ def eval(dcg, model, params, test_loader):
 
     return targets, dcg_output, diffusion_output, y
 
-
-# test
-if __name__ == '__main__':
-    # Add tests here
-    logging.info("Successful")
