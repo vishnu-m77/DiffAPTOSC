@@ -25,12 +25,19 @@ dataset/aptos/
 ## Parameters
 
 `num_images`: Gives total number of images. 70:10:20 split implemented automatically for train:val:test. To change the train:val:test ratio, make the change in `APTOSDataset` class. Minimum 1000 images are set to class `DataProcessor`. If `num_images` > 1000, it will automatically set that as number of images used.
+
 `train_batch_size`: Currently set to 25 as the machine can handle only that, however higher batch_size ~ 32 is recommended.
+
 `valid_batch_size`: Currently set to 25 as the machine can handle only that, however higher batch_size ~ 32 is recommended.
+
 `test_batch_size`: Currently set to 2 as the inference can happen only for that, however higher batch_size ~ 25 is recommended.
+
 `timestep`: Currently experimented with 500, 80, 60, 50. Optimally ~ 60 is recommended.
+
 `num_classes`: Selected as 5 for 5 classes - 0, 1, 2, 3, 4. Don't change it unless you change the dataset.
+
 `include_guidance`: Ensures that DCG priors are used in diffusion. `true` indicates using DCG priors for diffusion, `false` indicates not using DCG priors for diffusion.
+
 `weight`: For a detailed description look at Diffusion section of README.
 
 ## Dataloader
@@ -51,7 +58,8 @@ dataset/aptos/
 
 `diffusion.py`: Contains code for forward and reverse diffusion.
 
-A class for `weighted_loss` has been implemented which takes `weight` as a parameter that is passed from the diffusion parameters `params["diffusion"]["weight"]`. There are three types of loss: 
+A class for `weighted_loss` has been implemented which takes `weight` as a parameter that is passed from the diffusion parameters `params["diffusion"]["weight"]`. There are three types of loss:
+
 - Unweighted MMD loss (`weight=None`)
 - Weighted MMD loss with the inverse of number of images in each class (`weight=n`)
 - Weighted MMD loss with the square root of the inverse of number of images in each class (`weight=sqrt`)
@@ -69,7 +77,6 @@ Weights are calculated currently using total images. There are [1805, 370, 999, 
 ## Plots
 
 Plots are generated in the `plots/` directory. `dcg_loss.png` is generated during the training of the DCG, and `diffusion_loss.png` is generated during the training of the diffusion model. Confusion matrices for DCG and diffusion are saved as `dcg_confusion.png` and `diff_confusion.png`, respectively. `t-SNE` plots are generated for different timesteps `t1, t2, t3` in the diffusion parameters `params["diffusion"]["t-sne"]` during the inference step.
-
 
 The plot functions have a parameter `mode` which can take a value of either `dcg` or `diffusion`, such that the corresponding plots for each model are generated. The default value is `mode=dcg`. If the value of `mode` is not `dcg` or `diffusion`, an error will be raised and the plots will not be generated.
 
