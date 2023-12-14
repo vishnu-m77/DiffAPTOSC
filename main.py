@@ -54,9 +54,6 @@ if __name__ == '__main__':
 
     data = dataloader.DataProcessor(data_params)
     train_loader, test_loader, val_loader = data.get_dataloaders()
-    # print out number of batches in each train, test andd val loaders by uncommenting below
-    # print('train size: ', len(train_loader), 'test size: ',
-    #       len(test_loader), 'val size: ', len(val_loader))
 
     y_fusions = []
     y_globals = []
@@ -68,8 +65,7 @@ if __name__ == '__main__':
         # Initialize DCG
         dcg = dcg_module.DCG(dcg_params)
         # Trains DCG and saves the model
-        dcg_module.train_DCG(dcg, dcg_params, train_loader,
-                             val_loader=val_loader)
+        dcg_module.train_DCG(dcg, dcg_params, train_loader, val_loader=val_loader)
     # Loads the saved DCG model and sets to eval mode
     logging.info(
         "Loading trained DCG checkpoint from {}".format(dcg_chkpt_path))
@@ -84,17 +80,13 @@ if __name__ == '__main__':
     diff_chkpt_path = 'saved_diff.pth'
     # Checks if a saved diffusion checkpoint exists. If not, trains the diffusion model.
     if not os.path.exists(diff_chkpt_path):
-        diffusion.train(dcg, model, diffusion_params,
-                        train_loader, val_loader=val_loader)
+        diffusion.train(dcg, model, diffusion_params, train_loader, val_loader)
 
-    logging.info(
-        "Loading trained diffusion checkpoint from {}".format(diff_chkpt_path))
+    logging.info("Loading trained diffusion checkpoint from {}".format(diff_chkpt_path))
     chkpt = torch.load(diff_chkpt_path)
     model.load_state_dict(chkpt[0])
     model.eval()
     logging.info("Diffusion_checkpoint loaded")
-    targets, dcg_output, diffusion_output, y = diffusion.eval(
-        dcg, model, diffusion_params, test_loader)
+    targets, dcg_output, diffusion_output, y = diffusion.eval(dcg, model, diffusion_params, test_loader)
 
-    metrics.call_metrics(diffusion_params, targets,
-                         dcg_output, diffusion_output, y)
+    metrics.call_metrics(diffusion_params, targets, dcg_output, diffusion_output, y)
