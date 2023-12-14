@@ -7,7 +7,7 @@ from sklearn.manifold import TSNE
 
 def plot_confusion(expected, predicted, mode = True):
     num_classes = np.unique(expected)
-    labels = range(num_classes)
+    labels = range(np.max(num_classes))
     
     cm = confusion_matrix(expected, predicted)
     disp = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels = labels)
