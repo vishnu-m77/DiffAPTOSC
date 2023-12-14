@@ -16,11 +16,11 @@ logging.getLogger('PIL').setLevel(logging.WARNING)
 
 
 class APTOSDataset(Dataset):
-    def __init__(self, data_path, total_image_num, train=True):
+    def __init__(self, data_path, total_image_num, type='train'):
         self.trainsize = (224, 224)
-        #self.trainsize = (100, 100)
+        # self.trainsize = (100, 100)
         self.total_image_num = total_image_num
-        self.train = train
+        self.type = type
         self.data_path = data_path
 
         with open(data_path, "rb") as f:
@@ -28,7 +28,7 @@ class APTOSDataset(Dataset):
         self.dataset = tr_dl
 
         # print(self.size)
-        if train:
+        if self.type == 'train':
             logging.info("Initialize DataLoader for train dataset")
             '''
             Lakshay - quick update:
@@ -55,10 +55,16 @@ class APTOSDataset(Dataset):
             '''
             Lakshay - quick update:
             now selecting randomly generated n number of images. n is mentioned in total_images in params.json
-            mulitplier 0.3 mentioned to make sure we select 0.3 * n images from all testing images
+            for test: mulitplier 0.2 mentioned to make sure we select 0.2 * n images from all testing images
+            for val: mulitplier 0.1 mentioned to make sure we select 0.1 * n images from all testing images
             '''
-            self.dataset = random_image_selection(
-                self.dataset, 0.3, total_image_num)
+            if self.type == 'val':
+                self.dataset = random_image_selection(
+                    self.dataset, 0.1, total_image_num)
+            elif self.type == 'test':
+                self.dataset = random_image_selection(
+                    self.dataset, 0.2, total_image_num)
+
             self.size = len(self.dataset)
             self.transform_center = transforms.Compose([
                 tr.CropCenterSquare(),
@@ -130,16 +136,25 @@ class DataProcessor():
         self.train_batch_size = config["train_batch_size"]
         self.test_batch_size = config["test_batch_size"]
         self.valid_batch_size = config["valid_batch_size"]
-        self.total_image_num = config["num_images"]
+        '''
+        based on issue #19, minimum total images are set to 100. if config["num_images"] > 100,
+        total images will be set to config["num_images"]
+        '''
+        if config["num_images"] > 100:
+            self.total_image_num = config["num_images"]
+        else:
+            self.total_image_num = 100
 
     def get_dataloaders(self):
         train_data = APTOSDataset(
-            data_path=self.train_path, total_image_num=self.total_image_num, train=True)
+            data_path=self.train_path, total_image_num=self.total_image_num, type='train')
         test_data = APTOSDataset(
-            data_path=self.test_path, total_image_num=self.total_image_num, train=False)
+            data_path=self.test_path, total_image_num=self.total_image_num, type='test')
+        val_data = APTOSDataset(
+            data_path=self.test_path, total_image_num=self.total_image_num, type='val')
 
         # print to see if the number of dataset selection works
-        # print(len(train_data), len(test_data))
+        # print(len(train_data), len(test_data), len(val_data))
 
         train_loader = DataLoader(
             train_data,
@@ -152,7 +167,7 @@ class DataProcessor():
             shuffle=True
         )
         valid_loader = DataLoader(
-            test_data,
+            val_data,
             batch_size=self.valid_batch_size,
             shuffle=True
         )
