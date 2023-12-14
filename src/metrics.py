@@ -5,15 +5,17 @@ from matplotlib import pyplot as plt
 from sklearn.metrics import f1_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.manifold import TSNE
 
-def plot_confusion(expected, predicted, mode = True):
-    num_classes = np.unique(expected)
-    labels = range(np.max(num_classes))
+def plot_confusion(expected, predicted, mode = "dcg"):
+    labels = np.unique(expected)
     
     cm = confusion_matrix(expected, predicted)
     disp = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels = labels)
     disp.plot()
     os.makedirs('plots', exist_ok=True)
-    if mode:
+    if mode != "dcg" and mode != "diffusion":
+        logging.error('Check value of the mode for plotting. Confusion plots not generated.')
+        return
+    elif mode == "dcg":
         plt.title('Confusion Matrix for DCG')
         plt.savefig('plots/dcg_confusion'+'.png', format='PNG')
     else:
@@ -93,8 +95,8 @@ def call_metrics(params, targets, dcg_output, diffusion_output, y):
     dcg_accuracy = accuracy_torch(targets, dcg_output)
     diffusion_accuracy = accuracy_torch(targets, diffusion_output)
     dcg_diffusion_accuracy = accuracy_torch(dcg_output, diffusion_output)
-    plot_confusion(targets, dcg_output)
-    plot_confusion(targets, diffusion_output, 0)
+    plot_confusion(targets, dcg_output, "dcg")
+    plot_confusion(targets, diffusion_output, "diffusion")
     f1_score = compute_f1_score(targets, diffusion_output)
     tsne_0 = t_sne(targets, y_outs, t_num='0')
     tsne_1 = t_sne(targets, y_outs_1, t_num=t1)
