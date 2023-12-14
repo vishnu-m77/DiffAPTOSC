@@ -2,22 +2,14 @@ import numbers
 import random
 from PIL import Image
 
-"""
-Obtained from https://github.com/scott-yjyang/DiffMIC
-"""
-
 class CropCenterSquare(object):
     def __init__(self):
         pass
 
     def __call__(self, img):
-
-        # assert img.width == mask.width
-        # assert img.height == mask.height
         img_w, img_h = img.size
         h = min(img_h, img_w)
         crop = CenterCrop(h)
-
         return crop(img)
 
 class CenterCrop(object):
@@ -28,13 +20,9 @@ class CenterCrop(object):
             self.size = size
 
     def __call__(self, img):
-
-        # assert img.width == mask.width
-        # assert img.height == mask.height
         w, h = img.size
         th, tw = self.size
         x1 = int(round((w - tw) / 2.))
-        # y1 = int(round((h - th) / 2.))
         y1 = int(round((h - th) / 2.))
         img = img.crop((x1, y1, x1 + tw, y1 + th))
 
@@ -63,4 +51,3 @@ class RandomVerticalFlip(object):
         if random.random() < 0.5:
             return img.transpose(Image.FLIP_TOP_BOTTOM)
         return img
-

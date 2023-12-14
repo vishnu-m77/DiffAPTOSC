@@ -5,7 +5,7 @@ import numpy as np
 import src.DCG.utils as utils
 import torchvision
 import torchvision.models
-from torchvision.models.resnet import conv3x3, resnet18, resnet50
+from torchvision.models.resnet import resnet18, resnet50
 
 class AbstractMILUnit:
     """
@@ -38,21 +38,16 @@ class DownsampleNetwork(nn.Module):
     def __init__(self):
         super(DownsampleNetwork, self).__init__()
         self.f = []
-        # backbone = resnet50(pretrained=True)
         backbone = resnet50(weights='DEFAULT')
-        # weights=ResNet18_Weights.DEFAULT
-        # backbone = resnet18(pretrained=True)
+        # backbone = resnet18(weights='DEFAULT')
         
         for name, module in backbone.named_children():
             if name != 'fc' and name != 'avgpool':
                 self.f.append(module)
-        # print(self.f)
-        # encoder
         self.f = nn.Sequential(*self.f)
 
     def forward(self, x):
         last_feature_map = self.f(x)
-        # print(last_feature_map.shape)
         return last_feature_map
 
 class GlobalNetwork(AbstractMILUnit):
@@ -62,7 +57,6 @@ class GlobalNetwork(AbstractMILUnit):
     def __init__(self, params, parent_module):
         super(GlobalNetwork, self).__init__(params, parent_module)
         # downsampling-branch
-        # if "use_v1_global" in params and params["use_v1_global"]:
         self.downsampling_branch = DownsampleNetwork()
         # post-processing
         self.saliency_map = Saliency_Map(params)
@@ -119,10 +113,6 @@ class RetrieveROIModule(AbstractMILUnit):
         _, _, H, W = x_original.size()
         (h, w) = cam_size
         N, C, h_h, w_h = h_small.size()
-        #print(h_small.size())
-        # make sure that the size of h_small == size of cam_size
-        # assert h_h == h, "h_h!=h"
-        # assert w_h == w, "w_h!=w"
 
         # adjust crop_shape since crop shape is based on the original image
         crop_x_adjusted = int(np.round(self.crop_shape[0] * h / H))

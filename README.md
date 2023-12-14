@@ -24,6 +24,22 @@ dataset/aptos/
 
 ## Parameters
 
+`num_images`: Gives total number of images. 70:10:20 split implemented automatically for train:val:test. To change the train:val:test ratio, make the change in `APTOSDataset` class. Minimum 1000 images are set to class `DataProcessor`. If `num_images` > 1000, it will automatically set that as number of images used.
+
+`train_batch_size`: Currently set to 25 as the machine can handle only that, however higher batch_size ~ 32 is recommended.
+
+`valid_batch_size`: Currently set to 25 as the machine can handle only that, however higher batch_size ~ 32 is recommended.
+
+`test_batch_size`: Currently set to 2 as the inference can happen only for that, however higher batch_size ~ 25 is recommended.
+
+`timestep`: Currently experimented with 500, 80, 60, 50. Optimally ~ 60 is recommended.
+
+`num_classes`: Selected as 5 for 5 classes - 0, 1, 2, 3, 4. Don't change it unless you change the dataset.
+
+`include_guidance`: Ensures that DCG priors are used in diffusion. `true` indicates using DCG priors for diffusion, `false` indicates not using DCG priors for diffusion.
+
+`weight`: For a detailed description look at [Diffusion](#diffusion) section of README.
+
 ## Dataloader
 
 `dataloader.py`: Using `DataProcessor.get_dataloaders()`, we get the train and test data, images and labels included. Train dataloader is used in DCG and Diffusion process for training. Test dataloader is used for evaluation of Diffusion.
@@ -42,10 +58,13 @@ dataset/aptos/
 
 `diffusion.py`: Contains code for forward and reverse diffusion.
 
-A class for `weighted_loss` has been implemented which takes `weight` as a parameter that is passed from the diffusion parameters `params["diffusion"]["weight"]`. There are three types of loss: 
+A class for `weighted_loss` has been implemented which takes `weight` as a parameter that is passed from the diffusion parameters `params["diffusion"]["weight"]`. There are three types of loss:
+
 - Unweighted MMD loss (`weight=None`)
 - Weighted MMD loss with the inverse of number of images in each class (`weight=n`)
 - Weighted MMD loss with the square root of the inverse of number of images in each class (`weight=sqrt`)
+
+Weights are calculated currently using total images. There are [1805, 370, 999, 193, 295] images for classes [0, 1, 2, 3, 4] respectively. Thus the weight is currently static and set to `[1/1805, 1/370, 1/999, 1/193, 1/295]`.
 
 ## UNet Model
 
@@ -66,6 +85,12 @@ The plot functions have a parameter `mode` which can take a value of either `dcg
 `project.log`: Logs during runtime are saved in this file.
 
 `report.txt`: Accuracy of the DCG, and the diffusion model are saved in this file. The f1 score, and the t-SNE values are also saved.
+
+## Potential Extensions
+
+- Weights in [Diffusion](#diffusion) section can be made dynamic by finding the total number of images for each batch and then setting weights based on number of images of each class in the batch. To make sure we don't encounter a condition where a batch doesn't contain an image of a particular label, we can set the weight to 1 for that.
+- Randomly flip images horizontally and vertically to increase size of the dataset for classes with low number of objects. This can help with imbalanced class issue.
+- Images can be sampled evenly from each classes for test, validation and test datasets. This will ensure that the model is trained evenly on all classes.
 
 ## Thanks
 
