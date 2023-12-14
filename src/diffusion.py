@@ -74,9 +74,9 @@ class ForwardDiffusion(DiffusionBaseUtils):
         obtain the respective noisy variables following equation 2 of DiffMIC paper.
         y_0, global and local priors will be obtained from dcg.
 
-        t is the timestep till which noise has been added in the forward diffusion process
+        - t is the timestep till which noise has been added in the forward diffusion process
 
-        var is the variable on which we are adding noise and it needs to be a float tensor
+        - var is the variable on which we are adding noise and it needs to be a float tensor
 
         Note:
         * prior = (global_prior + local_prior)/2 for y_0
@@ -110,7 +110,7 @@ class ReverseDiffusion(DiffusionBaseUtils):
         cond_prior: prior for local or global prior or local+global prior and according to CARD it should depend on x
         score_net: Neural Network which is used to approximate the gradient of the log likelihood of the probability distribution
         """
-        # First calculate the time dependent parameters gamma_0, gamme_1, gamma_2 and beta_var
+        # First we calculate the time dependent parameters gamma_0, gamme_1, gamma_2 and beta_var
         # In reverse diffusion, at each timestep t, we are essentially sampling from a Gaussian Distribution
         # whose mean is defined using gamma_0, gamma_1 and gamma_2 and the variance is defined by beta_var
         # Note that gamma_0, gamma_1, gamma_2, beta_var depend on the timestep of reverse diffusion
@@ -119,7 +119,7 @@ class ReverseDiffusion(DiffusionBaseUtils):
         eps = torch.randn_like(y_t)
         t = torch.tensor([t])
 
-        # first we reparameterize y0 to obtain y0_hat
+        # Now we reparameterize y0 to obtain y0_hat following CARD
         y0_hat = (1/torch.sqrt(alpha_prod_t))*(y_t - (1-torch.sqrt(alpha_prod_t)) *
                                                cond_prior - torch.sqrt(1-alpha_prod_t)*score_net.forward(x, y_t, t, yhat=cond_prior))
 
@@ -245,7 +245,9 @@ def train(dcg, model, params, train_loader):
 
 
 def eval(dcg, model, params, test_loader):
-
+    """
+    Main eval function for diffusion
+    """
     t1, t2, t3 = params["t_sne"]["t1"], params["t_sne"]["t2"], params["t_sne"]["t3"]
     reverse_diffusion = ReverseDiffusion(config=params)
 
@@ -270,7 +272,8 @@ def eval(dcg, model, params, test_loader):
         targets.append(y_labels_batch)
         dcg_output.append(torch.argmax(y_T_mean, dim=1))
         diffusion_output.append(torch.argmax(y_out.softmax(dim=1), dim=1))
-
+     
+        # Code below is used to compute tsne
         for inner_array in y_out:
             y_outs.append(inner_array.detach().numpy())
         for inner_array in y_out_1:
