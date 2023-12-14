@@ -6,7 +6,8 @@ from sklearn.metrics import f1_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.manifold import TSNE
 
 def plot_confusion(expected, predicted, mode = True):
-    labels = range(5)
+    num_classes = np.unique(expected)
+    labels = range(num_classes)
     
     cm = confusion_matrix(expected, predicted)
     disp = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels = labels)
