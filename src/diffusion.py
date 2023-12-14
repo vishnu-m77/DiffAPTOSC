@@ -114,7 +114,6 @@ class ReverseDiffusion(DiffusionBaseUtils):
         """
         This does the full reverse diffusion process. We start by initializing a random sample from a Gaussian Distribution
         whose mean is defined by the cond_prior and with variance I. Then reverse_diffusion_step is called self.T - 1 times.
-        In the very last step i.e. at time = 1,
         """
 
         y_t = torch.rand_like(cond_prior)+cond_prior
