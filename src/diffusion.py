@@ -1,7 +1,3 @@
-"""
-Build basic structure of diffusion pipeline
-This script assumes a fully function DCG module and Dataloader module
-"""
 import torch
 import numpy as np
 import time
@@ -9,7 +5,6 @@ import os
 import src.DCG.main as dcg_module
 import src.unet_model as unet_model
 import logging
-# from joblib import Parallel, delayed
 from src.metrics import *
 
 
@@ -56,7 +51,6 @@ class DiffusionBaseUtils():
         if t < 1:
             raise ValueError(
                 "Invalid timestep. Timestep must be at least 1 to obtain reverse diffusion parameters")
-        # will throw error at time step t = 0 MAKE SURE TO DEAL WITH IT
         alpha_prod_t_m1 = self.get_alpha_prod(timestep=t-1)
 
         gamma_0 = beta_t*(torch.sqrt(alpha_prod_t_m1)/(1 - alpha_prod_t))
@@ -106,29 +100,10 @@ class ReverseDiffusion(DiffusionBaseUtils):
         super(ReverseDiffusion, self).__init__(
             config=config
         )
-        """
-        NOTES: - Sehmimul - Notes not removed as reverse diffusion notes may be useful in debugging reverse diffusion
 
-        1. The diffusion pipeline in DiffMIC is based off https://arxiv.org/abs/2206.07275 
-        Github: https://github.com/XzwHan/CARD/blob/ebe2f2ae95dc7a7a95e6a71c0c8e1cabf8451087/classification/diffusion_utils.py#L106
-        Especially the CARD paper's Algorithm 2 line 4 is very useful as thta talks about inference and
-        the same inference scheme has been applied in the DiffMIC paper
-        Thus CARD has to be an intergal part of our work. Output of p_sample is literally the denoising
-        process of the CARD paper.
-
-        2. I understand p_sample, but I don't understand the goal of p_sample_t_1to0. The goal of y_0_reparam is outlined in point 1
-
-        3.  p_sample is just reverse process of CARD paper and it is just equation 9 and Algorithm 2 and it
-
-        4. extract function is not necessary and the x or y input is only required to get the 'shape' and it is not really useful otherwise
-
-        5. In p_sample_loop curl_y is just a sample drawn from the N(prior, I) distribution.
-        """
-
-    # cannot test without cond_prior and score_net
     def reverse_diffusion_step(self, x, y_t, t, cond_prior, score_net):
         """
-        This is similar to p_sample of code
+        This function does 1 step of revers diffusion. Inputs are:
         x: The input image which will be used in the Score Network
         y_t: noisy variable at a specific timestep t
         t: timestep at which we are doing doing reverse diffusion and t will go from T to 1
@@ -153,25 +128,19 @@ class ReverseDiffusion(DiffusionBaseUtils):
 
         return y_tm1, y0_hat
 
-    # cannot test without cond_prior and score_net
     def full_reverse_diffusion(self, x, cond_prior, score_net, t1, t2, t3):
         """
-        This does the full reverse diffusion process. We start by initializing a random sample from a Gaussian Distribution
-        whose mean is defined by the cond_prior and with variance I. Then reverse_diffusion_step is called self.T - 1 times. In the very last step i.e. at time = 1,
+        This do the full reverse diffusion process. 
+        We start by initializing a random sample from a Gaussian Distribution
+        whose mean is defined by the cond_prior and with variance I.
         """
 
         y_t = torch.rand_like(cond_prior)+cond_prior
         for t in range(self.T):
-            # when t = 999, self.T - t - 1 = 0 for self.T = 1000
-            # then, from the else condition, we see that we just use the previous y0_hat quantity
-            # instead of doing one more reverse diffusion step.
-            # The reason I have the - 1 is to follow the convention in the script that we count form 0
-            # In card code, they counted from 1 and so here the - 1 ensures that we start counting from 0 and not 1.
-            # *** POTENTIAL_BUG ****
             t = self.T - t - 1
             if t > 0:
                 y_tm1, y0_hat = self.reverse_diffusion_step(
-                    x, y_t, t, cond_prior, score_net)  # method will crash if t = 0
+                    x, y_t, t, cond_prior, score_net)
                 y_t = y_tm1
 
                 if t == t1:
@@ -181,27 +150,31 @@ class ReverseDiffusion(DiffusionBaseUtils):
                 elif t == t3:
                     y_t_3 = y_tm1
             else:
-                # so t = 1
                 y_tm1 = y0_hat
 
         y0_synthetic = y_tm1
         return y0_synthetic, y_t_1, y_t_2, y_t_3
-        # return y0_synthetic
 
 
 def compute_kernel(x, y):
+    """
+    Helper function to compute loss function
+    """
     x_size = x.size(0)
     y_size = y.size(0)
     dim = x.size(1)
-    x = x.unsqueeze(1)  # (x_size, 1, dim)
-    y = y.unsqueeze(0)  # (1, y_size, dim)
+    x = x.unsqueeze(1)
+    y = y.unsqueeze(0)
     tiled_x = x.expand(x_size, y_size, dim)
     tiled_y = y.expand(x_size, y_size, dim)
     kernel_input = (tiled_x - tiled_y).pow(2).mean(2)/float(dim)
-    return torch.exp(-kernel_input)  # (x_size, y_size)
+    return torch.exp(-kernel_input)
 
 
 def compute_mmd(x, y):
+    """
+    Computed MMD loss
+    """
     x_kernel = compute_kernel(x, x)
     y_kernel = compute_kernel(y, y)
     xy_kernel = compute_kernel(x, y)
@@ -210,10 +183,10 @@ def compute_mmd(x, y):
 
 
 def train(dcg, model, params, train_loader):
-    # model = unet_model.ConditionalModel(config=param, guidance=False)
+    """
+    Main training function for diffusion
+    """
     FD = ForwardDiffusion(config=params)  # initialize class
-
-    reverse_diffusion = ReverseDiffusion(config=params)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=0.0033, betas=(0.9, 0.999), amsgrad=False, weight_decay=0.00, eps=0.00000001)
     loss_epoch = []
@@ -234,33 +207,22 @@ def train(dcg, model, params, train_loader):
             t = torch.randint(low=0, high=num_timesteps,
                               size=(n // 2 + 1,))
             t = torch.cat([t, num_timesteps - 1 - t], dim=0)[:n]
-            # print(t)
-            # t = torch.randint(low=0, high=num_timesteps, size = (1,))
 
-            # dcg_fusion, dcg_global, dcg_local = dcg(x_batch)[0], dcg(x_batch)[
-            #     1], dcg(x_batch)[2]
             dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
-            """
-            sehmi -  why softmax in the 2 line below?
-            Note sure, but it seems to work...
-            """
+
             dcg_fusion = dcg_fusion.softmax(dim=1)
             dcg_global, dcg_local = dcg_global.softmax(
                 dim=1), dcg_local.softmax(dim=1)
-            # logging.info(dcg_global)
+
             y0 = y_one_hot_batch
             eps = torch.randn_like(y0)
 
-            # Creates noise with the priors
             yt_fusion = FD.forward(y0, dcg_fusion, eps=eps)
             yt_global = FD.forward(y0, dcg_global, eps=eps)
             yt_local = FD.forward(y0, dcg_local, eps=eps)
             output = model(x_batch, yt_fusion, t, dcg_fusion)
             output_global = model(x_batch, yt_global, t, dcg_global)
             output_local = model(x_batch, yt_local, t, dcg_local)
-            # logging.info(output_global)
-            # + 0.5*(compute_mmd(eps,output_global) + compute_mmd(eps,output_local))
-            # loss = (eps - output).square().mean()
             loss = (eps - output).square().mean() + 0.5*(compute_mmd(eps, output_global) + compute_mmd(eps, output_local))
             optimizer.zero_grad()
             loss.backward()
@@ -274,7 +236,6 @@ def train(dcg, model, params, train_loader):
     data_time = time.time() - data_start
     logging.info("\nTraining of Diffusion took {:.4f} minutes.\n".format(
         (data_time) / 60))
-    # save DCG model after training
     diff_states = [
         model.state_dict(),
         optimizer.state_dict(),
@@ -283,27 +244,11 @@ def train(dcg, model, params, train_loader):
     plot_loss(loss_arr=loss_epoch, title="Loss function for Diffusion Train", mode=0)
 
 
-def get_out(dcg, model, feature_label_set, reverse_diffusion):
-    x_batch, y_labels_batch = feature_label_set
-    dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
-    dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
-    y_T_mean = dcg_fusion
-    y_out = reverse_diffusion.full_reverse_diffusion(
-        x_batch, cond_prior=y_T_mean, score_net=model)
-    logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
-        y_labels_batch, torch.argmax(y_T_mean, dim=1), torch.argmax(y_out.softmax(dim=1), dim=1)))
-    return y_out.softmax(dim=1)
-
-
 def eval(dcg, model, params, test_loader):
-    # dcg.load_state_dict(torch.load('saved_dcg.pth')[0])
-    # dcg.eval()
+
     t1, t2, t3 = params["t_sne"]["t1"], params["t_sne"]["t2"], params["t_sne"]["t3"]
     reverse_diffusion = ReverseDiffusion(config=params)
-    # outputs = Parallel(n_jobs=-1)(delayed(self.one_object_pred)(df.loc[df['object_id'] == object], object, report_file, verbose) for object in objects)
 
-    # Parallel/ delayed code calls get_out which does the job of the for loop following it. Only one of the two should be active at any given time
-    # outputs = Parallel(n_jobs=-1)(delayed(get_out)(dcg, model, feature_label_set, reverse_diffusion) for i, feature_label_set in enumerate(test_loader))
     targets = []
     dcg_output = []
     diffusion_output = []
@@ -315,11 +260,9 @@ def eval(dcg, model, params, test_loader):
     model.eval()
     for i, feature_label_set in enumerate(test_loader):
         x_batch, y_labels_batch = feature_label_set
-        dcg_fusion, dcg_global, dcg_local = dcg.forward(x_batch)
+        dcg_fusion, _, _ = dcg.forward(x_batch)
         dcg_fusion = dcg_fusion.softmax(dim=1)  # the actual label
         y_T_mean = dcg_fusion
-        # y_out = reverse_diffusion.full_reverse_diffusion(
-        #     x_batch, cond_prior=y_T_mean, score_net=model)
         y_out, y_out_1, y_out_2, y_out_3 = reverse_diffusion.full_reverse_diffusion(
             x_batch, cond_prior=y_T_mean, score_net=model, t1=t1, t2=t2, t3=t3)
         logging.info("Actual: {}, DCG_out: {}, Diff_out: {}".format(
@@ -346,7 +289,6 @@ def eval(dcg, model, params, test_loader):
     
     return targets, dcg_output, diffusion_output, y
 
-# test
 if __name__ == '__main__':
     # Add tests here
     logging.info("Successful")
