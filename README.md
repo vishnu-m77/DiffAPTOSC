@@ -1,7 +1,5 @@
 # DiffAPTOSC
 
-Final Project for AMATH 495
-
 The project is based on the paper [DiffMIC: Dual-Guidance Diffusion Network for Medical Image Classification](https://arxiv.org/abs/2303.10610).
 
 Run the code: `python3 ./main.py`
